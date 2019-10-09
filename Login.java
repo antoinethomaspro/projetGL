@@ -78,6 +78,7 @@ public class Login {
 				if(uname.equals("name") && psd.equals("password"))
 				{
 					JOptionPane.showMessageDialog(frame, "you are connected");
+					Window_User ticket = new Window_User();
 				}
 					else 
 					{
