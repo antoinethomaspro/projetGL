@@ -1,7 +1,6 @@
-package fr.projetgl.swing;
+package Ticketing_Projet;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -79,6 +78,7 @@ public class Login {
 				{
 					JOptionPane.showMessageDialog(frame, "you are connected");
 					Window_User ticket = new Window_User();
+					frame.setVisible(false);
 				}
 					else 
 					{
