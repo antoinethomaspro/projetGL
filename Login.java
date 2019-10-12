@@ -78,7 +78,7 @@ public class Login {
 				{
 					JOptionPane.showMessageDialog(frame, "you are connected");
 					Window_User ticket = new Window_User();
-					frame.setVisible(false);
+					frame.dispose();
 				}
 					else 
 					{
