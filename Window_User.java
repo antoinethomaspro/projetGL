@@ -13,8 +13,8 @@ public class Window_User extends JFrame implements ActionListener{
 	private JLabel titre = new JLabel("Titre du ticket");
 	private JLabel description = new JLabel("Description");
 	private JTextField titreField = new JTextField("");
-	private JLabel priority = new JLabel("Priorité");
-	private JLabel lblOrigineDuTicket = new JLabel("Catégorie");
+	private JLabel priority = new JLabel("PrioritÃ©");
+	private JLabel lblOrigineDuTicket = new JLabel("CatÃ©gorie");
 	private JComboBox<String> importance = new JComboBox<String>();
 	private TextArea desc = new TextArea();
 	private JButton reset = new JButton("Reinitialiser");
@@ -35,12 +35,13 @@ public class Window_User extends JFrame implements ActionListener{
 	};
 
 	public Window_User() {
+		setResizable(false);
 		setType(Type.POPUP);
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		this.setVisible(true); // page visible
 		this.setTitle("User Window"); // title
 		this.setSize(731, 327); // size
-		this.setLocationRelativeTo(null); // fenetre centrée
+		this.setLocationRelativeTo(null); // fenetre centrÃ©e
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
 		this.setContentPane(panel); // mise en place du jpanel
 		panel.setLayout(null); 											//AJOUT DES ELEMENTS DANS LE JPANEL + MISE EN PLACE AVEC COORDONNEES
@@ -72,14 +73,14 @@ public class Window_User extends JFrame implements ActionListener{
 		panel.add(desc);
 		reset.setBounds(440, 254, 89, 23);
 		panel.add(reset);
-		boxType.addItem("Problème");
+		boxType.addItem("ProblÃ¨me");
 		boxType.addItem("Question");
 		boxType.addItem("Incident");	
 		reset.addActionListener(resetListener);
 		cancel.addActionListener(this);
 		done.addActionListener(doneListener);//FIN MISE EN PLACE
 	}
-	public void actionPerformed(ActionEvent e) { // annulation création ticket 
+	public void actionPerformed(ActionEvent e) { // annulation crÃ©ation ticket 
 		this.dispose();
 	}
 }
