@@ -47,8 +47,7 @@ public class TicketsJdbcs {
     public void insert(String titre, String description, String categorie, String priorite) {
         
         String sql = 
-       "insert into ticket(name_ticket,urgency,category, description) values(\"" + titre + "\",\"" + priorite + "\",\"" + categorie + "\",\""+description+"\")";
-           		
+"insert into ticket(name_ticket,urgency,category, description,status) values(\"" + titre + "\",\"" + priorite + "\",\"" + categorie + "\",\""+description+"\",\"1\")";           		
            try {
                int a = statement.executeUpdate(sql);
                con.close();
@@ -73,7 +72,7 @@ public class TicketsJdbcs {
     		               con.close();
     		               statement.close();
     		               if (a == 1) {
-    		                   JOptionPane.showMessageDialog(null, "Vous avez bien supprim¨¦ un ticket.");
+    		                   JOptionPane.showMessageDialog(null, "Vous avez bien supprimÃ© un ticket.");
     		               }
     		               
     		           } catch (SQLException e) {
@@ -115,10 +114,10 @@ public class TicketsJdbcs {
 		Vector rows = null;
 		Vector columnHeads = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		//Á¬½ÓÇı¶¯
-			con = DriverManager.getConnection(URL, USER, PASSWD);	//Á¬½ÓÊı¾İ¿â
+			Class.forName("com.mysql.jdbc.Driver");		//è¿æ¥é©±åŠ¨
+			con = DriverManager.getConnection(URL, USER, PASSWD);	//è¿æ¥æ•°æ®åº“
 //			if(!conn.isClosed())
-//				System.out.println("³É¹¦Á¬½ÓÊı¾İ¿â");
+//				System.out.println("æˆåŠŸè¿æ¥æ•°æ®åº“");
 			Pstatement = con.prepareStatement("select * from ticket");
 			ResultSet result1 = Pstatement.executeQuery();
 			
@@ -145,21 +144,21 @@ public class TicketsJdbcs {
 		return rows;
 	}
 	
-	// µÃµ½Êı¾İ¿â±íÍ·
+	// å¾—åˆ°æ•°æ®åº“è¡¨å¤´
 	public static  Vector getHead(){
-		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	//Êı¾İ¿âÂ·¾¶£¨Ò»°ã¶¼ÊÇÕâÑùĞ´£©£¬testÊÇÊı¾İ¿âÃû³Æ
-		String name = "root";		//ÓÃ»§Ãû
-		String password = "7ZPHpq17wqRDVtKo";	//ÃÜÂë
+		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	//æ•°æ®åº“è·¯å¾„ï¼ˆä¸€èˆ¬éƒ½æ˜¯è¿™æ ·å†™ï¼‰ï¼Œtestæ˜¯æ•°æ®åº“åç§°
+		String name = "root";		//ç”¨æˆ·å
+		String password = "7ZPHpq17wqRDVtKo";	//å¯†ç 
 		Connection conn;
 		PreparedStatement preparedStatement = null;
  
 		Vector columnHeads = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		//Á¬½ÓÇı¶¯
-			conn = DriverManager.getConnection(sql_url, name, password);	//Á¬½ÓÊı¾İ¿â
+			Class.forName("com.mysql.jdbc.Driver");		//è¿æ¥é©±åŠ¨
+			conn = DriverManager.getConnection(sql_url, name, password);	//è¿æ¥æ•°æ®åº“
 //			if(!conn.isClosed())
-//				System.out.println("³É¹¦Á¬½ÓÊı¾İ¿â");
+//				System.out.println("æˆåŠŸè¿æ¥æ•°æ®åº“");
 			preparedStatement = conn.prepareStatement("select * from ticket");
 			ResultSet result1 = preparedStatement.executeQuery();
 			
@@ -184,7 +183,7 @@ public class TicketsJdbcs {
 		return columnHeads;
 	}
 	
-	// µÃµ½Êı¾İ¿âÖĞÏÂÒ»ĞĞÊı¾İ
+	// å¾—åˆ°æ•°æ®åº“ä¸­ä¸‹ä¸€è¡Œæ•°æ®
 	private static  Vector getNextRow(ResultSet rs,ResultSetMetaData rsmd) throws SQLException{
 		Vector currentRow = new Vector();
 		for(int i = 1; i <= rsmd.getColumnCount(); i++){
