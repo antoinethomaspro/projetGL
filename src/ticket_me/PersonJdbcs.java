@@ -68,7 +68,7 @@ public class PersonJdbcs {
     public boolean signIn(String nom, String pwd, String role) throws SQLException  {
     	 boolean b = false;
         String sql = 
-       "select * from users where password=\"" + pwd + "\"and name=\"" + nom + "\"and role=\"" + role + "\"";
+       "select * from person where password=\"" + pwd + "\"and name=\"" + nom + "\"and name_role=\"" + role + "\"";
 
            try {
         	   res = statement.executeQuery(sql);
@@ -78,14 +78,14 @@ public class PersonJdbcs {
                    System.out.println(pwdBDD+ " " + pwd);
                    if (pwdBDD.equals(pwd)) {
                        b = true;
-                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔº?");
+                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔºÅ");
                        WindowsUser_insertTicket wus = new WindowsUser_insertTicket();
                    } else  {
                 	   b = false;
-                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussitÔº?");
+                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussitÔºÅ");
                     }
                }else {
-                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussitÔº?");
+                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussitÔºÅ");
                  
                }
            } 
@@ -96,15 +96,15 @@ public class PersonJdbcs {
                    System.out.println(pwdBDD + " " + pwd);
                    if (pwdBDD.equals(pwd)) {
                        b = true;
-                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔº?");
+                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔºÅ");
                        WindowsTech_afficheTickets wus = new WindowsTech_afficheTickets();
                        wus.setVisible(true);
                    } else {
                 	   b = false;
-                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2Ôº?");
+                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2ÔºÅ");
                    }
                } else {
-                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2Ôº?");
+                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2ÔºÅ");
                }
           }    
         	
@@ -115,15 +115,15 @@ public class PersonJdbcs {
                    System.out.println(pwdBDD + " " + pwd);
                    if (pwdBDD.equals(pwd)) {
                        b = true;
-                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔº?");
+                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcteÔºÅ");
                       quelle fenetre va s'afficher?
                        wus.setVisible(true);
                    } else {
                 	   b = false;
-                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2Ôº?");
+                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2ÔºÅ");
                    }
                } else {
-                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2Ôº?");
+                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2ÔºÅ");
                }
           }  */
         	   res.close();
