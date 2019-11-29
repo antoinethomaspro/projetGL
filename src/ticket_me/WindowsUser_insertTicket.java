@@ -23,7 +23,7 @@ import java.awt.geom.Area;
 
 import javax.swing.JComboBox;
 
-public class Window_User_Responsive_2 extends JFrame implements ActionListener {
+public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	private JPanel panel_South = new JPanel();
 	private JButton Button_Reset = new JButton("Reset");
 	private JButton Button_Done = new JButton("Done");
@@ -55,7 +55,7 @@ public class Window_User_Responsive_2 extends JFrame implements ActionListener {
 		}
 	};
 
-	public Window_User_Responsive_2() {
+	public WindowsUser_insertTicket() {
 		getContentPane().add(panel_South, BorderLayout.SOUTH);
 		setVisible(true); // page visible
 		setTitle("User Window"); // title
