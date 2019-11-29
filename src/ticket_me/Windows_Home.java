@@ -1,59 +1,13 @@
-package ticket_me;
+package Ticketing_Projet;
 
+import javax.swing.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import projet_ticketing_back.PersonJdbcs;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JTabbedPane;
-import javax.swing.JLayeredPane;
-import java.awt.CardLayout;
-import javax.swing.JComboBox;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JInternalFrame;
-import javax.swing.JTabbedPane;
-import javax.swing.JLayeredPane;
-import java.awt.CardLayout;
-import javax.swing.JComboBox;
 
 public class Windows_Home extends JFrame {
 	private JTextField username = new JTextField();
@@ -62,8 +16,8 @@ public class Windows_Home extends JFrame {
 	private JLabel lblPassword = new JLabel("Password");
 	private JButton ButtonLogin = new JButton("Login");
 	private JPanel panelNorth = new JPanel();
-	private JButton ButtonConnexion = new JButton("Connexion");
-	private JButton ButtonInscription = new JButton("Inscription");
+	private JButton ButtonConnexion = new JButton("Sign In");
+	private JButton ButtonInscription = new JButton("Sign Up");
 	private JLayeredPane layeredPane = new JLayeredPane();
 	private JPanel PanelLogin = new JPanel();
 	private JPanel PanelMainLogin = new JPanel();
@@ -71,52 +25,45 @@ public class Windows_Home extends JFrame {
 	private JPanel PanelSignUp = new JPanel();
 	private JPanel PanelMainSignUp = new JPanel();
 	private JPanel PanelSignUp_2 = new JPanel();
-	private JLabel lblNom = new JLabel("Nom");
-	private JLabel lblMotDePasse = new JLabel("Mot de passe");
+	private JLabel lblNom = new JLabel("Name");
+	private JLabel lblMotDePasse = new JLabel("Password");
 	private JLabel lblConfirmation = new JLabel("Confirmation");
 	private JTextField fieldName = new JTextField();
 	private JTextField fieldPwd = new JTextField();
 	private JTextField fieldPwd_2 = new JTextField();
 	private JButton btnCancel = new JButton("Cancel");
 	private JButton btnDone = new JButton("Done");
-	private final JLabel lblStatus = new JLabel("Status");
-	private final JComboBox<String> comboBox = new JComboBox<String>();
-	ActionListener ListernerConnexion = new ActionListener() {
+	private JLabel lblStatus = new JLabel("Status");
+	private JLabel lblStatus_1 = new JLabel("Status");
+	private JComboBox<String> comboBox_status = new JComboBox<String>();
+	private JComboBox<String> comboBox = new JComboBox<String>();
+	private JLabel lblAdress = new JLabel("Adress");
+	private JLabel lblPhone = new JLabel("Phone");
+	private JLabel lblEmail = new JLabel("E-Mail");
+	private JTextField textField_adress = new JTextField();
+	private JTextField textField_phone = new JTextField();
+	private JTextField textField_mail = new JTextField();
+	public ActionListener ListernerConnexion = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
 			PanelConnexion();
 			ButtonLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					String uname = username.getText();
-					String psd = passwordField.getText();
-					String status = comboBox.getSelectedItem().toString();
-					System.out.println(status);
-
-					/*if (uname.equals("root") && psd.equals("root") && status.equals("User")) {
-						JOptionPane.showMessageDialog(layeredPane, "you are connected");
-						Window_User ticket = new Window_User();
-						dispose();
-					} else {
-						JOptionPane.showMessageDialog(layeredPane, "invalid username or password");
-					}*/
 					PersonJdbcs d = new PersonJdbcs();
 					String nom = username.getText();
 					String pwd = passwordField.getText();
 					String role = comboBox.getSelectedItem().toString();
-					
 					try {
 						d.signIn(nom, pwd, role);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-
 				}
 			});
 		}
 	};
-	ActionListener ListernerInscription = new ActionListener() {
+	public ActionListener ListernerInscription = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
 			PanelInscription();
@@ -127,8 +74,8 @@ public class Windows_Home extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setVisible(true); // page visible
 		setTitle("Home"); // title
-		setSize(600, 250); // size
-		setLocationRelativeTo(null); // fenetre centrée
+		setSize(600, 270); // size
+		setLocationRelativeTo(null); // fenetre centrÃ©e
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
 
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
@@ -155,6 +102,9 @@ public class Windows_Home extends JFrame {
 		fieldPwd_2.setColumns(10);
 		fieldPwd.setColumns(10);
 		fieldName.setColumns(10);
+		textField_mail.setColumns(10);
+		textField_phone.setColumns(10);
+		textField_adress.setColumns(10);
 
 		GridBagLayout gridBagLayoutLogin = new GridBagLayout();
 		gridBagLayoutLogin.columnWidths = new int[] { 47, 86, 0 };
@@ -164,16 +114,15 @@ public class Windows_Home extends JFrame {
 		PanelLogin.setLayout(gridBagLayoutLogin);
 		
 		GridBagLayout gridBagLayoutSignUp = new GridBagLayout();
-		gridBagLayoutSignUp.columnWidths = new int[] {86, 495, 0};
-		gridBagLayoutSignUp.rowHeights = new int[] { 0, 0, 0, 50, 0 };
-		gridBagLayoutSignUp.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayoutSignUp.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayoutSignUp.columnWidths = new int[] {86, 188, 65, 0, 0};
+		gridBagLayoutSignUp.rowHeights = new int[] { 0, 0, 34, 20, 0, 0 };
+		gridBagLayoutSignUp.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayoutSignUp.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		PanelSignUp.setLayout(gridBagLayoutSignUp);
 
 		ButtonConnexion.addActionListener(ListernerConnexion);
 		ButtonInscription.addActionListener(ListernerInscription);
 	}
-	
 	public final void PanelConnexion() {
 		PanelLogin_2.add(ButtonLogin);
 		
@@ -233,7 +182,6 @@ public class Windows_Home extends JFrame {
 		PanelMainLogin.repaint();
 		PanelMainLogin.revalidate();
 	}
-	
 	public final void PanelInscription() {
 		PanelSignUp_2.add(btnDone);
 		PanelSignUp_2.add(btnCancel);
@@ -252,6 +200,20 @@ public class Windows_Home extends JFrame {
 		gbc_fieldName.gridy = 0;
 		PanelSignUp.add(fieldName, gbc_fieldName);
 		
+		GridBagConstraints gbc_lblAdress = new GridBagConstraints();
+		gbc_lblAdress.anchor = GridBagConstraints.WEST;
+		gbc_lblAdress.insets = new Insets(15, 0, 10, 15);
+		gbc_lblAdress.gridx = 2;
+		gbc_lblAdress.gridy = 0;
+		PanelSignUp.add(lblAdress, gbc_lblAdress);
+		
+		GridBagConstraints gbc_textField_adress = new GridBagConstraints();
+		gbc_textField_adress.insets = new Insets(15, 0, 10, 15);
+		gbc_textField_adress.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_adress.gridx = 3;
+		gbc_textField_adress.gridy = 0;
+		PanelSignUp.add(textField_adress, gbc_textField_adress);
+		
 		GridBagConstraints gbc_lblMotDePasse = new GridBagConstraints();
 		gbc_lblMotDePasse.anchor = GridBagConstraints.WEST;
 		gbc_lblMotDePasse.insets = new Insets(0, 15, 10, 5);
@@ -266,19 +228,65 @@ public class Windows_Home extends JFrame {
 		gbc_fieldPwd.gridy = 1;
 		PanelSignUp.add(fieldPwd, gbc_fieldPwd);
 		
+		GridBagConstraints gbc_lblPhone = new GridBagConstraints();
+		gbc_lblPhone.anchor = GridBagConstraints.WEST;
+		gbc_lblPhone.insets = new Insets(0, 0, 10, 15);
+		gbc_lblPhone.gridx = 2;
+		gbc_lblPhone.gridy = 1;
+		PanelSignUp.add(lblPhone, gbc_lblPhone);
+		
+		GridBagConstraints gbc_textField_phone = new GridBagConstraints();
+		gbc_textField_phone.insets = new Insets(0, 0, 10, 15);
+		gbc_textField_phone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_phone.gridx = 3;
+		gbc_textField_phone.gridy = 1;
+		PanelSignUp.add(textField_phone, gbc_textField_phone);
+		
 		GridBagConstraints gbc_lblConfirmation = new GridBagConstraints();
 		gbc_lblConfirmation.anchor = GridBagConstraints.WEST;
-		gbc_lblConfirmation.insets = new Insets(0, 15, 15, 5);
+		gbc_lblConfirmation.insets = new Insets(0, 15, 10, 5);
 		gbc_lblConfirmation.gridx = 0;
 		gbc_lblConfirmation.gridy = 2;
 		PanelSignUp.add(lblConfirmation, gbc_lblConfirmation);
 		
 		GridBagConstraints gbc_fieldPwd_2 = new GridBagConstraints();
-		gbc_fieldPwd_2.insets = new Insets(0, 10, 15, 15);
+		gbc_fieldPwd_2.insets = new Insets(0, 10, 10, 15);
 		gbc_fieldPwd_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_fieldPwd_2.gridx = 1;
 		gbc_fieldPwd_2.gridy = 2;
 		PanelSignUp.add(fieldPwd_2, gbc_fieldPwd_2);
+		
+		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.WEST;
+		gbc_lblEmail.insets = new Insets(0, 0, 10, 15);
+		gbc_lblEmail.gridx = 2;
+		gbc_lblEmail.gridy = 2;
+		PanelSignUp.add(lblEmail, gbc_lblEmail);
+		
+		GridBagConstraints gbc_textField_mail = new GridBagConstraints();
+		gbc_textField_mail.insets = new Insets(0, 0, 10, 15);
+		gbc_textField_mail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_mail.gridx = 3;
+		gbc_textField_mail.gridy = 2;
+		PanelSignUp.add(textField_mail, gbc_textField_mail);
+		
+		GridBagConstraints gbc_lblStatus_1 = new GridBagConstraints();
+		gbc_lblStatus_1.anchor = GridBagConstraints.WEST;
+		gbc_lblStatus_1.insets = new Insets(0, 15, 10, 5);
+		gbc_lblStatus_1.gridx = 0;
+		gbc_lblStatus_1.gridy = 3;
+		PanelSignUp.add(lblStatus_1, gbc_lblStatus_1);
+		
+		comboBox_status.addItem("User");
+		comboBox_status.addItem("Technician");
+		comboBox_status.addItem("Admin");
+		GridBagConstraints gbc_comboBox_status = new GridBagConstraints();
+		gbc_comboBox_status.anchor = GridBagConstraints.NORTHWEST;
+		gbc_comboBox_status.insets = new Insets(0, 10, 10, 15);
+		gbc_comboBox_status.fill = GridBagConstraints.VERTICAL;
+		gbc_comboBox_status.gridx = 1;
+		gbc_comboBox_status.gridy = 3;
+		PanelSignUp.add(comboBox_status, gbc_comboBox_status);
 		
 		layeredPane.removeAll();
 		layeredPane.add(PanelMainSignUp);
@@ -291,30 +299,4 @@ public class Windows_Home extends JFrame {
 		PanelMainSignUp.repaint();
 		PanelMainSignUp.revalidate();
 	}
-	
-	/*private void signUp() {
-		PersonJdbcs d = new PersonJdbcs();
-		String nom = fieldName.getText();
-		String pwd = fieldPwd.getText();
-		String pwd2 = fieldPwd_2.getText();
-		
-		d.signUp(nom, pwd, pwd2);
-	}*/
-	
-	private void signIn() throws SQLException {
-		PersonJdbcs d = new PersonJdbcs();
-		String nom = username.getText();
-		String pwd = passwordField.getText();
-		String role = comboBox.getSelectedItem().toString();
-		
-		d.signIn(nom, pwd, role);
-	}
-	
-	
-	public static void main(String[] args) {
-		Windows_Home login = new Windows_Home();
-		login.setVisible(true);
-	}
-	
-	
 }
