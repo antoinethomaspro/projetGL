@@ -68,8 +68,8 @@ public class WindowsTech_afficheTickets extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
-		Vector rowData = TicketsJdbcs.getRows();//get data
-		Vector columnNames = TicketsJdbcs.getHead();//get the names of the attribut
+		Vector rowData = TicketsJdbcs.getRows("select id_ticket, name_ticket, urgency, category, description from ticket ORDER by id_ticket DESC");//get data
+		Vector columnNames = TicketsJdbcs.getHead("select id_ticket, name_ticket, urgency, category, description from ticket ORDER by id_ticket DESC");//get the names of the attribut
 		
 		// Les titres des colonnes
 		tableModel = new DefaultTableModel(rowData,columnNames);	
@@ -114,7 +114,7 @@ public class WindowsTech_afficheTickets extends JFrame {
 			}
 			else {
 				result1.close();
-				Resolution_Ticket reso_ticket = new Resolution_Ticket("select * from ticket where id_ticket =" + textfield.getText());
+				Resolution_Ticket reso_ticket = new Resolution_Ticket(SQLRequest);
 			}
 			
 		} catch (ClassNotFoundException e) {
