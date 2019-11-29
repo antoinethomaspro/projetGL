@@ -191,6 +191,76 @@ public class TicketsJdbcs {
 		}
 		return currentRow;
 	}
+	
+	// Surcharge de methode pour fenetre technicien
+	public static  Vector getRows(String SQLRequest){
+		Vector rows = null;
+		Vector columnHeads = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(URL, USER, PASSWD);
+			Pstatement = con.prepareStatement(SQLRequest);
+			ResultSet result1 = Pstatement.executeQuery();
+			
+			if(result1.wasNull())
+				JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+			
+			rows = new Vector();
+			
+			ResultSetMetaData rsmd = result1.getMetaData();
+					
+			while(result1.next()){
+				rows.addElement(getNextRow(result1,rsmd));
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("vous n'etes pas reussit de lancer");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Vous n'etes pas reussit d'ouvrir le BDD");
+			e.printStackTrace();
+		}
+		return rows;
+	}
+	
+	// Surcharge de methode pour fenetre technicien
+	public static  Vector getHead(String SQLRequest){
+		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
+		String name = "root";
+		String password = "root";
+		Connection conn;
+		PreparedStatement preparedStatement = null;
+ 
+		Vector columnHeads = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(sql_url, name, password);
+			preparedStatement = conn.prepareStatement(SQLRequest);
+			ResultSet result1 = preparedStatement.executeQuery();
+			
+			boolean moreRecords = result1.next();
+			if(!moreRecords)
+				JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+			
+			columnHeads = new Vector();
+			ResultSetMetaData rsmd = result1.getMetaData();
+			for(int i = 1; i <= rsmd.getColumnCount(); i++)
+				columnHeads.addElement(rsmd.getColumnName(i));
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Probleme de connexion avec la Base de Données");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Probleme de connexion avec la Base de Données");
+			e.printStackTrace();
+		}
+		return columnHeads;
+	}
 	/*Fin d'afficher les tickets pour technicien */
 	
 }
