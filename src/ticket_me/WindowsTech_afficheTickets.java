@@ -1,5 +1,4 @@
-package Ticketing_Projet;
-
+package ticket_me;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -25,16 +24,22 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.SQLError;
 import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
 
-import projet_ticketing_back.TicketsJdbcs;
+import ticket_me.TicketsJdbcs;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.JFormattedTextField;
 
+/**
+ * 
+ * @since 1.0    (decs)
+ * @version 1.1 （ajouter status,solution,completion_code a afficher）
+ *
+ */
 public class WindowsTech_afficheTickets extends JFrame {
 	private JPanel pane = new JPanel();
 	private JPanel southPane = new JPanel();
 	private JButton button = new JButton();
-	private JTextField textfield = new JTextField();
+	public static JTextField textfield = new JTextField();
 	private JLabel label = new JLabel();
 	private ActionListener listener = new ActionListener() {
 		
@@ -68,8 +73,8 @@ public class WindowsTech_afficheTickets extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
-		Vector rowData = TicketsJdbcs.getRows("select id_ticket, name_ticket, urgency, category, description from ticket ORDER by id_ticket DESC");//get data
-		Vector columnNames = TicketsJdbcs.getHead("select id_ticket, name_ticket, urgency, category, description from ticket ORDER by id_ticket DESC");//get the names of the attribut
+		Vector rowData = TicketsJdbcs.getRows("select id_ticket, name_ticket, urgency, category, description,status,solution,completion_code from ticket ORDER by id_ticket DESC");//get data
+		Vector columnNames = TicketsJdbcs.getHead("select id_ticket, name_ticket, urgency, category, description, status,solution,completion_code from ticket ORDER by id_ticket DESC");//get the names of the attribut
 		
 		// Les titres des colonnes
 		tableModel = new DefaultTableModel(rowData,columnNames);	
