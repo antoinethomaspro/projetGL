@@ -67,6 +67,20 @@ public class Windows_Home extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			PanelInscription();
+			btnDone.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					PersonJdbcs d = new PersonJdbcs();
+					String nom =  fieldName.getText();
+					String pwd1 = fieldPwd.getText();
+					String pwd2 = fieldPwd_2.getText();
+					String adress = textField_adress.getText();
+					String phone = textField_phone.getText();
+					String email = textField_mail.getText();
+					String role = comboBox_status.getSelectedItem().toString();
+					d.signUp(nom, pwd1,pwd2,adress,phone,email,role);
+				}
+			});
 		}
 	};
 
