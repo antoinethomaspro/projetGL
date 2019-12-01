@@ -47,7 +47,7 @@ public class PersonJdbcs {
     }
 public void signUp(String nom, String pwd, String pwd2,String adress,String phone,String email,String role) {
     	if(pwd.equals(pwd2)) {
-    		String sql = "insert into person(password,mail,name, adress,phone,name_role) values(\"" + pwd + "\",\"" + email + "\",\"" + nom + "\",\""+adress+"\",\""+phone+"\",\""+role+"\")";
+    		String sql = "insert into person(password,email,name, adress,phone,name_role) values(\"" + pwd + "\",\"" + email + "\",\"" + nom + "\",\""+adress+"\",\""+phone+"\",\""+role+"\")";
     		try {
     			int a = statement.executeUpdate(sql);
                 con.close();
