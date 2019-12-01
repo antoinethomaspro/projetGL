@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class Windows_Home extends JFrame {
-	private JTextField username = new JTextField();
+	
+	public static JTextField username = new JTextField();//A recuperer pour indiquer le ticket inséré est à qui
 	private JPasswordField passwordField = new JPasswordField();
 	private JLabel lblUsername = new JLabel("Username");
 	private JLabel lblPassword = new JLabel("Password");
