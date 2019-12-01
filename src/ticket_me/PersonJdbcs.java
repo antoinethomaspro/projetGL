@@ -45,24 +45,25 @@ public class PersonJdbcs {
             e.printStackTrace();
         }
     }
-/*public void signUp(String nom, String pwd, String pwd2) {
-        
-        String sql = 
-       "insert into users(name_ticket,urgency,category, description) values(\"" + titre + "\",\"" + priorite + "\",\"" + categorie + "\",\""+description+"\")";
-           		
-           try {
-               int a = statement.executeUpdate(sql);
-               con.close();
-               statement.close();
-               if (a == 1) {
-                   JOptionPane.showMessageDialog(null, "Vous avez bien cree un compte!");
-               }
-               
-           } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit");
-               e.printStackTrace();
-           }
-       }*/
+public void signUp(String nom, String pwd, String pwd2,String adress,String phone,String email,String role) {
+    	if(pwd.equals(pwd2)) {
+    		String sql = "insert into person(password,mail,name, adress,phone,name_role) values(\"" + pwd + "\",\"" + email + "\",\"" + nom + "\",\""+adress+"\",\""+phone+"\",\""+role+"\")";
+    		try {
+    			int a = statement.executeUpdate(sql);
+                con.close();
+                statement.close();
+                if (a == 1) {
+                	JOptionPane.showMessageDialog(null, "Vous avez bien cree un compte!");
+                }
+    			               
+    		} catch (SQLException e) {
+    			JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit");
+    			e.printStackTrace();
+    		}
+    	}else {
+        	JOptionPane.showMessageDialog(null, "Les mot de passe ne sont pas identique!");
+    	}
+       }
     
     
     public boolean signIn(String nom, String pwd, String role) throws SQLException  {
