@@ -1,6 +1,5 @@
-package Ticketing_Projet;
-
-import javax.swing.JFrame;
+package ticket_me;
+	import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,7 +13,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import projet_ticketing_back.TicketsJdbcs;
+import ticket_me.TicketsJdbcs;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -176,8 +175,8 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		String description = Area_Description.getText().toString();
 		String categorie = Box_Categorie.getSelectedItem().toString();
 		String priorite = Box_Priorite.getSelectedItem().toString();
-		
-		d.insert(titre, description,categorie,priorite);
+		String isCreatedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
+		d.insert(titre, description,categorie,priorite,isCreatedBy);
 	
 		
 	}
