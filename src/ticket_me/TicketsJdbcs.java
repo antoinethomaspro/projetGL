@@ -60,7 +60,7 @@ public class TicketsJdbcs {
     public void insert(String titre, String description, String categorie, String priorite,String isCreatedBy) {
         
         String sql = 
-"insert into ticket(name_ticket,urgency,category, description,status,estCréé_par) values(\""+titre+ "\",\""+priorite+"\",\""+categorie+"\",\""+description+"\",\""+"1"+"\",\""+isCreatedBy+"\")";           		
+"insert into ticket(name_ticket,urgency,category, description,status, isCreatedBy) values(\""+titre+ "\",\""+priorite+"\",\""+categorie+"\",\""+description+"\",\""+"1"+"\",\""+isCreatedBy+"\")";           		
            try {
                int a = statement.executeUpdate(sql);
                con.close();
