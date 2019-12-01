@@ -1,4 +1,4 @@
-package Ticketing_Projet;
+package ticket_me;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +12,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/**
+ * @since 1.0(only interface)
+ * @version 1.1(can update date)
+ */
 public class Resolution_Ticket extends JFrame {
+	
+	
 	private ArrayList<String> tab = new ArrayList<>();
 	private JPanel MainPanel = new JPanel();
 	private JPanel NorthPanel = new JPanel();
@@ -25,7 +30,7 @@ public class Resolution_Ticket extends JFrame {
 	private JLabel labelDescription = new JLabel("Description");
 	private JLabel labelDescriptionValue = new JLabel("description");
 	private JLabel labelPriority = new JLabel("Priority");
-	private JLabel labelPriorityValue = new JLabel("Niveau de priorité");
+	private JLabel labelPriorityValue = new JLabel("Niveau de prioritÃ©");
 	private JSeparator separator = new JSeparator();
 	private JLabel labelPart2 = new JLabel("Classification");
 	private JLabel labelCategory = new JLabel("Category");
@@ -36,24 +41,28 @@ public class Resolution_Ticket extends JFrame {
 	private JLabel labelPart3 = new JLabel("Resolution");
 	private JLabel labelSolution = new JLabel("Solution");
 	private JLabel labelCompletionCode = new JLabel("Completion code");
-	private JComboBox<String> comboBoxCompletion = new JComboBox<String>(); // value du completion code : A RECUPERER POUR BDD
-	private JLabel labelNumTicket = new JLabel("Ticket n° :");
+	public static JComboBox<String> comboBoxCompletion = new JComboBox<String>(); // value du completion code : A RECUPERER POUR BDD
+	private JLabel labelNumTicket = new JLabel("Ticket nÂ° :");
 	private JLabel NumTicket = new JLabel("id ticket");
 	private JLabel labelTitre2 = new JLabel("Titre :");
 	private JLabel labelTitreValue2 = new JLabel("titreTicket");
 	private JButton buttonClose = new JButton("Close ticket");
 	private String request = "";
-	private JTextField Textfieldsolution = new JTextField(); // texte de la solution : A RECUPERER POUR BDD
+	public static JTextField Textfieldsolution = new JTextField(); // texte de la solution : A RECUPERER POUR BDD
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// ajout de la solution et du completion code dans la BDD
-			JOptionPane.showMessageDialog(getContentPane(), "ticket closed"); // il faut que lorsqu'un ticket est fermé, son status passe à false
+			JOptionPane.showMessageDialog(getContentPane(), "ticket closed"); // il faut que lorsqu'un ticket est fermÃ©, son status passe Ã  false
 			dispose();
+		    if (e.getSource() == buttonClose) {
+		    	answer();
+		    }
 
 		}
 	};
 
+	
 	public Resolution_Ticket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
 		connexionBD();
@@ -285,4 +294,34 @@ public class Resolution_Ticket extends JFrame {
 			e.printStackTrace();
 		}
 	}
+
+	
+	
+
+	/**
+	 * pour repondre un ticket
+	 */
+	 private void answer()  {
+		 
+	   	TicketsJdbcs d = new TicketsJdbcs();
+		String Cc = comboBoxCompletion.getSelectedItem().toString();
+		String sl = Textfieldsolution.getText().toString();
+		String id =  WindowsTech_afficheTickets.textfield.getText().toString();
+		d.answerT(Cc,sl,id);
+			
+		}
+	
+		 
+	 
+	 
+	 
+	
+
+	
+	
+	
+	
+	
+	
 }
+	
