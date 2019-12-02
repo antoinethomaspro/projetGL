@@ -80,7 +80,7 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                    if (pwdBDD.equals(pwd)) {
                        b = true;
                        JOptionPane.showMessageDialog(null, "Le mot de passe est  correcte！");
-                       WindowsUser_insertTicket wus = new WindowsUser_insertTicket();
+                       Window_Main_User u = new Window_Main_User();
                    } else  {
                 	   b = false;
                        JOptionPane.showMessageDialog(null, "Vous n'est pas reussit！");
