@@ -303,6 +303,15 @@ public class Windows_Home extends JFrame {
 		gbc_comboBox_status.gridy = 3;
 		PanelSignUp.add(comboBox_status, gbc_comboBox_status);
 		
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		
 		layeredPane.removeAll();
 		layeredPane.add(PanelMainSignUp);
 		layeredPane.repaint();
