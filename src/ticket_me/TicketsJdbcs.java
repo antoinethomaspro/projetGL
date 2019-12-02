@@ -337,7 +337,36 @@ public class TicketsJdbcs {
 	           }
 	           return judge;
 	       }
-	 
+	 		/**
+		 * Methode qui permet de recuperer le nom d'un utilisateur selon
+		 * l'identifiant d'un ticket creer par celui-ci
+		 * @param idUser Identifiant de l'Utilisateur
+		 */
+	 public static String getIsCreatedBy(int idUser) {
+		 String result = "";
+		 String sql = "select isCreatedBy from ticket where id_ticket = " + idUser;
+		 try {
+			 Class.forName("com.mysql.jdbc.Driver");
+			 con = DriverManager.getConnection(URL,USER,PASSWD);
+			 statement = con.createStatement();
+             ResultSet a = statement.executeQuery(sql);
+             a.beforeFirst();
+             if(a.next()) {
+                 result = a.getString(1);
+             }
+             a.close();
+             con.close();
+             statement.close();
+             
+         } catch (SQLException e) {
+             System.out.println("SQL Error");
+             e.printStackTrace();
+         } catch (ClassNotFoundException e) {
+			System.out.println("Class Not Found ERROR");
+			e.printStackTrace();
+		}
+		 return result;
+	 }
 	 
 	
 	
