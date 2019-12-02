@@ -36,7 +36,7 @@ public class Resolution_Ticket extends JFrame {
 	private JLabel labelCategory = new JLabel("Category");
 	private JLabel labelCategoryValue = new JLabel("test category");
 	private JLabel labelResquestFor = new JLabel("Resquest for");
-	private JLabel labelResquestForValue = new JLabel("Mr Dupont");
+	private JLabel labelResquestForValue = new JLabel(TicketsJdbcs.getIsCreatedBy(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText())));
 	private JSeparator separator_1 = new JSeparator();
 	private JLabel labelPart3 = new JLabel("Resolution");
 	private JLabel labelSolution = new JLabel("Solution");
