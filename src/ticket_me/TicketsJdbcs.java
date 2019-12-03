@@ -101,35 +101,35 @@ public class TicketsJdbcs {
     }
     
     /**
-     * Permettre un user d'avoir la liste de tous ses tikets 
+     * Permettre un  d'avoir le nom d'un ticket de la BD
      * @param Id
-     * @return la liste de cet utilisateur
+     * @return nom de ce ticket
      */
-    public List<Tickets>getTicket(int Id) {
-    	 List<Tickets> lT = new ArrayList<Tickets>();
-    	 try {
-       	  ResultSet res =  statement.executeQuery("SELECT * FROM `ticket` WHERE id_ticket = '"+Id+"'");
-       	  while(res.next()) {
-       		  Tickets t = new Tickets();
-       		  t.setId(res.getInt("id_ticket"));
-       		  t.setName(res.getString("name_ticket"));
-       		  t.setCategory(res.getString("category"));
-       		  t.setDescription(res.getString("description"));
-       		  lT.add(t);
-       	  }
-       	
-       	}catch(Exception e){
-       		e.printStackTrace();
-       		
-       	}
-       	return lT;
-    	 
-    }
-   
-
-    public void getRequestedfor(Person p) {
-    	
-    }
+    public static String getTicket(int Id) {
+    	String result = "";
+		 String sql = "select name_ticket from ticket where id_ticket = " + Id;
+		 try {
+			 Class.forName("com.mysql.jdbc.Driver");
+			 con = DriverManager.getConnection(URL,USER,PASSWD);
+			 statement = con.createStatement();
+            ResultSet a = statement.executeQuery(sql);
+            a.beforeFirst();
+            if(a.next()) {
+                result = a.getString(1);
+            }
+            a.close();
+            con.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            System.out.println("SQL Error");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+			System.out.println("Class Not Found ERROR");
+			e.printStackTrace();
+		}
+		 return result;
+	 }
 
     
     /**
@@ -311,15 +311,16 @@ public class TicketsJdbcs {
 		
 	
 	/**
-	 * cette methode permet d'inserer la solution
+	 * cette methode permet  technicien sd'inserer la solution
 	 * @param sl le solution de ce ticket
 	 */
-	 public boolean answerT(String sl,String comCode,String id) {
+	 public boolean answerT(String comCode,String sl,String id,String  isSolvedBy) {
 	        boolean judge = false;
 	        String sql = 
-	        "UPDATE ticket SET "+
-	        "solution ='"+ sl + "',"
+	        "UPDATE ticket SET "
 	        +"completion_code ='"+ comCode+"',"
+	        +"solution ='"+ sl + "',"
+	        +"isSolvedBy ='"+ isSolvedBy + "',"
 	        + "status = 0 where id_ticket ="+id;       		
 	           try {
 	               int a = statement.executeUpdate(sql);
