@@ -1,4 +1,4 @@
-package Ticketing_Projet;
+package ticket_me;
 
 import java.awt.BorderLayout;
 
@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import projet_ticketing_back.TicketsJdbcs;
+import ticket_me.TicketsJdbcs;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
@@ -41,15 +41,15 @@ public class Window_Main_User extends JFrame {
 		setVisible(true); // page visible
 		setTitle("User Home"); // title
 		setSize(723, 320); // size
-		setLocationRelativeTo(null); // fenetre centrée
+		setLocationRelativeTo(null); // fenetre centrÃ©e
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
 
 		Vector rowData = TicketsJdbcs
-				.getRows("select name_ticket,description, status from ticket where isCreatedBy = \""
-						+ Windows_Home.username.getText() + "\" and status = 1");// get data
+				.getRows("select name_ticket,description, status ,solution from ticket where isCreatedBy = \""
+						+ Windows_Home.username.getText() + "\" ");// get data
 		Vector columnNames = TicketsJdbcs
-				.getHead("select name_ticket,description, status from ticket where isCreatedBy = \""
-						+ Windows_Home.username.getText() + "\" and status = 1");// get the names of the attribut
+				.getHead("select name_ticket,description, status ,solution from ticket where isCreatedBy = \""
+						+ Windows_Home.username.getText() + "\" ");// get the names of the attribut
 		// Les titres des colonnes
 		tableModel = new DefaultTableModel(rowData, columnNames);
 		JTable tableau = new JTable(tableModel);
@@ -80,3 +80,4 @@ public class Window_Main_User extends JFrame {
 		panelNorth.add(lblTicketsStatus);
 	}
 }
+
