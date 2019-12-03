@@ -32,7 +32,6 @@ public class Windows_Home extends JFrame {
 	private JTextField fieldName = new JTextField();
 	private JPasswordField fieldPwd = new JPasswordField();
 	private JPasswordField fieldPwd_2 = new JPasswordField();
-	private JButton btnCancel = new JButton("Cancel");
 	private JButton btnDone = new JButton("Done");
 	private JLabel lblStatus = new JLabel("Status");
 	private JLabel lblStatus_1 = new JLabel("Status");
@@ -207,7 +206,6 @@ public class Windows_Home extends JFrame {
 	}
 	public final void PanelInscription() {
 		PanelSignUp_2.add(btnDone);
-		PanelSignUp_2.add(btnCancel);
 		
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
 		gbc_lblNom.anchor = GridBagConstraints.WEST;
@@ -310,15 +308,6 @@ public class Windows_Home extends JFrame {
 		gbc_comboBox_status.gridx = 1;
 		gbc_comboBox_status.gridy = 3;
 		PanelSignUp.add(comboBox_status, gbc_comboBox_status);
-		
-		btnCancel.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
 		
 		layeredPane.removeAll();
 		layeredPane.add(PanelMainSignUp);
