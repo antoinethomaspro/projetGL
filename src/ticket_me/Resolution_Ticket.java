@@ -57,6 +57,7 @@ public class Resolution_Ticket extends JFrame {
 			dispose();
 		    if (e.getSource() == buttonClose) {
 		    	answer();
+		    	sendEmailR();
 		    }
 
 		}
@@ -299,7 +300,7 @@ public class Resolution_Ticket extends JFrame {
 	
 
 	/**
-	 * pour repondre un ticket
+	 * cette methode permet de resoudre un ticket
 	 */
 	 private void answer()  {
 		 
@@ -307,21 +308,22 @@ public class Resolution_Ticket extends JFrame {
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
 		String sl = Textfieldsolution.getText().toString();
 		String id =  WindowsTech_afficheTickets.textfield.getText().toString();
-		d.answerT(Cc,sl,id);
+		String isSolvedBy = Windows_Home.username.getText();
+		d.answerT(Cc,sl,id, isSolvedBy);
 			
 		}
+	 
+	 /***
+	  * cette methode permet d'envoyer un email a createur apres avoir resolu un ticket
+	  */
+	 private void sendEmailR() {
+		 Email e = new Email();
+		 String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
+		 String to = e.getEmailFromBD(username);
+		 String nameT = TicketsJdbcs.getTicket(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
+		
+		 Email.sendEmail(to,username,nameT);
+		 
+	 }
 	
 		 
-	 
-	 
-	 
-	
-
-	
-	
-	
-	
-	
-	
-}
-	
