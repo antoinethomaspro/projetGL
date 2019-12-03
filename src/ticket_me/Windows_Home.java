@@ -30,8 +30,8 @@ public class Windows_Home extends JFrame {
 	private JLabel lblMotDePasse = new JLabel("Password");
 	private JLabel lblConfirmation = new JLabel("Confirmation");
 	private JTextField fieldName = new JTextField();
-	private JTextField fieldPwd = new JTextField();
-	private JTextField fieldPwd_2 = new JTextField();
+	private JPasswordField fieldPwd = new JPasswordField();
+	private JPasswordField fieldPwd_2 = new JPasswordField();
 	private JButton btnCancel = new JButton("Cancel");
 	private JButton btnDone = new JButton("Done");
 	private JLabel lblStatus = new JLabel("Status");
@@ -80,6 +80,14 @@ public class Windows_Home extends JFrame {
 					String email = textField_mail.getText();
 					String role = comboBox_status.getSelectedItem().toString();
 					d.signUp(nom, pwd1,pwd2,adress,phone,email,role);
+					PanelConnexion();
+					fieldName.setText("");
+					fieldPwd.setText("");
+					fieldPwd_2.setText("");
+					textField_adress.setText("");
+					textField_mail.setText("");
+					textField_phone.setText("");
+					comboBox_status.setSelectedIndex(0);
 				}
 			});
 		}
