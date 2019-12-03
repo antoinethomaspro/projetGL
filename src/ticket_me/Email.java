@@ -17,7 +17,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
-
+/**
+ * cette classe permet d'envoyer l'email apres avoir resolu un ticket a createur
+ * 
+ *
+ */
 public class Email {
 	
 	static Connection con = null;
@@ -53,7 +57,11 @@ public class Email {
         }
     }
     
-    
+    /**
+     * cette methode permet d'obtenir l'email de la BDD
+     * @param username vient de getIsCreatedBy
+     * @return l'email de username
+     */
     public String getEmailFromBD(String username) {
     	 String result = "";
   
@@ -83,7 +91,12 @@ public class Email {
     }
     
    
-	
+	/**
+	 * 
+	 * @param to vient de getEmailFromBD(username),c'est l'email du createur qui va recevoir cet email
+	 * @param name vient de TicketsJdbcs.getIsCreatedBy(int idUser) ,c'est le nom du createur
+	 * @param nameT vient de TicketsJdbcs.getTicket(Id),c'est le nom du ticket
+	 */
 	public static void sendEmail(String to,String name,String nameT){
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
