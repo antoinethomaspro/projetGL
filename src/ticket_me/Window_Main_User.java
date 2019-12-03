@@ -45,10 +45,10 @@ public class Window_Main_User extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
 
 		Vector rowData = TicketsJdbcs
-				.getRows("select name_ticket,description, status ,solution from ticket where isCreatedBy = \""
+				.getRows("select name_ticket,description, status ,solution,isSolvedBy from ticket where isCreatedBy = \""
 						+ Windows_Home.username.getText() + "\" ");// get data
 		Vector columnNames = TicketsJdbcs
-				.getHead("select name_ticket,description, status ,solution from ticket where isCreatedBy = \""
+				.getHead("select name_ticket,description, status ,solution,isSolvedBy from ticket where isCreatedBy = \""
 						+ Windows_Home.username.getText() + "\" ");// get the names of the attribut
 		// Les titres des colonnes
 		tableModel = new DefaultTableModel(rowData, columnNames);
@@ -80,4 +80,3 @@ public class Window_Main_User extends JFrame {
 		panelNorth.add(lblTicketsStatus);
 	}
 }
-
