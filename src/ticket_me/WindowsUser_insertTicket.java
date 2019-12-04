@@ -1,24 +1,26 @@
 package ticket_me;
-	import javax.swing.JFrame;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
-import ticket_me.TicketsJdbcs;
+import projet_ticketing_back.TicketsJdbcs;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Area;
+import java.util.Vector;
 
 import javax.swing.JComboBox;
 
@@ -178,6 +180,11 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		String isCreatedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
 		d.insert(titre, description,categorie,priorite,isCreatedBy);
 	
-		
+		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
+		Vector<String> t = new Vector<String>();
+		t.add(titre);
+		t.add(description);
+		t.add("1");
+		tableModel.addRow(t);
 	}
 }
