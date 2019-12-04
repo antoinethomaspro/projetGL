@@ -30,14 +30,14 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	private JButton Button_Done = new JButton("Done");
 	private JButton Button_Cancel = new JButton("Cancel");
 	private JPanel panel_Center = new JPanel();
-	private JLabel Label_Titre = new JLabel("Titre");
+	private JLabel Label_Titre = new JLabel("Title");
 	private JTextField Field_Titre = new JTextField();
 	private JLabel Label_Description = new JLabel("Description");
 	private TextArea Area_Description = new TextArea();
 	private JPanel panel_Box = new JPanel();
-	private JLabel Label_Categorie = new JLabel("Catégorie");
+	private JLabel Label_Categorie = new JLabel("Category");
 	private JComboBox<String> Box_Categorie = new JComboBox<String>();
-	private JLabel Label_Priorite = new JLabel("Priorité");
+	private JLabel Label_Priorite = new JLabel("Priority");
 	private JComboBox<String> Box_Priorite = new JComboBox<String>();
 	private ActionListener resetListener = new ActionListener() { // implementation du reset
 
@@ -59,7 +59,7 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	public WindowsUser_insertTicket() {
 		getContentPane().add(panel_South, BorderLayout.SOUTH);
 		setVisible(true); // page visible
-		setTitle("User Window"); // title
+		setTitle("Create a new ticket"); // title
 		setSize(800, 400); // size
 		setLocationRelativeTo(null); // fenetre centrée
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
@@ -144,8 +144,8 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		gbc_Box_Categorie.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Box_Categorie.gridx = 1;
 		gbc_Box_Categorie.gridy = 0;
-		Box_Categorie.addItem("Affichage");
-		Box_Categorie.addItem("Son");
+		Box_Categorie.addItem("Display");
+		Box_Categorie.addItem("Sound");
 		panel_Box.add(Box_Categorie, gbc_Box_Categorie);
 
 		// -- Positionnement du label priorité --//
@@ -162,9 +162,9 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		gbc_Box_Priorite.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Box_Priorite.gridx = 5;
 		gbc_Box_Priorite.gridy = 0;
-		Box_Priorite.addItem("Haute");
-		Box_Priorite.addItem("Normale");
-		Box_Priorite.addItem("Faible");
+		Box_Priorite.addItem("High");
+		Box_Priorite.addItem("Medium");
+		Box_Priorite.addItem("Low");
 		panel_Box.add(Box_Priorite, gbc_Box_Priorite);
 	}
 
