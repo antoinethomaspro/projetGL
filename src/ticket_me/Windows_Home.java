@@ -43,6 +43,9 @@ public class Windows_Home extends JFrame {
 	private JTextField textField_adress = new JTextField();
 	private JTextField textField_phone = new JTextField();
 	private JTextField textField_mail = new JTextField();
+	public static String nom;
+	public static String pwd;
+	public static String role;
 	public ActionListener ListernerConnexion = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
