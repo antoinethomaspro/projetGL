@@ -41,6 +41,9 @@ public class WindowsTech_afficheTickets extends JFrame {
 	private JButton button = new JButton();
 	public static JTextField textfield = new JTextField();
 	private JLabel label = new JLabel();
+	private JLabel labelTri = new JLabel("Sorting : ");
+	private JComboBox<String> comboBoxTri = new JComboBox<String>();
+	private JButton buttonTri = new JButton("Done");
 	private ActionListener listener = new ActionListener() {
 		
 		@Override
@@ -63,8 +66,40 @@ public class WindowsTech_afficheTickets extends JFrame {
 		}
 	};
 	DefaultTableModel tableModel;
+	public ActionListener listenerSorting = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(comboBoxTri.getSelectedIndex() == 0) {
+				dispose();
+				WindowsTech_afficheTickets t1 = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
 
-	public WindowsTech_afficheTickets() {
+				
+			}
+			else if(comboBoxTri.getSelectedIndex() == 1) {
+				dispose();
+				WindowsTech_afficheTickets t1 = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket order by name_ticket");
+
+			}
+			else if(comboBoxTri.getSelectedIndex() == 2){
+				dispose();
+				WindowsTech_afficheTickets t1 = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where urgency = \"High\"");
+			}
+			else if(comboBoxTri.getSelectedIndex() == 3){
+				dispose();
+				WindowsTech_afficheTickets t1 = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where urgency = \"Medium\"");
+			}
+			else{
+				dispose();
+				WindowsTech_afficheTickets t1 = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where urgency = \"Lowx\"");
+			}
+		}
+	};
+	/**
+	 * This class permit to display a list of tickets within a SQL request
+	 * @param SQLRequest : The SQL request to the display of this list
+	 */
+	public WindowsTech_afficheTickets(String SQLRequest) {
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Technician Window");
@@ -73,8 +108,8 @@ public class WindowsTech_afficheTickets extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
-		Vector rowData = TicketsJdbcs.getRows("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");//get data
-		Vector columnNames = TicketsJdbcs.getHead("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");//get the names of the attribut
+		Vector rowData = TicketsJdbcs.getRows(SQLRequest);//get data
+		Vector columnNames = TicketsJdbcs.getHead(SQLRequest);//get the names of the attribut
 		
 		// Les titres des colonnes
 		tableModel = new DefaultTableModel(rowData,columnNames);	
@@ -88,9 +123,25 @@ public class WindowsTech_afficheTickets extends JFrame {
 		
 		pane.setLayout(new BorderLayout());
 		pane.add(new JScrollPane(tableau),BorderLayout.CENTER);
-		pane.add(southPane, BorderLayout.SOUTH);
+		pane.add(northPane, BorderLayout.NORTH);
+		pane.add(sorthPane, BorderLayout.SOUTH);
 		
-		label.setText("Choix du ticket : ");
+		label.setText("Choose a ticket : ");
+		
+		FlowLayout fl_northPane = new FlowLayout();
+		fl_northPane.setAlignment(FlowLayout.RIGHT);
+		sorthPane.setLayout(fl_northPane);
+		labelTri.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		comboBoxTri.addItem("Ticket status");
+		comboBoxTri.addItem("Alphabetical order");
+		comboBoxTri.addItem("High priority");
+		comboBoxTri.addItem("Medium priority");
+		comboBoxTri.addItem("Low priority");
+		
+		sorthPane.add(labelTri);
+		sorthPane.add(comboBoxTri);
+		sorthPane.add(buttonTri);
 		
 		southPane.setLayout(new FlowLayout());
 		southPane.add(label);
@@ -100,6 +151,7 @@ public class WindowsTech_afficheTickets extends JFrame {
 		textfield.setColumns(7);
 		button.setText("Valider");
 		button.addActionListener(listener);
+		buttonTri.addActionListener(listenerSorting);
 	}
 	private void connexionBD(String SQLRequest){
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	
@@ -115,7 +167,7 @@ public class WindowsTech_afficheTickets extends JFrame {
 			ResultSet result1 = preparedStatement.executeQuery();
 			
 			if(result1.next() == false) {
-				JOptionPane.showMessageDialog(null, "La valeur du ticket qui vient d'être insérer est invalide");
+				JOptionPane.showMessageDialog(null, "The value of this ticket isn't done.");
 			}
 			else {
 				result1.close();
@@ -132,6 +184,6 @@ public class WindowsTech_afficheTickets extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		WindowsTech_afficheTickets t = new WindowsTech_afficheTickets();
+		WindowsTech_afficheTickets t = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
 	}
 }
