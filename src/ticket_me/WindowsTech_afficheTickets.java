@@ -37,6 +37,7 @@ import javax.swing.JFormattedTextField;
  */
 public class WindowsTech_afficheTickets extends JFrame {
 	private JPanel pane = new JPanel();
+	private JPanel northPane = new JPanel();
 	private JPanel southPane = new JPanel();
 	private JButton button = new JButton();
 	public static JTextField textfield = new JTextField();
@@ -124,13 +125,13 @@ public class WindowsTech_afficheTickets extends JFrame {
 		pane.setLayout(new BorderLayout());
 		pane.add(new JScrollPane(tableau),BorderLayout.CENTER);
 		pane.add(northPane, BorderLayout.NORTH);
-		pane.add(sorthPane, BorderLayout.SOUTH);
+		pane.add(southPane, BorderLayout.SOUTH);
 		
 		label.setText("Choose a ticket : ");
 		
 		FlowLayout fl_northPane = new FlowLayout();
 		fl_northPane.setAlignment(FlowLayout.RIGHT);
-		sorthPane.setLayout(fl_northPane);
+		southPane.setLayout(fl_northPane);
 		labelTri.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		comboBoxTri.addItem("Ticket status");
@@ -139,14 +140,14 @@ public class WindowsTech_afficheTickets extends JFrame {
 		comboBoxTri.addItem("Medium priority");
 		comboBoxTri.addItem("Low priority");
 		
-		sorthPane.add(labelTri);
-		sorthPane.add(comboBoxTri);
-		sorthPane.add(buttonTri);
+		southPane.add(labelTri);
+		southPane.add(comboBoxTri);
+		southPane.add(buttonTri);
 		
-		southPane.setLayout(new FlowLayout());
-		southPane.add(label);
-		southPane.add(textfield);
-		southPane.add(button);
+		northPane.setLayout(new FlowLayout());
+		northPane.add(label);
+		northPane.add(textfield);
+		northPane.add(button);
 		
 		textfield.setColumns(7);
 		button.setText("Valider");
