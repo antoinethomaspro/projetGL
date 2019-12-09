@@ -97,7 +97,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 				try {
 				columnNames = TicketsJdbcs.getHead("select name_ticket,description, status from ticket");// get the names of the attribut			
 				rowData = TicketsJdbcs.getRows("select name_ticket,description, status from ticket where isCreatedBy = \""
-+ Windows_Home.username.getText());// get data
++ Windows_Home.username.getText()+"\"");// get data
 				tableModel = new DefaultTableModel(rowData, columnNames);
 				} catch (ClassCastException e) {
 					System.out.println("error jtable");
@@ -107,7 +107,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 			else {
 				result1.close();
 				rowData = TicketsJdbcs.getRows("select name_ticket,description, status from ticket where isCreatedBy = \""
-						+ Windows_Home.username.getText());// get data
+						+ Windows_Home.username.getText()+"\"");// get data
 				columnNames = TicketsJdbcs.getHead("select name_ticket,description, status from ticket");// get the names of the attribut
 				tableModel = new DefaultTableModel(rowData, columnNames);
 			}
