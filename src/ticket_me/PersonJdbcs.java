@@ -98,7 +98,7 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                    if (pwdBDD.equals(pwd)) {
                        b = true;
                        JOptionPane.showMessageDialog(null, "Le mot de passe est  correcte！");
-                       WindowsTech_afficheTickets wus = new WindowsTech_afficheTickets();
+                  	WindowsTech_afficheTickets wus = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
                        wus.setVisible(true);
                    } else {
                 	   b = false;
