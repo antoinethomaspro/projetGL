@@ -33,11 +33,20 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 	public static Vector columnNames = new Vector();
 	public static JTable tableau;
 	public static JPanel mainPane = new JPanel();
+	private JButton btnRefresh = new JButton("Refresh");
 	private ActionListener createTicket = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			WindowsUser_insertTicket t = new WindowsUser_insertTicket();
+		}
+	};
+		public ActionListener refresh = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Window_Main_User w = new Window_Main_User();
+			dispose();
 		}
 	};
 	public Window_Main_User() {
@@ -76,10 +85,29 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 		gbc_btnCreateANew.gridx = 0;
 		gbc_btnCreateANew.gridy = 0;
 		panelWest.add(btnCreateANew, gbc_btnCreateANew);
+		
 		btnCreateANew.addActionListener(createTicket);
-
+		btnRefresh.addActionListener(refresh);
+		tableau.getSelectionModel().addListSelectionListener(new RowListener());
+		
+		panelNorth.add(btnRefresh);
 		panelNorth.add(lblTicketsStatus);
 	}
+	    private void outputSelection() {
+    	try {
+			Window_User_ViewTicket v = new Window_User_ViewTicket("select * from ticket where id_ticket = " + tableau.getValueAt(tableau.getSelectedRow(), 0));
+		} catch (SQLException e) {
+			System.out.println("SQL error");
+		}
+    }
+    private class RowListener implements ListSelectionListener {
+        public void valueChanged(ListSelectionEvent event) {
+            if (event.getValueIsAdjusting()) {
+                return;
+            }
+            outputSelection();
+        }
+    }
 		public void connexionBD(String SQLRequest){
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	
 		String name = "root";
@@ -95,8 +123,8 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 			
 			if(result1.next() == false) {
 				try {
-				columnNames = TicketsJdbcs.getHead("select name_ticket,description, status from ticket");// get the names of the attribut			
-				rowData = TicketsJdbcs.getRows("select name_ticket,description, status from ticket where isCreatedBy = \""
+				columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the names of the attribut			
+				rowData = TicketsJdbcs.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
 + Windows_Home.username.getText()+"\"");// get data
 				tableModel = new DefaultTableModel(rowData, columnNames);
 				} catch (ClassCastException e) {
@@ -106,9 +134,9 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 			}
 			else {
 				result1.close();
-				rowData = TicketsJdbcs.getRows("select name_ticket,description, status from ticket where isCreatedBy = \""
+				rowData = TicketsJdbcs.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
 						+ Windows_Home.username.getText()+"\"");// get data
-				columnNames = TicketsJdbcs.getHead("select name_ticket,description, status from ticket");// get the names of the attribut
+				columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the names of the attribut
 				tableModel = new DefaultTableModel(rowData, columnNames);
 			}
 			
