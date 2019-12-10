@@ -50,30 +50,61 @@ public class TicketsJdbcs {
         }
     }
     
-  /**
-   * Permettre user d'inserer un ticket 
-   * @param titre
-   * @param description
-   * @param categorie
-   * @param priorite
+ /**
+   * Permettre user d'inserer un ticket dans le BD
+   * @param titre le titire du ticket 
+   * @param description le description du ticket
+   * @param categorie le type de ce ticket
+   * @param priorite priorite du ticket
+   * @param screenshot capture d'ecran du ticket
+   * @param isCreatedBy pour indiquer le createur de ce ticeket
    */
-    public void insert(String titre, String description, String categorie, String priorite,String isCreatedBy) {
-        
-        String sql = 
-"insert into ticket(name_ticket,urgency,category, description,status, isCreatedBy) values(\""+titre+ "\",\""+priorite+"\",\""+categorie+"\",\""+description+"\",\""+"1"+"\",\""+isCreatedBy+"\")";           		
-           try {
-               int a = statement.executeUpdate(sql);
-               con.close();
-               statement.close();
-               if (a == 1) {
-                   JOptionPane.showMessageDialog(null, "Vous avez bien cree un ticket!");
-               }
-               
-           } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit");
-               e.printStackTrace();
-           }
-       }
+   
+
+    public void insert(String titre, String description,String screenshot, String categorie, String priorite,String isCreatedBy) {
+         
+    try {  
+		byte[] rawBytes = null;  
+		FileInputStream fis = null;  
+
+		//if (imagePath.equals("No File Uploaded")) {  
+		//ClassLoader cl = this.getClass().getClassLoader();  
+		//URL resouces = cl.getResource("resources/blank-image.png");  
+		//imagePath = resouces.getFile();  
+		//}  
+
+		File fileObj = new File(screenshot);  
+		fis = new FileInputStream(fileObj);  
+
+		//loading the Jdbc driver for Sql Operations  
+		Class.forName("com.mysql.jdbc.Driver");  
+		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
+		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,screenshot,status, isCreatedBy) values(?,?,?,?,?,?,?)");           		 
+		//st.setBinaryStream(4, fis);  
+		st.setString(1,titre);
+	    st.setString(2,priorite);
+	    st.setString(3,categorie);
+	    st.setString(4,description);
+	    
+	    int imageLength = Integer.parseInt(String.valueOf(fileObj.length()));  
+		rawBytes = new byte[imageLength];  
+		fis.read(rawBytes, 0, imageLength);  
+		st.setBinaryStream(5, (InputStream) fis, imageLength);  
+	    st.setBytes(5, rawBytes);
+	    
+	    st.setString(6,"1");
+	    st.setString(7,isCreatedBy);
+	    
+		int count = st.executeUpdate();  
+		if (count > 0) {  
+			JOptionPane.showInputDialog(this, "Data Saved Successfully");  
+		} else {  
+			JOptionPane.showInputDialog(this, "Error Saving Data");  
+		}
+	} catch (HeadlessException | IOException  | NumberFormatException | SQLException | ClassNotFoundException ex) {  
+		JOptionPane.showInputDialog(this, ex.getMessage());  
+	}  
+    }
 
     /**
      * Permettre user de supprimer un ticket 
