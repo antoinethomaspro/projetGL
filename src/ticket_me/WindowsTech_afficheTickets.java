@@ -37,7 +37,6 @@ import javax.swing.JFormattedTextField;
  */
 public class WindowsTech_afficheTickets extends JFrame {
 	private JPanel pane = new JPanel();
-	private JPanel northPane = new JPanel();
 	private JPanel southPane = new JPanel();
 	private JButton button = new JButton();
 	public static JTextField textfield = new JTextField();
@@ -45,6 +44,9 @@ public class WindowsTech_afficheTickets extends JFrame {
 	private JLabel labelTri = new JLabel("Sorting : ");
 	private JComboBox<String> comboBoxTri = new JComboBox<String>();
 	private JButton buttonTri = new JButton("Done");
+	private JButton btnRefresh = new JButton("Refresh");
+	public String request = "";
+	public JTable tableau;
 	private ActionListener listener = new ActionListener() {
 		
 		@Override
@@ -96,12 +98,20 @@ public class WindowsTech_afficheTickets extends JFrame {
 			}
 		}
 	};
+	public ActionListener refresh = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets(request);
+			dispose();
+		}
+	};
 	/**
 	 * This class permit to display a list of tickets within a SQL request
 	 * @param SQLRequest : The SQL request to the display of this list
 	 */
 	public WindowsTech_afficheTickets(String SQLRequest) {
-		
+		request = SQLRequest;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Technician Window");
 		this.setSize(800, 300);
@@ -140,20 +150,29 @@ public class WindowsTech_afficheTickets extends JFrame {
 		comboBoxTri.addItem("Medium priority");
 		comboBoxTri.addItem("Low priority");
 		
+		southPane.add(btnRefresh);
+		btnRefresh.addActionListener(refresh);
+		
 		southPane.add(labelTri);
 		southPane.add(comboBoxTri);
 		southPane.add(buttonTri);
-		
-		northPane.setLayout(new FlowLayout());
-		northPane.add(label);
-		northPane.add(textfield);
-		northPane.add(button);
 		
 		textfield.setColumns(7);
 		button.setText("Valider");
 		button.addActionListener(listener);
 		buttonTri.addActionListener(listenerSorting);
 	}
+	    private void outputSelection() {
+    		connexionBD("select * from ticket where id_ticket =" + tableau.getValueAt(tableau.getSelectedRow(), 0));
+    }
+    private class RowListener implements ListSelectionListener {
+        public void valueChanged(ListSelectionEvent event) {
+            if (event.getValueIsAdjusting()) {
+                return;
+            }
+            outputSelection();
+        }
+    }
 	private void connexionBD(String SQLRequest){
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	
 		String name = "root";
