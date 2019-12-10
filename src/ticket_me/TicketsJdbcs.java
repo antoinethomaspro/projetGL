@@ -322,6 +322,7 @@ public class TicketsJdbcs {
 				boolean moreRecords = result1.next();
 				if(!moreRecords) {
 					columnHeads = new Vector();
+					columnHeads.add("Id");
 					columnHeads.add("Name");
 					columnHeads.add("Description");
 					columnHeads.add("Status");
