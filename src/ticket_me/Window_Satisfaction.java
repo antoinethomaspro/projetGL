@@ -17,7 +17,8 @@ import java.awt.Window.Type;
 
 public class Window_Satisfaction extends JFrame{
 	private JPanel mainPane = new JPanel();
-	private JLabel lblGiveANote = new JLabel("Give a note to the Technician who have resolved your ticket : ");
+	private String name_tech = "";
+	private JLabel lblGiveANote = new JLabel("Give a note for "+name_tech+" who have resolved your ticket : ");
 	private JComboBox<Integer> comboBox = new JComboBox<Integer>();
 	private JButton btnValidate = new JButton("Validate");
 	public ActionListener listener = new ActionListener() {
@@ -25,10 +26,11 @@ public class Window_Satisfaction extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(getContentPane(), "Successfully");
-			
+			dispose();
 		}
 	};
 	public Window_Satisfaction() {
+		this.name_tech = name_technician;
 		setType(Type.POPUP);
 		setVisible(true);
 		setTitle("Give a note of satisfaction");
