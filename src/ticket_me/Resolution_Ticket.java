@@ -25,18 +25,18 @@ public class Resolution_Ticket extends JFrame {
 	private JPanel SouthPanel = new JPanel();
 	private JPanel CenterPanel = new JPanel();
 	private JLabel LabelPart1 = new JLabel("Generals informations");
-	private JLabel labelTitre = new JLabel("Titre");
+	private JLabel labelTitre = new JLabel("Title");
 	private JLabel labelTitreValue = new JLabel("test");
 	private JLabel labelDescription = new JLabel("Description");
 	private JLabel labelDescriptionValue = new JLabel("description");
 	private JLabel labelPriority = new JLabel("Priority");
-	private JLabel labelPriorityValue = new JLabel("Niveau de priorité");
+	private JLabel labelPriorityValue = new JLabel("Priority level");
 	private JSeparator separator = new JSeparator();
 	private JLabel labelPart2 = new JLabel("Classification");
 	private JLabel labelCategory = new JLabel("Category");
 	private JLabel labelCategoryValue = new JLabel("test category");
 	private JLabel labelResquestFor = new JLabel("Resquest for");
-	private JLabel labelResquestForValue = new JLabel(TicketsJdbcs.getIsCreatedBy(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText())));
+	private JLabel labelResquestForValue = new JLabel();
 	private JSeparator separator_1 = new JSeparator();
 	private JLabel labelPart3 = new JLabel("Resolution");
 	private JLabel labelSolution = new JLabel("Solution");
@@ -44,11 +44,12 @@ public class Resolution_Ticket extends JFrame {
 	public static JComboBox<String> comboBoxCompletion = new JComboBox<String>(); // value du completion code : A RECUPERER POUR BDD
 	private JLabel labelNumTicket = new JLabel("Ticket n° :");
 	private JLabel NumTicket = new JLabel("id ticket");
-	private JLabel labelTitre2 = new JLabel("Titre :");
+	private JLabel labelTitre2 = new JLabel("Title :");
 	private JLabel labelTitreValue2 = new JLabel("titreTicket");
 	private JButton buttonClose = new JButton("Close ticket");
 	private String request = "";
 	public static JTextField Textfieldsolution = new JTextField(); // texte de la solution : A RECUPERER POUR BDD
+	public JButton back = new JButton();
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -62,7 +63,13 @@ public class Resolution_Ticket extends JFrame {
 
 		}
 	};
-
+	public ActionListener backListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+		}
+	};
 	
 	public Resolution_Ticket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
@@ -79,6 +86,7 @@ public class Resolution_Ticket extends JFrame {
 		labelPriorityValue.setText(tab.get(2));
 		labelCategoryValue.setText(tab.get(3));
 		labelDescriptionValue.setText(tab.get(4));
+		labelResquestForValue.setText(tab.get(5));
 
 		getContentPane().add(MainPanel, BorderLayout.CENTER);
 		getContentPane().add(NorthPanel, BorderLayout.NORTH);
@@ -88,6 +96,8 @@ public class Resolution_Ticket extends JFrame {
 		LabelPart1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		labelPart2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		labelPart3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		back.setText("Back");
 
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 0, 0 };
@@ -261,8 +271,10 @@ public class Resolution_Ticket extends JFrame {
 		FlowLayout flowLayout = (FlowLayout) SouthPanel.getLayout();
 		flowLayout.setHgap(15);
 		flowLayout.setAlignment(FlowLayout.RIGHT);
+		SouthPanel.add(back);
 		SouthPanel.add(buttonClose);
 		buttonClose.addActionListener(ListenerClose);
+		back.addActionListener(backListener);
 	}
 
 	private void connexionBD() throws SQLException {
@@ -283,7 +295,7 @@ public class Resolution_Ticket extends JFrame {
 				tab.add(2, result1.getString("urgency"));
 				tab.add(3, result1.getString("category"));
 				tab.add(4, result1.getString("description"));
-				System.out.println("tab full");
+				tab.add(5, result1.getString("isCreatedBy"));
 			}
 			result1.close();
 
