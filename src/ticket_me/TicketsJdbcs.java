@@ -246,8 +246,11 @@ public class TicketsJdbcs {
 				Pstatement = con.prepareStatement(SQLRequest);
 				ResultSet result1 = Pstatement.executeQuery();
 				
-				if(result1.wasNull())
-					JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+				if(result1.wasNull()){
+					rows = new Vector();
+					System.out.println("None rows");
+					return rows;
+				}
 				
 				rows = new Vector();
 				
@@ -286,8 +289,13 @@ public class TicketsJdbcs {
 				ResultSet result1 = preparedStatement.executeQuery();
 				
 				boolean moreRecords = result1.next();
-				if(!moreRecords)
-					JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+				if(!moreRecords) {
+					columnHeads = new Vector();
+					columnHeads.add("Name");
+					columnHeads.add("Description");
+					columnHeads.add("Status");
+					return columnHeads;
+				}
 				
 				columnHeads = new Vector();
 				ResultSetMetaData rsmd = result1.getMetaData();
