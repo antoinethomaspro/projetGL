@@ -1,3 +1,5 @@
+package ticket_me;
+
 
 import java.sql.*;  
 import java.awt.*;  
@@ -18,7 +20,7 @@ public class screenshot extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JTextField txtPath;  
+	public static  JTextField txtPath;  
 	JLabel lblPath;  
 	JButton btnSave, btnBrowse;  
 	JFileChooser fileChooser;  
@@ -81,7 +83,7 @@ public class screenshot extends JFrame implements ActionListener {
 	 * @param imagePath that needs to be saved 
 	 * @throws ClassNotFoundException 
 	 */  
-	private void SaveImage(String imagePath) throws ClassNotFoundException {  
+	/*private void SaveImage(String imagePath) throws ClassNotFoundException {  
 		try {  
 			byte[] rawBytes = null;  
 			FileInputStream fis = null;  
@@ -97,7 +99,7 @@ public class screenshot extends JFrame implements ActionListener {
 
 			//loading the Jdbc driver for Sql Operations  
 			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "");  
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
 			PreparedStatement st = con.prepareStatement("INSERT INTO ticket (screenshot) VALUES (?)");  
 			//st.setBinaryStream(4, fis);  
 			int imageLength = Integer.parseInt(String.valueOf(fileObj.length()));  
@@ -115,7 +117,7 @@ public class screenshot extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, ex.getMessage());  
 		}  
 	}  
-
+*/
 	/** 
 	 * ActionPerformed Event used for handling button Click Event 
 	 * 
@@ -147,12 +149,10 @@ public class screenshot extends JFrame implements ActionListener {
 			}  
 		}  
 		else if (btn.equals(btnSave)) {  
-			try {
-				SaveImage(txtPath.getText());
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}  
+			
+				txtPath.getText();
+				this.dispose();
+			 
 		}  
 	}  
 	/** 
@@ -162,3 +162,4 @@ public class screenshot extends JFrame implements ActionListener {
 		new screenshot();  
 	}  
 }  
+
