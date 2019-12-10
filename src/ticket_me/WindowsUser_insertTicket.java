@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import projet_ticketing_back.TicketsJdbcs;
+import ticket_me.TicketsJdbcs;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -38,21 +38,36 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	private JLabel Label_Categorie = new JLabel("Category");
 	private JComboBox<String> Box_Categorie = new JComboBox<String>();
 	private JLabel Label_Priorite = new JLabel("Priority");
+	private JButton screenshotB = new JButton("Add Screenshot");
 	private JComboBox<String> Box_Priorite = new JComboBox<String>();
+	private ActionListener screenshotListener = new ActionListener() { // implementation du addImage
+		
+		public void actionPerformed(ActionEvent e) {
+			screenshot s = new screenshot();
+			s.setVisible(true);
+			
+			
+		}
+	};
+	
 	private ActionListener resetListener = new ActionListener() { // implementation du reset
-
+	
 		public void actionPerformed(ActionEvent e) {
 			Field_Titre.setText("");
 			Area_Description.setText(" ");
 			Area_Description.setText("");
 			Box_Categorie.setSelectedIndex(0);
 			Box_Priorite.setSelectedIndex(0);
+
+			
 		}
 	};
 	private ActionListener doneListener = new ActionListener() { // validation du ticket
 
 		public void actionPerformed(ActionEvent e) {
 			insererT();
+	
+
 		}
 	};
 
@@ -146,6 +161,16 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		gbc_Box_Categorie.gridy = 0;
 		Box_Categorie.addItem("Display");
 		Box_Categorie.addItem("Sound");
+		Box_Categorie.addItem("pc");
+		Box_Categorie.addItem("printer");
+		Box_Categorie.addItem("software");
+		Box_Categorie.addItem("wireless network");
+		Box_Categorie.addItem("password");
+		Box_Categorie.addItem("youtube");
+		Box_Categorie.addItem("whatsapp");
+		Box_Categorie.addItem("microsoft");
+		Box_Categorie.addItem("gmail");
+		Box_Categorie.addItem("internet");
 		panel_Box.add(Box_Categorie, gbc_Box_Categorie);
 
 		// -- Positionnement du label priorité --//
@@ -166,6 +191,13 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		Box_Priorite.addItem("Medium");
 		Box_Priorite.addItem("Low");
 		panel_Box.add(Box_Priorite, gbc_Box_Priorite);
+		
+		GridBagConstraints gbc_screenshot = new GridBagConstraints();
+		gbc_Label_Categorie.insets = new Insets(0, 0, 0, 5);
+		gbc_Label_Categorie.gridx = 0;
+		gbc_Label_Categorie.gridy = 0;
+		panel_Box.add(screenshotB, gbc_screenshot);
+		screenshotB.addActionListener(screenshotListener);
 	}
 
 	public void actionPerformed(ActionEvent e) { // annulation création ticket
@@ -175,16 +207,22 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		TicketsJdbcs d = new TicketsJdbcs();
 		String titre = Field_Titre.getText();
 		String description = Area_Description.getText().toString();
+		String screens = screenshot.txtPath.getText();
 		String categorie = Box_Categorie.getSelectedItem().toString();
 		String priorite = Box_Priorite.getSelectedItem().toString();
 		String isCreatedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
-		d.insert(titre, description,categorie,priorite,isCreatedBy);
+		d.insert(titre, description,screens,categorie,priorite,isCreatedBy);
 	
-		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
-		Vector<String> t = new Vector<String>();
-		t.add(titre);
-		t.add(description);
-		t.add("1");
-		tableModel.addRow(t);
+		
 	}
-}
+	
+/* public static void main(String[] args) {
+	WindowsUser_insertTicket w = new WindowsUser_insertTicket();
+	w.setVisible(true);
+	}*/
+	
+	
+	
+}	
+
+
