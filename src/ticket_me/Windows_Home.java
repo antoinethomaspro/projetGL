@@ -8,7 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
+/**
+ * @author MARTIN Thomas
+ * @author THOMAS Antoine
+ *
+ */
 public class Windows_Home extends JFrame {
 	
 	public static JTextField username = new JTextField();
@@ -148,6 +152,9 @@ public class Windows_Home extends JFrame {
 		ButtonConnexion.addActionListener(ListernerConnexion);
 		ButtonInscription.addActionListener(ListernerInscription);
 	}
+	/**
+	 * @return Return nothing but this method dispose the differents components of PanelConnexion.
+	 */
 	public final void PanelConnexion() {
 		PanelLogin_2.add(ButtonLogin);
 		
@@ -207,6 +214,9 @@ public class Windows_Home extends JFrame {
 		PanelMainLogin.repaint();
 		PanelMainLogin.revalidate();
 	}
+	/**
+	 * @return Return nothing but this method dispose the differents components of PanelInscription.
+	 */
 	public final void PanelInscription() {
 		PanelSignUp_2.add(btnDone);
 		
