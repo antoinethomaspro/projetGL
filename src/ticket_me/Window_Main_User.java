@@ -1,4 +1,4 @@
-package ticket_me;
+package Ticketing_Projet;
 
 import java.awt.BorderLayout;
 
@@ -6,9 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-
-import ticket_me.TicketsJdbcs;
+import projet_ticketing_back.TicketsJdbcs;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
@@ -17,14 +21,20 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JFormattedTextField;
 
-public class Window_Main_User extends JFrame implements ConnexionBDD{
-	private DefaultTableModel tableModel;
-	private JScrollPane scrollPane;
+public class Window_Main_User extends JFrame implements ConnexionBDD {
+	public static DefaultTableModel tableModel;
+	private static JScrollPane scrollPane;
 	private JPanel panelWest = new JPanel();
 	private JPanel panelNorth = new JPanel();
 	private JButton btnCreateANew = new JButton("Create a new ticket");
@@ -35,13 +45,14 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 	public static JPanel mainPane = new JPanel();
 	private JButton btnRefresh = new JButton("Refresh");
 	private ActionListener createTicket = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			WindowsUser_insertTicket t = new WindowsUser_insertTicket();
+
 		}
 	};
-		public ActionListener refresh = new ActionListener() {
+	public ActionListener refresh = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -49,6 +60,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 			dispose();
 		}
 	};
+
 	public Window_Main_User() {
 		mainPane = (JPanel) getContentPane();
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -57,13 +69,10 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 		setSize(723, 320); // size
 		setLocationRelativeTo(null); // fenetre centrée
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // arret du processus quand fermeture de la fenetre
+		connexionBD("select * from ticket where isCreatedBy = " + "\"" + Windows_Home.nom + "\"");
 
-		connexionBD("select * from ticket where isCreatedBy = "+"\""+Windows_Home.nom+"\"");
-		
 		// Les titres des colonnes
-		tableModel = new DefaultTableModel(rowData, columnNames);
-		JTable tableau = new JTable(tableModel);
-		tableau.setEnabled(false);
+		tableau = new JTable(tableModel);
 		tableau.setSurrendersFocusOnKeystroke(true);
 		tableau.setFillsViewportHeight(true);
 		tableau.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -72,16 +81,16 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		getContentPane().add(panelWest, BorderLayout.WEST);
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
-		
+
 		GridBagLayout gbl_panelWest = new GridBagLayout();
 		gbl_panelWest.columnWidths = new int[] { 120, 0, 0 };
-		gbl_panelWest.rowHeights = new int[] { 0, 0, 0 };
+		gbl_panelWest.rowHeights = new int[] { 0, 0, 0, 0 };
 		gbl_panelWest.columnWeights = new double[] { 0.0, 10.0, Double.MIN_VALUE };
-		gbl_panelWest.rowWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panelWest.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		panelWest.setLayout(gbl_panelWest);
 
 		GridBagConstraints gbc_btnCreateANew = new GridBagConstraints();
-		gbc_btnCreateANew.insets = new Insets(15, 10, 5, 5);
+		gbc_btnCreateANew.insets = new Insets(30, 10, 5, 5);
 		gbc_btnCreateANew.gridx = 0;
 		gbc_btnCreateANew.gridy = 0;
 		panelWest.add(btnCreateANew, gbc_btnCreateANew);
@@ -93,7 +102,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
 		panelNorth.add(btnRefresh);
 		panelNorth.add(lblTicketsStatus);
 	}
-	    private void outputSelection() {
+    private void outputSelection() {
     	try {
 			Window_User_ViewTicket v = new Window_User_ViewTicket("select * from ticket where id_ticket = " + tableau.getValueAt(tableau.getSelectedRow(), 0));
 		} catch (SQLException e) {
@@ -108,38 +117,46 @@ public class Window_Main_User extends JFrame implements ConnexionBDD{
             outputSelection();
         }
     }
-		public void connexionBD(String SQLRequest){
-		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	
+
+	public void connexionBD(String SQLRequest) {
+		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 		String name = "root";
 		String password = "root";
 		Connection conn;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(sql_url, name, password);
 			preparedStatement = conn.prepareStatement(SQLRequest);
 			ResultSet result1 = preparedStatement.executeQuery();
-			
-			if(result1.next() == false) {
+			if (result1.next() == false) {
 				try {
-				columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the names of the attribut			
-				rowData = TicketsJdbcs.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
-+ Windows_Home.username.getText()+"\"");// get data
-				tableModel = new DefaultTableModel(rowData, columnNames);
+					columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the
+																												// names
+																												// of
+																												// the
+																												// attribut
+					rowData = TicketsJdbcs
+							.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
+									+ Windows_Home.username.getText() + "\"");// get data
+					tableModel = new DefaultTableModel(rowData, columnNames);
 				} catch (ClassCastException e) {
 					System.out.println("error jtable");
 				}
 
-			}
-			else {
+			} else {
 				result1.close();
-				rowData = TicketsJdbcs.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
-						+ Windows_Home.username.getText()+"\"");// get data
-				columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the names of the attribut
+				rowData = TicketsJdbcs
+						.getRows("select id_ticket,name_ticket,description, status from ticket where isCreatedBy = \""
+								+ Windows_Home.username.getText() + "\"");// get data
+				columnNames = TicketsJdbcs.getHead("select id_ticket,name_ticket,description, status from ticket");// get the
+																											// names of
+																											// the
+																											// attribut
 				tableModel = new DefaultTableModel(rowData, columnNames);
 			}
-			
+
 		} catch (ClassNotFoundException e) {
 			System.out.println("error class no found");
 			e.printStackTrace();
