@@ -31,7 +31,11 @@ import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JFormattedTextField;
-
+/**
+ * @author MARTIN Thomas
+ * @author THOMAS Antoine
+ * This class show the list of tickets which are created by the user.
+ */
 public class Window_Main_User extends JFrame implements ConnexionBDD {
 	public static DefaultTableModel tableModel;
 	private static JScrollPane scrollPane;
@@ -102,6 +106,9 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 		panelNorth.add(btnRefresh);
 		panelNorth.add(lblTicketsStatus);
 	}
+	/**
+	 * Method to show a window to know the informations of the ticket which was selected.
+	 */
     private void outputSelection() {
     	try {
 			Window_User_ViewTicket v = new Window_User_ViewTicket("select * from ticket where id_ticket = " + tableau.getValueAt(tableau.getSelectedRow(), 0));
@@ -109,6 +116,9 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 			System.out.println("SQL error");
 		}
     }
+    /**
+     * Method implemented by ListSelectionListener and which use the method outputSelection when a row is selected
+     */
     private class RowListener implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
             if (event.getValueIsAdjusting()) {
