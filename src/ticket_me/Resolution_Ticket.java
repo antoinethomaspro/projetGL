@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 /**
+ * To resolved a ticket and close it
+ * @author MARTIN Thomas
+ * @author THOMAS Antoine
  * @since 1.0(only interface)
  * @version 1.1(can update date)
  */
@@ -70,7 +73,11 @@ public class Resolution_Ticket extends JFrame {
 			dispose();
 		}
 	};
-	
+	/**
+	 * 
+	 * @param SQLRequest a SQL request to collect differents attributs of this ticket
+	 * @throws SQLException
+	 */
 	public Resolution_Ticket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
 		connexionBD();
@@ -276,7 +283,10 @@ public class Resolution_Ticket extends JFrame {
 		buttonClose.addActionListener(ListenerClose);
 		back.addActionListener(backListener);
 	}
-
+	/**
+	 * To connect you on the database and collect informations of the ticket
+	 * @throws SQLException
+	 */
 	private void connexionBD() throws SQLException {
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 		String name = "root";
@@ -307,12 +317,8 @@ public class Resolution_Ticket extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
-	
-	
-
 	/**
-	 * cette methode permet de resoudre un ticket
+	 * Send resolution informations of this ticket on the database
 	 */
 	 private void answer()  {
 		 
@@ -325,8 +331,8 @@ public class Resolution_Ticket extends JFrame {
 			
 		}
 	 
-	 /***
-	  * cette methode permet d'envoyer un email a createur apres avoir resolu un ticket
+	 /**
+	  * Send an email after have resolved a ticket
 	  */
 	 private void sendEmailR() {
 		 Email e = new Email();
