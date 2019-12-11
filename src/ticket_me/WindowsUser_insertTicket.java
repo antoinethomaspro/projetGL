@@ -23,7 +23,10 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JComboBox;
-
+/**
+ * @author MARTIN Thomas
+ * Class which permit to created a new ticket.
+ */
 public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	private JPanel panel_South = new JPanel();
 	private JButton Button_Reset = new JButton("Reset");
@@ -203,6 +206,9 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) { // annulation création ticket
 		this.dispose();
 	}
+	/**
+	 * Insert the new ticket on the database.
+	 */
 	private void insererT() {
 		TicketsJdbcs d = new TicketsJdbcs();
 		String titre = Field_Titre.getText();
@@ -215,14 +221,6 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	
 		
 	}
-	
-/* public static void main(String[] args) {
-	WindowsUser_insertTicket w = new WindowsUser_insertTicket();
-	w.setVisible(true);
-	}*/
-	
-	
-	
 }	
 
 
