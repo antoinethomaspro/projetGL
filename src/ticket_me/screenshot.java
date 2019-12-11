@@ -78,7 +78,7 @@ public class screenshot extends JFrame implements ActionListener {
 	}  
 
 	/** 
-	 * This function is used for inserting image into Ticket Table 
+	 * This function is used for inserting image into ticket Table 
 	 * 
 	 * @param imagePath that needs to be saved 
 	 * @throws ClassNotFoundException 
