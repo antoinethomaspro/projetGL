@@ -66,7 +66,7 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			insererT();
-	
+			dispose();
 
 		}
 	};
