@@ -37,7 +37,7 @@ public class PersonJdbcs {
             statement = (Statement) con.createStatement();
  
         } catch (ClassNotFoundException e) {
-            System.out.println("Desole,on n'a pas trouve ce Driver");
+            System.out.println("Driver not found.");
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,15 +53,15 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                 con.close();
                 statement.close();
                 if (a == 1) {
-                	JOptionPane.showMessageDialog(null, "Vous avez bien cree un compte!");
+                	JOptionPane.showMessageDialog(null, "Your account has been successfully created !");
                 }
     			               
     		} catch (SQLException e) {
-    			JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit");
+    			JOptionPane.showMessageDialog(null, "Sorry, an error was occured with the database.");
     			e.printStackTrace();
     		}
     	}else {
-        	JOptionPane.showMessageDialog(null, "Les mot de passe ne sont pas identique!");
+        	JOptionPane.showMessageDialog(null, "Sorry, an error was occured with the passwords, please try again.");
     	}
        }
     
@@ -79,14 +79,14 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                    System.out.println(pwdBDD+ " " + pwd);
                    if (pwdBDD.equals(pwd)) {
                        b = true;
-                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcte！");
+                       JOptionPane.showMessageDialog(null, "You are connected !");
                        Window_Main_User u = new Window_Main_User();
                    } else  {
                 	   b = false;
-                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit！");
+                       JOptionPane.showMessageDialog(null, "Sorry, your password was wrong, please try again.");
                     }
                }else {
-                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit！");
+                   JOptionPane.showMessageDialog(null, "An error was occured.");
                  
                }
            } 
@@ -97,15 +97,15 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                    System.out.println(pwdBDD + " " + pwd);
                    if (pwdBDD.equals(pwd)) {
                        b = true;
-                       JOptionPane.showMessageDialog(null, "Le mot de passe est  correcte！");
+                       JOptionPane.showMessageDialog(null, "You are connected !");
                   	WindowsTech_afficheTickets wus = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
                        wus.setVisible(true);
                    } else {
                 	   b = false;
-                       JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2！");
+                       JOptionPane.showMessageDialog(null, "Sorry, your password was wrong, please try again.");
                    }
                } else {
-                   JOptionPane.showMessageDialog(null, "Vous n'est pas reussit2！");
+                   JOptionPane.showMessageDialog(null, "An error was occured.");
                }
           }    
         	
@@ -131,7 +131,7 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
                con.close();
                statement.close();
            } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Desole,vous etes pas reussit de connercté");
+               JOptionPane.showMessageDialog(null, "Sorry, an error was occured with the database.");
                e.printStackTrace();
            }
            return b;
