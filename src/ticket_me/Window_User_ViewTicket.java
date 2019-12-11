@@ -16,7 +16,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/**Show informations on the selected ticket.
+ * @author MARTIN Thomas
+ * @param SQLRequest a SQLRequest to collect the differents attributs of the ticket on the database.
+ */
 public class Window_User_ViewTicket extends JFrame{
 	private ArrayList<String> tab = new ArrayList<>();
 	private JPanel MainPanel = new JPanel();
@@ -279,7 +282,10 @@ public class Window_User_ViewTicket extends JFrame{
 		buttonClose.addActionListener(ListenerClose);
 		btnGiveAnOpinion.addActionListener(opinionListener);
 	}
-
+	/**
+	 * To connect you on the database and collect informations of the ticket
+	 * @throws SQLException
+	 */
 	public void connexionBD() throws SQLException {
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 		String name = "root";
