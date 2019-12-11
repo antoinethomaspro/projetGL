@@ -40,7 +40,7 @@ public class Window_User_ViewTicket extends JFrame{
 	private JLabel labelPart3 = new JLabel("Resolution");
 	private JLabel labelSolution = new JLabel("Solution");
 	private JLabel labelCompletionCode = new JLabel("Completion code");
-	private JLabel labelNumTicket = new JLabel("Ticket n° :");
+	private JLabel labelNumTicket = new JLabel("Ticket nÂ° :");
 	private JLabel NumTicket = new JLabel("id ticket");
 	private JLabel labelTitre2 = new JLabel("Title :");
 	private JLabel labelTitreValue2 = new JLabel("titreTicket");
@@ -61,7 +61,7 @@ public class Window_User_ViewTicket extends JFrame{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(labelStatusValue.getText().equals("1")) {
+			if(labelStatusValue.getText().equals("RÃ©solu")) {
 			Window_Satisfaction s = new Window_Satisfaction(tab.get(9),tab.get(7));
 			}
 			else JOptionPane.showMessageDialog(null, "This ticket isn't yet resolved, please wait.");
@@ -72,7 +72,7 @@ public class Window_User_ViewTicket extends JFrame{
 		this.request = SQLRequest;
 		connexionBD();
 		setVisible(true);
-		setTitle("Ticket n° : "+ tab.get(0));
+		setTitle("Ticket nÂ° : "+ tab.get(0));
 		setSize(800, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,11 +89,11 @@ public class Window_User_ViewTicket extends JFrame{
 		labelStatusValue.setText(tab.get(8));
 		if(labelStatusValue.getText().equals("1")) {
 			labelStatusValue.setForeground(Color.RED);
-			labelStatusValue.setText("En cours de résolution");
+			labelStatusValue.setText("En cours de rÃ©solution");
 		}
 		else {
 			labelStatusValue.setForeground(Color.GREEN);
-			labelStatusValue.setText("Résolu");
+			labelStatusValue.setText("RÃ©solu");
 		}
 
 		getContentPane().add(MainPanel, BorderLayout.CENTER);
