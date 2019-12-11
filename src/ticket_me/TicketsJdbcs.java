@@ -41,7 +41,7 @@ public class TicketsJdbcs {
             statement = (Statement) con.createStatement();
  
         } catch (ClassNotFoundException e) {
-            System.out.println("Desole,on n'a pas trouve ce Driver");
+            System.out.println("Driver not found.");
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,11 +122,11 @@ public class TicketsJdbcs {
     		               con.close();
     		               statement.close();
     		               if (a == 1) {
-    		                   JOptionPane.showMessageDialog(null, "Vous avez bien supprimé un ticket.");
+    		                   JOptionPane.showMessageDialog(null, "Ticket was successfully delected.");
     		               }
     		               
     		           } catch (SQLException e) {
-    		               JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit");
+    		               JOptionPane.showMessageDialog(null, "SQL Error, please try again.");
     		               e.printStackTrace();
     		           }
     }
@@ -164,7 +164,7 @@ public class TicketsJdbcs {
 
     
     /**
-     * Ces toirs ci-desous sont pour afficher les tickets pour technicien 
+     * Ces trois ci-desous sont pour afficher les tickets pour technicien 
      */
     
     /**
@@ -175,13 +175,13 @@ public class TicketsJdbcs {
 		Vector rows = null;
 		Vector columnHeads = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		//连接驱动
-			con = DriverManager.getConnection(URL, USER, PASSWD);	//连接数据库
+			Class.forName("com.mysql.jdbc.Driver");	
+			con = DriverManager.getConnection(URL, USER, PASSWD);
 			Pstatement = con.prepareStatement("select `id_ticket`, `name_ticket`,`urgency`,`category`,`status`,`solution`,`completion_code` from ticket where status = 1");
 			ResultSet result1 = Pstatement.executeQuery();
 			
 			if(result1.wasNull())
-				JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+				JOptionPane.showMessageDialog(null, "None results");
 			
 			rows = new Vector();
 			
@@ -193,11 +193,11 @@ public class TicketsJdbcs {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("vous n'etes pas reussit de lancer");
+			System.out.println("An error was occured, pleased try again.");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Vous n'etes pas reussit d'ouvrir le BDD");
+			System.out.println("SQL error.");
 			e.printStackTrace();
 		}
 		return rows;
@@ -208,17 +208,17 @@ public class TicketsJdbcs {
 	 * @return vecteur
 	 */
 	public static  Vector getHead(){
-		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";	//数据库路径（一般都是这样写），test是数据库名称
-		String name = "root";		//用户名
-		String password = "root";	//密码
+		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
+		String name = "root";
+		String password = "root";
 		Connection conn;
 		PreparedStatement preparedStatement = null;
  
 		Vector columnHeads = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		//连接驱动
-			conn = DriverManager.getConnection(sql_url, name, password);	//连接数据库
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(sql_url, name, password);
 //			if(!conn.isClosed())
 //				System.out.println("成功连接数据库");
 			preparedStatement = conn.prepareStatement("select `id_ticket`, `name_ticket`,`urgency`,`category`,`status`,`solution`,`completion_code` from ticket");
@@ -226,7 +226,7 @@ public class TicketsJdbcs {
 			
 			boolean moreRecords = result1.next();
 			if(!moreRecords)
-				JOptionPane.showMessageDialog(null, "il n'y a pas de resultat dans le BDD");
+				JOptionPane.showMessageDialog(null, "None results");
 			
 			columnHeads = new Vector();
 			ResultSetMetaData rsmd = result1.getMetaData();
@@ -235,11 +235,11 @@ public class TicketsJdbcs {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("vous n'etes pas reussit de lancer");
+			System.out.println("An error was occured, pleased try again.");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Vous n'etes pas reussit d'ouvrir le BDD");
+			System.out.println("SQL error.");
 			e.printStackTrace();
 		}
 		return columnHeads;
@@ -293,11 +293,11 @@ public class TicketsJdbcs {
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				System.out.println("vous n'etes pas reussit de lancer");
+				System.out.println("An error was occured, pleased try again.");
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.out.println("Vous n'etes pas reussit d'ouvrir le BDD");
+				System.out.println("SQL error.");
 				e.printStackTrace();
 			}
 			return rows;
@@ -336,11 +336,11 @@ public class TicketsJdbcs {
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				System.out.println("Probleme de connexion avec la Base de Données");
+				System.out.println("An error was occured, pleased try again.");
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.out.println("Probleme de connexion avec la Base de Données");
+				System.out.println("SQL error");
 				e.printStackTrace();
 			}
 			return columnHeads;
@@ -366,14 +366,14 @@ public class TicketsJdbcs {
 	               int a = statement.executeUpdate(sql);
 	              
 	               if (a == 1) {
-	                   JOptionPane.showMessageDialog(null, "Vous etes reussit de renouveller!");
+	                   JOptionPane.showMessageDialog(null, "The ticket was successfully resolved !");
 	                  judge =  true;
 	               }
 	               con.close();
 	               statement.close();
 	               
 	           } catch (SQLException e) {
-	               JOptionPane.showMessageDialog(null, "Desole,nous n'avez pas reussit de renouveller");
+	               JOptionPane.showMessageDialog(null, "Sorry, the ticket wasn't resolved, please try again.");
 	               e.printStackTrace();
 	           }
 	           return judge;
