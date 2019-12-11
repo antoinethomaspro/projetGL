@@ -319,7 +319,7 @@ public class Resolution_Ticket extends JFrame {
 	   	TicketsJdbcs d = new TicketsJdbcs();
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
 		String sl = Textfieldsolution.getText().toString();
-		String id =  WindowsTech_afficheTickets.textfield.getText().toString();
+		String id =  ""+WindowsTech_afficheTickets.tableau.getValueAt(WindowsTech_afficheTickets.tableau.getSelectedRow(), 0);
 		String isSolvedBy = Windows_Home.username.getText();
 		d.answerT(Cc,sl,id, isSolvedBy);
 			
