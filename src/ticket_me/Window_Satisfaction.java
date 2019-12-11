@@ -14,11 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Window.Type;
-
+/**
+ * Give a note to the technician who have resolved your ticket
+ * @author MARTIN Thomas
+ */
 public class Window_Satisfaction extends JFrame{
 	private JPanel mainPane = new JPanel();
 	private String name_tech = "";
-	private JLabel lblGiveANote = new JLabel("Give a note for "+name_tech+" who have resolved your ticket : ");
+	private JLabel lblGiveANote = new JLabel();
 	private JComboBox<Integer> comboBox = new JComboBox<Integer>();
 	private JButton btnValidate = new JButton("Validate");
 	public ActionListener listener = new ActionListener() {
@@ -29,6 +32,11 @@ public class Window_Satisfaction extends JFrame{
 			dispose();
 		}
 	};
+	/**
+	 * 
+	 * @param name_technician The name of the technician who have resolved the ticket
+	 * @param name_user The name of the user who have created the ticket
+	 */
 	public Window_Satisfaction(String name_technician, String name_user) {
 		this.name_tech = name_technician;
 		setType(Type.POPUP);
@@ -78,7 +86,10 @@ public class Window_Satisfaction extends JFrame{
 		getContentPane().repaint();
 		getContentPane().revalidate();
 	}
-	public static void main(String[] args) {
-		Window_Satisfaction t = new Window_Satisfaction();
+	/**
+	 * Set the text of the label GiveANote
+	 */
+	private void setNameTech() {
+		lblGiveANote.setText("Give a note for "+name_tech+" who have resolved your ticket : ");
 	}
 }
