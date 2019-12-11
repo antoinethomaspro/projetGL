@@ -119,7 +119,7 @@ public class screenshot extends JFrame implements ActionListener {
 	}  
 */
 	/** 
-	 * ActionPerformed Event used for handling button Click Event 
+	 * ActionPerformed Event used for handling button Click Event here
 	 * 
 	 * @param e ActionEvent Object 
 	 */  
