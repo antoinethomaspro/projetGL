@@ -29,7 +29,7 @@ public class Window_Satisfaction extends JFrame{
 			dispose();
 		}
 	};
-	public Window_Satisfaction() {
+	public Window_Satisfaction(String name_technician, String name_user) {
 		this.name_tech = name_technician;
 		setType(Type.POPUP);
 		setVisible(true);
