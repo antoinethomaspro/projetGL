@@ -1,3 +1,4 @@
+package Ticketing_Projet;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -49,29 +50,7 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 	private JButton buttonTri = new JButton("Done");
 	private JButton btnRefresh = new JButton("Refresh");
 	public String request = "";
-	public JTable tableau;
-	private ActionListener listener = new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String buff = "123456789";
-			String t = textfield.getText();
-			boolean verif = false;
-			for (int i = 0; i < t.length(); i++) {
-				for (int j = 0; j < buff.length(); j++) {
-					if (t.charAt(i) == buff.charAt(j)) {
-						verif = true;
-						break;
-					} else
-						verif = false;
-				}
-			}
-			if (verif == true)
-				connexionBD("select * from ticket where id_ticket =" + textfield.getText());
-			else
-				JOptionPane.showMessageDialog(null, "The value of this ticket isn't done or don't exist.");
-		}
-	};
+	public static JTable tableau;
 	public ActionListener listenerSorting = new ActionListener() {
 
 		@Override
@@ -157,10 +136,7 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 		southPane.add(labelTri);
 		southPane.add(comboBoxTri);
 		southPane.add(buttonTri);
-
-		textfield.setColumns(7);
-		button.setText("Done");
-		button.addActionListener(listener);
+		
 		buttonTri.addActionListener(listenerSorting);
 	}
     private void outputSelection() {
