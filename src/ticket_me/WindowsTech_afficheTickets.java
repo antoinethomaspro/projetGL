@@ -33,9 +33,11 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 
 /**
- * 
+ * @author MARTIN Thomas
+ * @author THOMAS Antoine
  * @since 1.0 (decs)
  * @version 1.1 （ajouter status,solution,completion_code a afficher）
+ * @version 1.2 new way to select the ticket
  *
  */
 public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
@@ -139,9 +141,15 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 		
 		buttonTri.addActionListener(listenerSorting);
 	}
+	/**
+	 * Method to show a window to know the informations of the ticket which was selected.
+	 */
     private void outputSelection() {
     		connexionBD("select * from ticket where id_ticket =" + tableau.getValueAt(tableau.getSelectedRow(), 0));
     }
+    /**
+     * Method implemented by ListSelectionListener and which use the method outputSelection when a row is selected
+     */
     private class RowListener implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
             if (event.getValueIsAdjusting()) {
