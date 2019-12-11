@@ -61,7 +61,7 @@ public class Window_User_ViewTicket extends JFrame{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(labelStatusValue.getText().equals("Résolu")) {
+			if(labelStatusValue.getText().equals("Resolved")) {
 			Window_Satisfaction s = new Window_Satisfaction(tab.get(9),tab.get(7));
 			}
 			else JOptionPane.showMessageDialog(null, "This ticket isn't yet resolved, please wait.");
@@ -89,11 +89,11 @@ public class Window_User_ViewTicket extends JFrame{
 		labelStatusValue.setText(tab.get(8));
 		if(labelStatusValue.getText().equals("1")) {
 			labelStatusValue.setForeground(Color.RED);
-			labelStatusValue.setText("En cours de résolution");
+			labelStatusValue.setText("Work in progress");
 		}
 		else {
 			labelStatusValue.setForeground(Color.GREEN);
-			labelStatusValue.setText("Résolu");
+			labelStatusValue.setText("Resolved");
 		}
 
 		getContentPane().add(MainPanel, BorderLayout.CENTER);
