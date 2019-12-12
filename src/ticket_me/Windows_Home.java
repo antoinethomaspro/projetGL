@@ -19,7 +19,7 @@ public class Windows_Home extends JFrame {
 	private JPasswordField passwordField = new JPasswordField();
 	private JLabel lblUsername = new JLabel("Username");
 	private JLabel lblPassword = new JLabel("Password");
-	private JButton ButtonLogin = new JButton("Login");
+	private JButton ButtonLogin = new JButton("Sign In");
 	private JPanel panelNorth = new JPanel();
 	private JButton ButtonConnexion = new JButton("Sign In");
 	private JButton ButtonInscription = new JButton("Sign Up");
@@ -86,7 +86,8 @@ public class Windows_Home extends JFrame {
 					String email = textField_mail.getText();
 					String role = comboBox_status.getSelectedItem().toString();
 					d.signUp(nom, pwd1,pwd2,adress,phone,email,role);
-					PanelConnexion();
+					Windows_Home w = new Windows_Home();
+					dispose();
 					fieldName.setText("");
 					fieldPwd.setText("");
 					fieldPwd_2.setText("");
