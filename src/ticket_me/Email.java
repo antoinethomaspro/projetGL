@@ -18,6 +18,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 /**
+ * @author Antoine THOMAS 
+ * @author ZHANG Zimeng 
+ * @author YANG Zilu
  * cette classe permet d'envoyer l'email apres avoir resolu un ticket a createur
  * 
  *
@@ -117,11 +120,11 @@ public class Email {
             message.setFrom(new InternetAddress(mail));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(to) // CHANGE THIS : WHICH EMAIL ACCOUNT WILL RECEIVE THE EMAIL
+                    InternetAddress.parse(to) 
             );
             message.setSubject("Ticket Closed");
-            message.setText("Dear "+ name                                   //  CHANGE THIS
-                    + ", Your ticket title : "+ nameT +"XXX has been resolved!");
+            message.setText("Dear "+ name                               
+                    + ", Your ticket title : "+ nameT +" has been resolved!");
 
             Transport.send(message);
 
@@ -133,8 +136,4 @@ public class Email {
     }
 		
 
-    public static void main(String[] args) {
-    	
-    	
-}
 }
