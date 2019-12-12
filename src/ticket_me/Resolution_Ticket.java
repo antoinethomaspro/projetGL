@@ -57,9 +57,10 @@ public class Resolution_Ticket extends JFrame {
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// ajout de la solution et du completion code dans la BDD
-			JOptionPane.showMessageDialog(getContentPane(), "ticket closed"); // il faut que lorsqu'un ticket est fermé, son status passe à false
+			answer();
 			dispose();
+			Textfieldsolution.setText("");
+			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
 		    if (e.getSource() == buttonClose) {
 		    	answer();
 		    	sendEmailR();
@@ -72,6 +73,7 @@ public class Resolution_Ticket extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
+			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
 		}
 	};
 	/**
