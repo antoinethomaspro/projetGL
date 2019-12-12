@@ -357,7 +357,7 @@ public class Resolution_Ticket extends JFrame {
 	  */
 	 private void sendEmailR() {
 		 Email e = new Email();
-		 String username = TicketsJdbcs.getIsCreatedBy( String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(tab.get(0)));
+		 String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(tab.get(0)));
 		 String to = e.getEmailFromBD(username);
 		 String nameT = TicketsJdbcs.getTicket(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
 		
