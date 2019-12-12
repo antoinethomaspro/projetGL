@@ -18,7 +18,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 /**
- * @author YANG Zilu  ZHANG Zimeng
+ * @author YANG Zilu  
+ * @authorZHANG Zimeng
  * cette classe permet d'avoir le lien entre le ticket et le BD
  *
  */
