@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * To resolved a ticket and close it
  * @author MARTIN Thomas
  * @author THOMAS Antoine
+ * @author YANG   Zilu
  * @since 1.0(only interface)
  * @version 1.1(can update date)
  */
