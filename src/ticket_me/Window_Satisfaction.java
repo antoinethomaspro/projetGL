@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.Window.Type;
 /**
  * Give a note to the technician who have resolved your ticket
- * @author MARTIN Thomas
+ * @author MARTIN Thomas YANG zilu
  */
 public class Window_Satisfaction extends JFrame{
 	private JPanel mainPane = new JPanel();
@@ -29,6 +29,7 @@ public class Window_Satisfaction extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(getContentPane(), "Successfully");
+			insererSatisfaction();
 			dispose();
 		}
 	};
@@ -92,4 +93,15 @@ public class Window_Satisfaction extends JFrame{
 	private void setNameTech() {
 		lblGiveANote.setText("Give a note for "+name_tech+" who have resolved your ticket : ");
 	}
+			
+  /**
+   * cette methode permet d'inserer une note
+   */
+	private void insererSatisfaction() {
+		PersonJdbcs d = new PersonJdbcs();
+		String sks = comboBox.getSelectedItem().toString();
+		int idTech = Integer.parseInt(id_tech);
+		//String isSolvedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
+		d.insertS(sks,idTech);
+		}
 }
