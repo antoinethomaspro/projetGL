@@ -54,6 +54,7 @@ public class Resolution_Ticket extends JFrame {
 	private String request = "";
 	public static JTextField Textfieldsolution = new JTextField(); // texte de la solution : A RECUPERER POUR BDD
 	public JButton back = new JButton();
+	private JButton btnScreenshot = new JButton("View Screenshot");
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -74,6 +75,22 @@ public class Resolution_Ticket extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			dispose();
 			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
+		}
+	};
+	public ActionListener ListenerScreen = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				DisplayImage n = new DisplayImage(Integer.parseInt(tab.get(0)));
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		}
 	};
 	/**
@@ -285,6 +302,7 @@ public class Resolution_Ticket extends JFrame {
 		SouthPanel.add(buttonClose);
 		buttonClose.addActionListener(ListenerClose);
 		back.addActionListener(backListener);
+		btnScreenshot.addActionListener(ListenerScreen);
 	}
 	/**
 	 * To connect you on the database and collect informations of the ticket
