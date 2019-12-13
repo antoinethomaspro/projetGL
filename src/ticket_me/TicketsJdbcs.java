@@ -51,8 +51,45 @@ public class TicketsJdbcs {
         }
     }
     
+    /**
+     * Permettre user d'inserer un ticket dans le BD sans screenshot
+     * @param titre le titire du ticket 
+     * @param description le description du ticket
+     * @param categorie le type de ce ticket
+     * @param priorite priorite du ticket
+     * @param isCreatedBy pour indiquer le createur de ce ticeket
+     */
+
+      public void insert(String titre, String description,String categorie, String priorite,String isCreatedBy) {
+           
+      try { 
+
+  		//loading the Jdbc driver for Sql Operations  
+  		Class.forName("com.mysql.jdbc.Driver");  
+  		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
+  		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,status, isCreatedBy) values(?,?,?,?,?,?)");           		 
+  		//st.setBinaryStream(4, fis);  
+  		st.setString(1,titre);
+  	    st.setString(2,priorite);
+  	    st.setString(3,categorie);
+  	    st.setString(4,description);
+  	    st.setString(5,"1");
+  	    st.setString(6,isCreatedBy);
+  	    
+  		int count = st.executeUpdate();  
+  		if (count > 0) {  
+  			JOptionPane.showInputDialog(this, "Data Saved Successfully");  
+  		} else {  
+  			JOptionPane.showInputDialog(this, "Error Saving Data");  
+  		}
+  	}
+      catch (Exception ex) {
+      	JOptionPane.showInputDialog(this, ex.getMessage());  
+  	}
+      }
+	
  /**
-   * Permettre user d'inserer un ticket dans le BD
+   * Permettre user d'inserer un ticket dans le BD avec une capture d'écran
    * @param titre le titire du ticket 
    * @param description le description du ticket
    * @param categorie le type de ce ticket
