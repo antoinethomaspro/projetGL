@@ -25,7 +25,7 @@ public class Frame extends JFrame{
 		   
 		   this.setBackground(Color.WHITE);
 		   
-				this.setTitle("Stats des tickets");
+				this.setTitle("Stats's tickets");
 		   //title set.
 				this.setSize(800, 600);
 			//size set. x from left to right/ y from up to down
