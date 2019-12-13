@@ -5,15 +5,23 @@ import java.util.ArrayList;
 import java.awt.*;
 
 /**
- * cette Classe permet de connecter le logiciel Ã  la base de donnÃ©es et de faire les stats sur les tickets sur plusieurs critÃ¨res
+ * 
  * @author Liza BOUMALI
  * @version 2.0
  * 
  * 
  *
  */
+/**cette Classe permet de connecter le logiciel à la base de données et de faire les stats sur les tickets sur plusieurs critères**/
 public class Stats_Tickets {
-	public Stats_Tickets() {
+/**
+ * le main de notre programme.
+ * @author Liza BOUMALI
+ *
+ * 
+ * @throws SQLException
+ * **/
+	public static void main(String[] args) throws SQLException {
 		
 		// TODO Auto-generated method stub
 		Panel panel1= new Panel();
@@ -87,7 +95,7 @@ public class Stats_Tickets {
 		
 		//add them to the piechart
 		/**
-		 * on ajoute les angles Ã  notre liste de la classe Panel.
+		 * on ajoute les angles à notre liste de la classe Panel.
 		 * @author Liza BOUMALI
 		 * @see Panel
 		 */
@@ -99,7 +107,7 @@ public class Stats_Tickets {
 		
 		//frame1.repaint();
 		//for(int i=0;i<4;i++) {
-			/*appel de la mÃ©thode repaint prÃ©difinis avec swing*/
+			/*appel de la méthode repaint prédifinis avec swing*/
 			frame1.repaint();
 			try {
 				Thread.sleep(1000);				
@@ -110,15 +118,15 @@ public class Stats_Tickets {
 	
 	//}
 	/**
-	 * la mÃ©thode paint dessine les strings dans des positions spÃ©cifiques sur notre frame, qui reprÃ©sente la lÃ©gende de notre piechart.
+	 * la méthode paint dessine les strings dans des positions spécifiques sur notre frame, qui représente la légende de notre piechart.
 	 * @author Liza BOUMALI
 	 * @version 1.0
 	 * @param g qui est un graphique 2D de la librairie java Graphics 
 	 * 
 	 */
 	public static void paint(Graphics g) {
-		g.drawString("Methods of resolution's tickets", 248, 45);
-		g.drawString("LÃ©gende:", 10, 260);
+		g.drawString("The Most Used Methods in Resolving a Ticket", 248, 45);
+		g.drawString("Piechart Key:", 10, 260);
 		g.drawString("_________________", 10, 265);
 		g.drawString("CYAN : Training", 10, 280);
 		g.drawString("GREEN : Abandonned by user", 10, 295);

@@ -25,13 +25,13 @@ public class Frame extends JFrame{
 		   
 		   this.setBackground(Color.WHITE);
 		   
-				this.setTitle("Stats's tickets");
+				this.setTitle("Stats of tickets");
 		   //title set.
 				this.setSize(800, 600);
 			//size set. x from left to right/ y from up to down
 			this.setLocationRelativeTo(null);
 			//object put in the center.
-				this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			//To close when we click on exit.
 				this.setResizable(false);
 				//nobody changes the size.
