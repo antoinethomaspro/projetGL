@@ -104,7 +104,7 @@ public class Resolution_Ticket extends JFrame {
 		connexionBD();
 		setVisible(true);
 		setTitle("Resolution Ticket");
-		setSize(800, 400);
+		setSize(800, 450);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
