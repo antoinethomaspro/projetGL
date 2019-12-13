@@ -1,4 +1,3 @@
-package ticket_me;
 
 
 import java.awt.*;
@@ -20,7 +19,6 @@ public class DisplayImage extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	JPanel pnlRead;
-	JPanel pnlWrite;
 	JTextField tfIDRead;   // To read image of this ID from database
 	JLabel image;
 	JButton btnRead;       // Read image file
@@ -34,21 +32,21 @@ public class DisplayImage extends JPanel{
 		// Setup database connection
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me","root","root");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me","root","");
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 		}
 
-		// Setup GUI
-		this.setLayout(new BorderLayout());
 		pnlRead = new JPanel();
 		this.add(pnlRead, BorderLayout.CENTER);   // Top panel for read image
 		image = new JLabel();
 		pnlRead.add(image);
-		JFrame frame = new JFrame("Read Image BLOB Demo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame frame = new JFrame("Display Screenshot");
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.pack();
 		frame.getContentPane().add(this);
-		frame.setSize(600, 400);
+		frame.setSize(800, 400);
+		frame.setLocationRelativeTo(null);		
 		frame.setVisible(true);
 		img = readImage(""+id_ticket);
 		repaint();
@@ -73,15 +71,11 @@ public class DisplayImage extends JPanel{
 			} catch (NullPointerException e) {
 				image.setText("No file");
 			}
-
-			// Only one result expected
-
-			// Read image via InputStream
-			//			InputStream in = rset.getBinaryStream("screenshot");
-			// Decode the inputstream as BufferedImage
-
 		} catch(Exception ex) {
 		}
 		return img;
+	}
+	public static void main(String[] args) throws ClassNotFoundException {
+		new DisplayImage(6);
 	}
 }
