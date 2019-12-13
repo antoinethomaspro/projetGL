@@ -49,6 +49,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 	public static JPanel mainPane = new JPanel();
 	private JButton btnRefresh = new JButton("Refresh");
 	private JButton btnStats = new JButton("Resolutions's statistics");
+	private JButton btnFaq = new JButton("FAQ");
 	private ActionListener createTicket = new ActionListener() {
 
 		@Override
@@ -73,7 +74,14 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 			
 		}
 	};
-	
+	public ActionListener faq = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			FAQ f = new FAQ();
+			
+		}
+	};
 	public Window_Main_User() {
 		mainPane = (JPanel) getContentPane();
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -108,9 +116,16 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 		gbc_btnCreateANew.gridy = 0;
 		panelWest.add(btnCreateANew, gbc_btnCreateANew);
 		
+		GridBagConstraints gbc_btnFaq = new GridBagConstraints();
+		gbc_btnFaq.insets = new Insets(30, 15, 0, 5);
+		gbc_btnFaq.gridx = 0;
+		gbc_btnFaq.gridy = 2;
+		panelWest.add(btnFaq, gbc_btnFaq);
+		
 		btnCreateANew.addActionListener(createTicket);
 		btnRefresh.addActionListener(refresh);
 		btnStats.addActionListener(stats);
+		btnFaq.addActionListener(faq);
 		tableau.getSelectionModel().addListSelectionListener(new RowListener());
 		
 		panelNorth.add(btnRefresh);
