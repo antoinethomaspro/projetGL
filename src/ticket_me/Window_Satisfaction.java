@@ -100,7 +100,7 @@ public class Window_Satisfaction extends JFrame{
 	private void insererSatisfaction() {
 		PersonJdbcs d = new PersonJdbcs();
 		String sks = comboBox.getSelectedItem().toString();
-		int idTech = Integer.parseInt(id_tech);
+		int idTech = Integer.parseInt(name_tech);
 		//String isSolvedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
 		d.insertS(sks,idTech);
 		}
