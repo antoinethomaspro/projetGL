@@ -60,7 +60,7 @@ public class Resolution_Ticket extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			answer();
 			dispose();
-			Textfieldsolution.setText("");
+		
 			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
 			if (e.getSource() == buttonClose) {
 				answer();
@@ -351,29 +351,28 @@ public class Resolution_Ticket extends JFrame {
 	/**
 	 * Send resolution informations of this ticket on the database
 	 */
-	private void answer()  {
-
-		TicketsJdbcs d = new TicketsJdbcs();
+	 private void answer()  {
+		 
+	   	TicketsJdbcs d = new TicketsJdbcs();
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
 		String sl = Textfieldsolution.getText().toString();
-		String id =  ""+WindowsTech_afficheTickets.tableau.getValueAt(WindowsTech_afficheTickets.tableau.getSelectedRow(), 0);
+		String id = tab.get(0);
 		String isSolvedBy = Windows_Home.username.getText();
 		d.answerT(Cc,sl,id, isSolvedBy);
-
-	}
-
-	/**
-	 * Send an email after have resolved a ticket
-	 */
-	private void sendEmailR() {
-		Email e = new Email();
-		String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(tab.get(0)));
-		String to = e.getEmailFromBD(username);
-		String nameT = TicketsJdbcs.getTicket(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
-
-		Email.sendEmail(to,username,nameT);
-
-	}
-
+			
+		}
+	 
+	 /**
+	  * Send an email after have resolved a ticket
+	  */
+	 private void sendEmailR() {
+		 Email e = new Email();
+		 String username = tab.get(5);
+		 String to = e.getEmailFromBD(username);
+		 String nameT = TicketsJdbcs.getTicket(Integer.parseInt(tab.get(0)));
+		
+		 Email.sendEmail(to,username,nameT);
+		 
+	 }
 }
 		 
