@@ -43,12 +43,13 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	private JLabel Label_Priorite = new JLabel("Priority");
 	private JButton screenshotB = new JButton("Add Screenshot");
 	private JComboBox<String> Box_Priorite = new JComboBox<String>();
+	public boolean screenshotVerif = false;
 	private ActionListener screenshotListener = new ActionListener() { // implementation du addImage
 		
 		public void actionPerformed(ActionEvent e) {
 			screenshot s = new screenshot();
 			s.setVisible(true);
-			
+			screenshotVerif = true;
 			
 		}
 	};
