@@ -49,7 +49,7 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 	public DefaultTableModel tableModel;
 	private JLabel labelTri = new JLabel("Sorting : ");
 	private JComboBox<String> comboBoxTri = new JComboBox<String>();
-	private JButton buttonTri = new JButton("Done");
+	private JButton buttonTri = new JButton("Sort");
 	private JButton btnRefresh = new JButton("Refresh");
 	public String request = "";
 	public static JTable tableau;
