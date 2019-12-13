@@ -293,7 +293,7 @@ CREATE TABLE `ticket` (
   `urgency` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `screenshot` blob NOT NULL,
+  `screenshot` longblob,
   `status` tinyint(1) DEFAULT NULL,
   `solution` text COLLATE utf8_unicode_ci,
   `completion_code` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
