@@ -21,8 +21,8 @@ import java.util.ArrayList;
  * @version 1.1(can update date)
  */
 public class Resolution_Ticket extends JFrame {
-	
-	
+
+
 	private ArrayList<String> tab = new ArrayList<>();
 	private JPanel MainPanel = new JPanel();
 	private JPanel NorthPanel = new JPanel();
@@ -62,15 +62,15 @@ public class Resolution_Ticket extends JFrame {
 			dispose();
 			Textfieldsolution.setText("");
 			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
-		    if (e.getSource() == buttonClose) {
-		    	answer();
-		    	sendEmailR();
-		    }
+			if (e.getSource() == buttonClose) {
+				answer();
+				sendEmailR();
+			}
 
 		}
 	};
 	public ActionListener backListener = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -78,11 +78,12 @@ public class Resolution_Ticket extends JFrame {
 		}
 	};
 	public ActionListener ListenerScreen = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
 				DisplayImage n = new DisplayImage(Integer.parseInt(tab.get(0)));
+				n.setVisible(true);
 			} catch (NumberFormatException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -90,7 +91,7 @@ public class Resolution_Ticket extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 		}
 	};
 	/**
@@ -105,7 +106,7 @@ public class Resolution_Ticket extends JFrame {
 		setTitle("Resolution Ticket");
 		setSize(800, 400);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		labelTitreValue.setText(tab.get(1));
 		labelTitreValue2.setText(tab.get(1));
@@ -123,7 +124,7 @@ public class Resolution_Ticket extends JFrame {
 		LabelPart1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		labelPart2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		labelPart3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
+
 		back.setText("Back");
 
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -175,6 +176,8 @@ public class Resolution_Ticket extends JFrame {
 		gbc_lblDescription.gridy = 2;
 		CenterPanel.add(labelDescription, gbc_lblDescription);
 
+
+
 		GridBagConstraints gbc_lblDescription_1 = new GridBagConstraints();
 		gbc_lblDescription_1.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblDescription_1.fill = GridBagConstraints.HORIZONTAL;
@@ -183,98 +186,105 @@ public class Resolution_Ticket extends JFrame {
 		gbc_lblDescription_1.gridy = 2;
 		CenterPanel.add(labelDescriptionValue, gbc_lblDescription_1);
 
+		GridBagConstraints gbc_btnScreenshot = new GridBagConstraints();
+		gbc_btnScreenshot.anchor = GridBagConstraints.WEST;
+		gbc_btnScreenshot.insets = new Insets(0, 0, 5, 15); 
+		gbc_btnScreenshot.gridx = 0; 
+		gbc_btnScreenshot.gridy = 3;
+		CenterPanel.add(btnScreenshot, gbc_btnScreenshot);
+
 		GridBagConstraints gbc_lblPriority = new GridBagConstraints();
 		gbc_lblPriority.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPriority.anchor = GridBagConstraints.WEST;
 		gbc_lblPriority.gridx = 0;
-		gbc_lblPriority.gridy = 3;
+		gbc_lblPriority.gridy = 4;
 		CenterPanel.add(labelPriority, gbc_lblPriority);
 
 		GridBagConstraints gbc_lblNive = new GridBagConstraints();
 		gbc_lblNive.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNive.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNive.gridx = 2;
-		gbc_lblNive.gridy = 3;
+		gbc_lblNive.gridy = 4;
 		CenterPanel.add(labelPriorityValue, gbc_lblNive);
 
 		GridBagConstraints gbc_separator = new GridBagConstraints();
 		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator.insets = new Insets(0, 0, 5, 5);
 		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 4;
+		gbc_separator.gridy = 5;
 		CenterPanel.add(separator, gbc_separator);
 
 		GridBagConstraints gbc_lblClassification = new GridBagConstraints();
 		gbc_lblClassification.anchor = GridBagConstraints.WEST;
 		gbc_lblClassification.insets = new Insets(5, 0, 10, 5);
 		gbc_lblClassification.gridx = 0;
-		gbc_lblClassification.gridy = 5;
+		gbc_lblClassification.gridy = 6;
 		CenterPanel.add(labelPart2, gbc_lblClassification);
 
 		GridBagConstraints gbc_lblCategory = new GridBagConstraints();
 		gbc_lblCategory.anchor = GridBagConstraints.WEST;
 		gbc_lblCategory.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCategory.gridx = 0;
-		gbc_lblCategory.gridy = 6;
+		gbc_lblCategory.gridy = 7;
 		CenterPanel.add(labelCategory, gbc_lblCategory);
 
 		GridBagConstraints gbc_lblTestCategory = new GridBagConstraints();
 		gbc_lblTestCategory.anchor = GridBagConstraints.WEST;
 		gbc_lblTestCategory.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTestCategory.gridx = 2;
-		gbc_lblTestCategory.gridy = 6;
+		gbc_lblTestCategory.gridy = 7;
 		CenterPanel.add(labelCategoryValue, gbc_lblTestCategory);
 
 		GridBagConstraints gbc_lblResquestFor = new GridBagConstraints();
 		gbc_lblResquestFor.anchor = GridBagConstraints.WEST;
 		gbc_lblResquestFor.insets = new Insets(5, 0, 5, 5);
 		gbc_lblResquestFor.gridx = 0;
-		gbc_lblResquestFor.gridy = 7;
+		gbc_lblResquestFor.gridy = 8;
 		CenterPanel.add(labelResquestFor, gbc_lblResquestFor);
 
 		GridBagConstraints gbc_lblMrD = new GridBagConstraints();
 		gbc_lblMrD.anchor = GridBagConstraints.WEST;
 		gbc_lblMrD.insets = new Insets(5, 0, 5, 0);
 		gbc_lblMrD.gridx = 2;
-		gbc_lblMrD.gridy = 7;
+		gbc_lblMrD.gridy = 8;
 		CenterPanel.add(labelResquestForValue, gbc_lblMrD);
 
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
 		gbc_separator_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator_1.insets = new Insets(0, 0, 5, 5);
 		gbc_separator_1.gridx = 0;
-		gbc_separator_1.gridy = 8;
+		gbc_separator_1.gridy = 9;
 		CenterPanel.add(separator_1, gbc_separator_1);
 
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_3.insets = new Insets(5, 0, 10, 5);
 		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 9;
+		gbc_lblNewLabel_3.gridy = 10;
 		CenterPanel.add(labelPart3, gbc_lblNewLabel_3);
 
 		GridBagConstraints gbc_lblSolution = new GridBagConstraints();
 		gbc_lblSolution.anchor = GridBagConstraints.WEST;
 		gbc_lblSolution.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSolution.gridx = 0;
-		gbc_lblSolution.gridy = 10;
+		gbc_lblSolution.gridy = 11;
 		CenterPanel.add(labelSolution, gbc_lblSolution);
-		
+
 		Textfieldsolution.setHorizontalAlignment(SwingConstants.LEFT);
 		Textfieldsolution.setColumns(10);
-		
+
 		GridBagConstraints gbc_Textfieldsolution = new GridBagConstraints();
 		gbc_Textfieldsolution.insets = new Insets(0, 0, 5, 10);
 		gbc_Textfieldsolution.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Textfieldsolution.gridx = 2;
-		gbc_Textfieldsolution.gridy = 10;
+		gbc_Textfieldsolution.gridy = 11;
 		CenterPanel.add(Textfieldsolution, gbc_Textfieldsolution);
 
 		GridBagConstraints gbc_lblCompletionCode = new GridBagConstraints();
 		gbc_lblCompletionCode.anchor = GridBagConstraints.WEST;
 		gbc_lblCompletionCode.insets = new Insets(5, 0, 5, 5);
 		gbc_lblCompletionCode.gridx = 0;
-		gbc_lblCompletionCode.gridy = 11;
+		gbc_lblCompletionCode.gridy = 12;
 		CenterPanel.add(labelCompletionCode, gbc_lblCompletionCode);
 
 		comboBoxCompletion.addItem("training");
@@ -286,7 +296,7 @@ public class Resolution_Ticket extends JFrame {
 		gbc_comboBox.anchor = GridBagConstraints.WEST;
 		gbc_comboBox.insets = new Insets(5, 0, 5, 0);
 		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 11;
+		gbc_comboBox.gridy = 12;
 		CenterPanel.add(comboBoxCompletion, gbc_comboBox);
 
 		NorthPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -341,28 +351,29 @@ public class Resolution_Ticket extends JFrame {
 	/**
 	 * Send resolution informations of this ticket on the database
 	 */
-	 private void answer()  {
-		 
-	   	TicketsJdbcs d = new TicketsJdbcs();
+	private void answer()  {
+
+		TicketsJdbcs d = new TicketsJdbcs();
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
 		String sl = Textfieldsolution.getText().toString();
 		String id =  ""+WindowsTech_afficheTickets.tableau.getValueAt(WindowsTech_afficheTickets.tableau.getSelectedRow(), 0);
 		String isSolvedBy = Windows_Home.username.getText();
 		d.answerT(Cc,sl,id, isSolvedBy);
-			
-		}
-	 
-	 /**
-	  * Send an email after have resolved a ticket
-	  */
-	 private void sendEmailR() {
-		 Email e = new Email();
-		 String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(tab.get(0)));
-		 String to = e.getEmailFromBD(username);
-		 String nameT = TicketsJdbcs.getTicket(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
-		
-		 Email.sendEmail(to,username,nameT);
-		 
-	 }
-	
+
+	}
+
+	/**
+	 * Send an email after have resolved a ticket
+	 */
+	private void sendEmailR() {
+		Email e = new Email();
+		String username = TicketsJdbcs.getIsCreatedBy(Integer.parseInt(tab.get(0)));
+		String to = e.getEmailFromBD(username);
+		String nameT = TicketsJdbcs.getTicket(Integer.parseInt(WindowsTech_afficheTickets.textfield.getText()));
+
+		Email.sendEmail(to,username,nameT);
+
+	}
+
+}
 		 
