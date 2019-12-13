@@ -48,6 +48,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 	public static JTable tableau;
 	public static JPanel mainPane = new JPanel();
 	private JButton btnRefresh = new JButton("Refresh");
+	private JButton btnStats = new JButton("Resolutions's statistics");
 	private ActionListener createTicket = new ActionListener() {
 
 		@Override
@@ -64,7 +65,15 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 			dispose();
 		}
 	};
-
+	public ActionListener stats = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Stats_Tickets s = new Stats_Tickets();
+			
+		}
+	};
+	
 	public Window_Main_User() {
 		mainPane = (JPanel) getContentPane();
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -101,6 +110,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 		
 		btnCreateANew.addActionListener(createTicket);
 		btnRefresh.addActionListener(refresh);
+		btnStats.addActionListener(stats);
 		tableau.getSelectionModel().addListSelectionListener(new RowListener());
 		
 		panelNorth.add(btnRefresh);
