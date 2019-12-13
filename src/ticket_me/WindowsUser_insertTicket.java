@@ -221,6 +221,7 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	
 		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
 		Vector<String> t = new Vector<String>();
+		t.add("id");
 		t.add(titre);
 		t.add(description);
 		t.add("1");
