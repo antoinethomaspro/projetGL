@@ -213,12 +213,17 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		TicketsJdbcs d = new TicketsJdbcs();
 		String titre = Field_Titre.getText();
 		String description = Area_Description.getText().toString();
-		String screens = screenshot.txtPath.getText();
+		String screens = "";
 		String categorie = Box_Categorie.getSelectedItem().toString();
 		String priorite = Box_Priorite.getSelectedItem().toString();
-		String isCreatedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
-		d.insert(titre, description,screens,categorie,priorite,isCreatedBy);
-	
+		String isCreatedBy = Windows_Home.username.getText();
+		if(screenshotVerif == true) {
+			screens = screenshot.txtPath.getText();
+			d.insert(titre, description,screens,categorie,priorite,isCreatedBy);
+		}
+		else {
+		d.insert(titre, description,categorie,priorite,isCreatedBy);
+		}
 		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
 		Vector<String> t = new Vector<String>();
 		t.add("id");
