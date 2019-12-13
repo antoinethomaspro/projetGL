@@ -219,7 +219,12 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		String isCreatedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
 		d.insert(titre, description,screens,categorie,priorite,isCreatedBy);
 	
-		
+		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
+		Vector<String> t = new Vector<String>();
+		t.add(titre);
+		t.add(description);
+		t.add("1");
+		tableModel.addRow(t);
 	}
 }	
 
