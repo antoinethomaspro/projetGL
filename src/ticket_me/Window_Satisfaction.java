@@ -3,12 +3,19 @@ package Ticketing_Projet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import projet_ticketing_back.PersonJdbcs;
+
 import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,14 +23,15 @@ import javax.swing.JButton;
 import java.awt.Window.Type;
 /**
  * Give a note to the technician who have resolved your ticket
- * @author MARTIN Thomas YANG zilu
+ * @author MARTIN Thomas
  */
-public class Window_Satisfaction extends JFrame{
+public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 	private JPanel mainPane = new JPanel();
 	private String name_tech = "";
 	private JLabel lblGiveANote = new JLabel();
 	private JComboBox<Integer> comboBox = new JComboBox<Integer>();
 	private JButton btnValidate = new JButton("Validate");
+	String giveAnote = "";
 	public ActionListener listener = new ActionListener() {
 		
 		@Override
@@ -40,12 +48,16 @@ public class Window_Satisfaction extends JFrame{
 	 */
 	public Window_Satisfaction(String name_technician, String name_user) {
 		this.name_tech = name_technician;
+		giveAnote = "Give a note for ";
+		connexionBD("select name from person where id_person = "+name_tech+" and name_role = \"Technician\"");
+		giveAnote+= " who have resolved your ticket : ";
+		lblGiveANote.setText(giveAnote);
 		setType(Type.POPUP);
 		setVisible(true);
 		setTitle("Give a note of satisfaction");
 		setSize(550, 150);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		getContentPane().add(mainPane);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -87,21 +99,43 @@ public class Window_Satisfaction extends JFrame{
 		getContentPane().repaint();
 		getContentPane().revalidate();
 	}
-	/**
-	 * Set the text of the label GiveANote
-	 */
-	private void setNameTech() {
-		lblGiveANote.setText("Give a note for "+name_tech+" who have resolved your ticket : ");
+	
+	  /**
+	   * cette methode permet d'inserer une note
+	   */
+		private void insererSatisfaction() {
+			PersonJdbcs d = new PersonJdbcs();
+			String sks = comboBox.getSelectedItem().toString();
+			int idTech = Integer.parseInt(name_tech);
+			//String isSolvedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
+			d.insertS(sks,idTech);
+			}
+	@Override
+	public void connexionBD(String SQLRequest) {
+			String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
+			String name = "root";
+			String password = "root";
+			Connection conn;
+			Statement preparedStatement;
+
+			try {
+				conn = DriverManager.getConnection(sql_url, name, password);
+				preparedStatement = conn.createStatement();
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(sql_url, name, password);
+				ResultSet result1 = preparedStatement.executeQuery(SQLRequest);
+				if (result1.next()) {
+					giveAnote += result1.getString("name");
+				}
+				result1.close();
+
+			} catch (ClassNotFoundException e) {
+				System.out.println("error class no found");
+				e.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println("exception sql");
+				e.printStackTrace();
+			}
+		
 	}
-			
-  /**
-   * cette methode permet d'inserer une note
-   */
-	private void insererSatisfaction() {
-		PersonJdbcs d = new PersonJdbcs();
-		String sks = comboBox.getSelectedItem().toString();
-		int idTech = Integer.parseInt(name_tech);
-		//String isSolvedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
-		d.insertS(sks,idTech);
-		}
 }
