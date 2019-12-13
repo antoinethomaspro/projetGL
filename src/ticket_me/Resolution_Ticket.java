@@ -39,7 +39,7 @@ public class Resolution_Ticket extends JFrame {
 	private JLabel labelPart2 = new JLabel("Classification");
 	private JLabel labelCategory = new JLabel("Category");
 	private JLabel labelCategoryValue = new JLabel("test category");
-	private JLabel labelResquestFor = new JLabel("Resquest for");
+	private JLabel labelResquestFor = new JLabel("Created by");
 	private JLabel labelResquestForValue = new JLabel();
 	private JSeparator separator_1 = new JSeparator();
 	private JLabel labelPart3 = new JLabel("Resolution");
