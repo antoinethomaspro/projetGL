@@ -85,7 +85,14 @@ public class Windows_Home extends JFrame {
 					String phone = textField_phone.getText();
 					String email = textField_mail.getText();
 					String role = comboBox_status.getSelectedItem().toString();
-					d.signUp(nom, pwd1,pwd2,adress,phone,email,role);
+					try {
+						if(nom.equals("")||pwd1.equals("")||pwd2.equals("")||email.equals("")) {
+							JOptionPane.showMessageDialog(null, "The textbox can't be empty");
+		    	                        }else {
+							d.signUp(nom, pwd1,pwd2,adress,phone,email,role);
+		                        }
+					}finally {
+					}
 					Windows_Home w = new Windows_Home();
 					dispose();
 					fieldName.setText("");
