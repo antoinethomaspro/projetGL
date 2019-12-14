@@ -36,7 +36,7 @@ public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(getContentPane(), "Successfully");
+			JOptionPane.showMessageDialog(getContentPane(), "Thank you for rating us");
 			insererSatisfaction();
 			dispose();
 		}
