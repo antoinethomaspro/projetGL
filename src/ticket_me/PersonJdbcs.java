@@ -160,9 +160,9 @@ public void insertS(String sks,int idT) {
     		
     int count = st.executeUpdate();  
 	if (count > 0) {  
-		JOptionPane.showInputDialog(this, "Data Saved Successfully");
+		System.out.println("noted");
 	} else {  
-		JOptionPane.showInputDialog(this, "Error Saving Data");  
+		JOptionPane.showMessageDialog(null, "Error Saving Data");  
 	}
 }catch (SQLException e) {  
 	JOptionPane.showInputDialog(this, "not succeed");  
