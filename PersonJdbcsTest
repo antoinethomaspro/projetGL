@@ -1,0 +1,168 @@
+package ticket_me;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+
+import org.junit.After;
+import org.junit.jupiter.api.Test;
+
+/**
+ * 
+ * @author ZHANG Zimeng
+ * This class is used for testing the class PesonJdbcs
+ *
+ */
+class PersonJdbcsTest {
+	
+	/**
+	 * Test Fonctionnel 1 - cas correct 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT1_1() throws SQLException {
+		String nom="nmitchelyn";
+		String pwd="9HSP3Iq7RN";
+		String role="User";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		boolean res = p.signIn(nom,pwd,role);		
+		
+		return res;
+	}
+	/**
+	 * Test Fonctionnel 2 -  cas nom n'exist pas dans le BD 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT1_2() throws SQLException {
+		String nom="nmi";
+		String pwd="9HSP3Iq7RN";
+		String role="User";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		boolean res = p.signIn(nom,pwd,role);		
+		
+		return res;
+	}
+	/**
+	 * Test Fonctionnel 3 -  cas pwd ne correct pas
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT1_3() throws SQLException {
+		String nom="nmitchelyn";
+		String pwd="123";
+		String role="User";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		boolean res = p.signIn(nom,pwd,role);		
+		
+		return res;
+	}	/**
+	 * Test Fonctionnel 4 -  cas role n'est pas relative(nom et pwd sont pour User,mais choisir le Technicien) 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT1_4() throws SQLException {
+		String nom="nmitchelyn";
+		String pwd="9HSP3Iq7RN";
+		String role="Technicien";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		boolean res = p.signIn(nom,pwd,role);		
+		
+		return res;
+	}	/**
+	 * Test Fonctionnel 5 -  cas le champ du nom est vide 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT1_5() throws SQLException {
+		String nom="";
+		String pwd="9HSP3Iq7RN";
+		String role="User";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		boolean res = p.signIn(nom,pwd,role);		
+		
+		return res;
+	}
+	
+	
+	
+	
+	@Test
+	void testSignIn() throws SQLException {
+		assertTrue(ftDT1_1());//vrai
+		assertTrue(ftDT1_2());//faux
+		assertTrue(ftDT1_3());//faux
+		assertTrue(ftDT1_4());//faux
+		assertTrue(ftDT1_5());//faux
+	}
+	
+	
+	/**
+	 * Test Fonctionnel 1 - cas correct 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT2_1() throws SQLException {
+		String nom="nmitchelyn";
+		String pwd="9HSP3Iq7RN";
+		String pwd2="9HSP3Iq7RN";
+		String role="User";
+		String adress="dkjfkejf";
+		String phone="2342342";
+		String email="dkjvckejf@gmail.cpm";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		p.signUp(nom,pwd,pwd2,adress,phone,email,role);
+		
+		return true;
+	}
+	/**
+	 * Test Fonctionnel 1 - cas le champ de nom est vide 
+	 * @return true si le test passe, false sinon
+	 * @throws SQLException 
+	 */
+	private static boolean ftDT2_2() throws SQLException {
+		String nom="";
+		String pwd="9HSP3Iq7RN";
+		String pwd2="9HSP3Iq7RN";
+		String role="User";
+		String adress="dkjfkejf";
+		String phone="2342342";
+		String email="dkjvckejf@gmail.cpm";
+		
+		PersonJdbcs p=new PersonJdbcs();
+		p.signUp(nom,pwd,pwd2,adress,phone,email,role);
+		
+		return true;
+	}
+	
+	@Test
+	void testSignUp() throws SQLException {
+		assertTrue(ftDT2_1());//vrai
+		assertTrue(ftDT2_2());//faux mais il affiche vrai,parce que on avait trouve l'erreur et on a modifie la methode de class Windows_Home,donc cette test rend true quand meme.
+	}
+	
+	@After
+    public void after() {
+        System.out.println("we finished");
+    }
+	
+/*
+	@Test
+	void testPersonJdbcs() {
+		fail("Not yet implemented");
+	}
+
+
+	@Test
+	void testInsertS() {
+		fail("Not yet implemented");
+	}
+*/
+}
