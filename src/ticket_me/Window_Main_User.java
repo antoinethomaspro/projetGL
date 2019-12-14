@@ -142,7 +142,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 	 */
     private void outputSelection() {
     	try {
-			Window_User_ViewTicket v = new Window_User_ViewTicket("select * from ticket, person where id_ticket = " + tableau.getValueAt(tableau.getSelectedRow(), 0) + " and ticket.isCreatedBy= person.name");
+			Window_User_ViewTicket v = new Window_User_ViewTicket("select * from ticket, person where id_ticket = "+tableau.getValueAt(tableau.getSelectedRow(), 0)+" and ticket.isSolvedBy= person.name and name_role = \"Technician\"");
 		} catch (SQLException e) {
 			System.out.println("SQL error");
 		}
