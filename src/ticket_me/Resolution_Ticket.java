@@ -351,16 +351,19 @@ public class Resolution_Ticket extends JFrame {
 	/**
 	 * Send resolution informations of this ticket on the database
 	 */
-	 private void answer()  {
-		 
-	   	TicketsJdbcs d = new TicketsJdbcs();
+	private void answer()  {
+		 TicketsJdbcs tj = new TicketsJdbcs();
+	    
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
-		String sl = Textfieldsolution.getText().toString();
+		String sl =Textfieldsolution.getText().toString();
 		String id = tab.get(0);
 		String isSolvedBy = Windows_Home.username.getText();
-		d.answerT(Cc,sl,id, isSolvedBy);
-			
+		if(null == sl || sl.equals("")) {
+			JOptionPane.showMessageDialog(null, "Sorry,solution can't be empty!");
+	       }else {
+		tj.answerT(Cc,sl,id, isSolvedBy);		
 		}
+	 }
 	 
 	 /**
 	  * Send an email after have resolved a ticket
