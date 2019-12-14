@@ -210,21 +210,33 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 	/**
 	 * Insert the new ticket on the database.
 	 */
-	private void insererT() {
+private void insererT() {
 		TicketsJdbcs d = new TicketsJdbcs();
-		String titre = Field_Titre.getText();
+		String titre =Field_Titre.getText().toString();
 		String description = Area_Description.getText().toString();
 		String screens = "";
 		String categorie = Box_Categorie.getSelectedItem().toString();
 		String priorite = Box_Priorite.getSelectedItem().toString();
 		String isCreatedBy = Windows_Home.username.getText();
 		if(screenshotVerif == true) {
+			if(null == titre || titre.equals("")) {
+				JOptionPane.showMessageDialog(null, "Sorry,titre can't be empty!");
+		}else {
 			screens = screenshot.txtPath.getText();
 			d.insert(titre, description,screens,categorie,priorite,isCreatedBy);
+			
+		       }
+     	}
+		
+		if(screenshotVerif == false){
+			if(null == titre || titre.equals("")) {
+				JOptionPane.showMessageDialog(null, "Sorry,titre can't be empty!");
+			}else {
+				d.insert(titre, description,categorie,priorite,isCreatedBy);
+			
+			}
 		}
-		else {
-		d.insert(titre, description,categorie,priorite,isCreatedBy);
-		}
+	
 		DefaultTableModel tableModel = (DefaultTableModel) Window_Main_User.tableau.getModel();
 		Vector<String> t = new Vector<String>();
 		t.add("id");
