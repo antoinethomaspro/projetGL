@@ -55,7 +55,7 @@ public class Window_User_ViewTicket extends JFrame{
 	private String request = "";
 	private JLabel labelSolutionValue = new JLabel("completion code");
 	private JLabel labelCompletionCodeValue = new JLabel("solution");
-	private JButton btnGiveAnOpinion = new JButton("Give an opinion");
+        private JButton btnGiveAnOpinion = new JButton("Rate the technician");
 	private JLabel labelStatus = new JLabel("Status : ");
 	private JLabel labelStatusValue = new JLabel("status value");
 	private JButton btnViewScreenshot = new JButton("View screenshot");
