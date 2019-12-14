@@ -116,6 +116,12 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 		gbc_btnCreateANew.gridy = 0;
 		panelWest.add(btnCreateANew, gbc_btnCreateANew);
 		
+		GridBagConstraints gbc_btnStats = new GridBagConstraints();
+		gbc_btnStats.insets = new Insets(30, 10, 5, 5);
+		gbc_btnStats.gridx = 0;
+		gbc_btnStats.gridy = 1;
+		panelWest.add(btnStats, gbc_btnStats);
+		
 		GridBagConstraints gbc_btnFaq = new GridBagConstraints();
 		gbc_btnFaq.insets = new Insets(30, 15, 0, 5);
 		gbc_btnFaq.gridx = 0;
