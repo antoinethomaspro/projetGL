@@ -41,7 +41,7 @@ public class Window_User_ViewTicket extends JFrame{
 	private JLabel labelPart2 = new JLabel("Classification");
 	private JLabel labelCategory = new JLabel("Category");
 	private JLabel labelCategoryValue = new JLabel("test category");
-	private JLabel labelResquestFor = new JLabel("Resquest for");
+	private JLabel labelResquestFor = new JLabel("Created by");
 	private JLabel labelResquestForValue = new JLabel();
 	private JSeparator separator_1 = new JSeparator();
 	private JLabel labelPart3 = new JLabel("Resolution");
@@ -72,7 +72,7 @@ public class Window_User_ViewTicket extends JFrame{
 			if(labelStatusValue.getText().equals("Solved")) {
 			Window_Satisfaction s = new Window_Satisfaction(tab.get(10),tab.get(7));
 			}
-			else JOptionPane.showMessageDialog(null, "This ticket isn't yet resolved, please wait.");
+			else JOptionPane.showMessageDialog(null, "This ticket isn't solved yet, please wait.");
 		}
 	};
 	public ActionListener screen = new ActionListener() {
