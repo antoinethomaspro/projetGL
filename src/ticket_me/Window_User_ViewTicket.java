@@ -114,11 +114,11 @@ public class Window_User_ViewTicket extends JFrame{
 		labelStatusValue.setText(tab.get(8));
 		if(labelStatusValue.getText().equals("1")) {
 			labelStatusValue.setForeground(Color.RED);
-			labelStatusValue.setText("En cours de résolution");
+			labelStatusValue.setText("In progress");
 		}
 		else {
 			labelStatusValue.setForeground(Color.GREEN);
-			labelStatusValue.setText("Résolu");
+			labelStatusValue.setText("Solved");
 		}
 
 		getContentPane().add(MainPanel, BorderLayout.CENTER);
