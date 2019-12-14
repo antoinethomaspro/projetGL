@@ -84,7 +84,7 @@ public class TicketsJdbcs {
   	    
   		int count = st.executeUpdate();  
   		if (count > 0) {  
-  			JOptionPane.showInputDialog(this, "Data Saved Successfully");  
+  			JOptionPane.showMessageDialog(null, "Your ticket has been created,we will get back to you ASAP!");  
   		} else {  
   			JOptionPane.showInputDialog(this, "Error Saving Data");  
   		}
