@@ -53,6 +53,7 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 	private JButton btnRefresh = new JButton("Refresh");
 	public String request = "";
 	public static JTable tableau;
+	private JButton btnTechniciansStatistics = new JButton("Technician's statistics");
 	public ActionListener listenerSorting = new ActionListener() {
 
 		@Override
@@ -90,7 +91,19 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 			dispose();
 		}
 	};
-
+	public ActionListener stats = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				Technician_note t = new Technician_note();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+	};
 	/**
 	 * This class permit to display a list of tickets within a SQL request
 	 * 
@@ -132,6 +145,8 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 		comboBoxTri.addItem("High priority");
 		comboBoxTri.addItem("Medium priority");
 		comboBoxTri.addItem("Low priority");
+		
+		southPane.add(btnTechniciansStatistics);
 		southPane.add(btnRefresh);
 		btnRefresh.addActionListener(refresh);
 
@@ -140,6 +155,7 @@ public class WindowsTech_afficheTickets extends JFrame implements ConnexionBDD {
 		southPane.add(buttonTri);
 		
 		buttonTri.addActionListener(listenerSorting);
+		btnTechniciansStatistics.addActionListener(stats);
 	}
 	/**
 	 * Method to show a window to know the informations of the ticket which was selected.
