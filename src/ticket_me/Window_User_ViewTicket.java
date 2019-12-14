@@ -58,6 +58,7 @@ public class Window_User_ViewTicket extends JFrame{
 	private JButton btnGiveAnOpinion = new JButton("Give an opinion");
 	private JLabel labelStatus = new JLabel("Status : ");
 	private JLabel labelStatusValue = new JLabel("status value");
+	private JButton btnViewScreenshot = new JButton("View screenshot");
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -74,15 +75,32 @@ public class Window_User_ViewTicket extends JFrame{
 			else JOptionPane.showMessageDialog(null, "This ticket isn't yet resolved, please wait.");
 		}
 	};
+	public ActionListener screen = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				DisplayImage n = new DisplayImage(Integer.parseInt(tab.get(0)));
+				n.setVisible(true);
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
+	};
 
 	public Window_User_ViewTicket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
 		connexionBD();
 		setVisible(true);
 		setTitle("Ticket n° : "+ tab.get(0));
-		setSize(800, 400);
+		setSize(800, 450);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		labelTitreValue.setText(tab.get(1));
 		labelTitreValue2.setText(tab.get(1));
@@ -128,9 +146,9 @@ public class Window_User_ViewTicket extends JFrame{
 
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 0, 0, 0, 0 };
-		gbl_panel_3.rowHeights = new int[] { 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_3.rowHeights = new int[] { 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panel_3.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
 				Double.MIN_VALUE };
 		CenterPanel.setLayout(gbl_panel_3);
 
@@ -168,103 +186,110 @@ public class Window_User_ViewTicket extends JFrame{
 		gbc_lblDescription_1.gridx = 2;
 		gbc_lblDescription_1.gridy = 2;
 		CenterPanel.add(labelDescriptionValue, gbc_lblDescription_1);
+		
+		GridBagConstraints gbc_btnViewScreenshot = new GridBagConstraints();
+		gbc_btnViewScreenshot.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnViewScreenshot.insets = new Insets(0, 0, 5, 5);
+		gbc_btnViewScreenshot.gridx = 0;
+		gbc_btnViewScreenshot.gridy = 3;
+		CenterPanel.add(btnViewScreenshot, gbc_btnViewScreenshot);
 
 		GridBagConstraints gbc_lblPriority = new GridBagConstraints();
 		gbc_lblPriority.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPriority.anchor = GridBagConstraints.WEST;
 		gbc_lblPriority.gridx = 0;
-		gbc_lblPriority.gridy = 3;
+		gbc_lblPriority.gridy = 4;
 		CenterPanel.add(labelPriority, gbc_lblPriority);
 
 		GridBagConstraints gbc_lblNive = new GridBagConstraints();
 		gbc_lblNive.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNive.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNive.gridx = 2;
-		gbc_lblNive.gridy = 3;
+		gbc_lblNive.gridy = 4;
 		CenterPanel.add(labelPriorityValue, gbc_lblNive);
 
 		GridBagConstraints gbc_separator = new GridBagConstraints();
 		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator.insets = new Insets(0, 0, 5, 5);
 		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 4;
+		gbc_separator.gridy = 5;
 		CenterPanel.add(separator, gbc_separator);
 
 		GridBagConstraints gbc_lblClassification = new GridBagConstraints();
 		gbc_lblClassification.anchor = GridBagConstraints.WEST;
 		gbc_lblClassification.insets = new Insets(5, 0, 10, 5);
 		gbc_lblClassification.gridx = 0;
-		gbc_lblClassification.gridy = 5;
+		gbc_lblClassification.gridy = 6;
 		CenterPanel.add(labelPart2, gbc_lblClassification);
 
 		GridBagConstraints gbc_lblCategory = new GridBagConstraints();
 		gbc_lblCategory.anchor = GridBagConstraints.WEST;
 		gbc_lblCategory.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCategory.gridx = 0;
-		gbc_lblCategory.gridy = 6;
+		gbc_lblCategory.gridy = 7;
 		CenterPanel.add(labelCategory, gbc_lblCategory);
 
 		GridBagConstraints gbc_lblTestCategory = new GridBagConstraints();
 		gbc_lblTestCategory.anchor = GridBagConstraints.WEST;
 		gbc_lblTestCategory.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTestCategory.gridx = 2;
-		gbc_lblTestCategory.gridy = 6;
+		gbc_lblTestCategory.gridy = 7;
 		CenterPanel.add(labelCategoryValue, gbc_lblTestCategory);
 
 		GridBagConstraints gbc_lblResquestFor = new GridBagConstraints();
 		gbc_lblResquestFor.anchor = GridBagConstraints.WEST;
 		gbc_lblResquestFor.insets = new Insets(5, 0, 5, 5);
 		gbc_lblResquestFor.gridx = 0;
-		gbc_lblResquestFor.gridy = 7;
+		gbc_lblResquestFor.gridy = 8;
 		CenterPanel.add(labelResquestFor, gbc_lblResquestFor);
 
 		GridBagConstraints gbc_lblMrD = new GridBagConstraints();
 		gbc_lblMrD.anchor = GridBagConstraints.WEST;
 		gbc_lblMrD.insets = new Insets(5, 0, 5, 0);
 		gbc_lblMrD.gridx = 2;
-		gbc_lblMrD.gridy = 7;
+		gbc_lblMrD.gridy = 8;
 		CenterPanel.add(labelResquestForValue, gbc_lblMrD);
 
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
 		gbc_separator_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_separator_1.insets = new Insets(0, 0, 5, 5);
 		gbc_separator_1.gridx = 0;
-		gbc_separator_1.gridy = 8;
+		gbc_separator_1.gridy = 9;
 		CenterPanel.add(separator_1, gbc_separator_1);
 
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_3.insets = new Insets(5, 0, 10, 5);
 		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 9;
+		gbc_lblNewLabel_3.gridy = 10;
 		CenterPanel.add(labelPart3, gbc_lblNewLabel_3);
 
 		GridBagConstraints gbc_lblSolution = new GridBagConstraints();
 		gbc_lblSolution.anchor = GridBagConstraints.WEST;
 		gbc_lblSolution.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSolution.gridx = 0;
-		gbc_lblSolution.gridy = 10;
+		gbc_lblSolution.gridy = 11;
 		CenterPanel.add(labelSolution, gbc_lblSolution);
 		
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 10;
+		gbc_lblNewLabel.gridy = 11;
 		CenterPanel.add(labelCompletionCodeValue, gbc_lblNewLabel);
 
 		GridBagConstraints gbc_lblCompletionCode = new GridBagConstraints();
 		gbc_lblCompletionCode.anchor = GridBagConstraints.WEST;
 		gbc_lblCompletionCode.insets = new Insets(5, 0, 5, 5);
 		gbc_lblCompletionCode.gridx = 0;
-		gbc_lblCompletionCode.gridy = 11;
+		gbc_lblCompletionCode.gridy = 12;
 		CenterPanel.add(labelCompletionCode, gbc_lblCompletionCode);
 		
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
-		gbc_label.insets = new Insets(5, 0, 5, 5);
+		gbc_label.insets = new Insets(5, 0, 5, 0);
 		gbc_label.gridx = 2;
-		gbc_label.gridy = 11;
+		gbc_label.gridy = 12;
 		CenterPanel.add(labelSolutionValue, gbc_label);
 
 		NorthPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -285,6 +310,7 @@ public class Window_User_ViewTicket extends JFrame{
 		SouthPanel.add(buttonClose);
 		buttonClose.addActionListener(ListenerClose);
 		btnGiveAnOpinion.addActionListener(opinionListener);
+		btnViewScreenshot.addActionListener(screen);
 	}
 	/**
 	 * To connect you on the database and collect informations of the ticket
