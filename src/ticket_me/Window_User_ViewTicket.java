@@ -70,7 +70,7 @@ public class Window_User_ViewTicket extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(labelStatusValue.getText().equals("Résolu")) {
-			Window_Satisfaction s = new Window_Satisfaction(tab.get(9),tab.get(7));
+			Window_Satisfaction s = new Window_Satisfaction(tab.get(10),tab.get(7));
 			}
 			else JOptionPane.showMessageDialog(null, "This ticket isn't yet resolved, please wait.");
 		}
