@@ -361,7 +361,7 @@ public class Resolution_Ticket extends JFrame {
 		String id = tab.get(0);
 		String isSolvedBy = Windows_Home.username.getText();
 		if(null == sl || sl.equals("")) {
-			JOptionPane.showMessageDialog(null, "Sorry,solution can't be empty!");
+			JOptionPane.showMessageDialog(null, "Sorry, you can not close a ticket without a solution!");
 	       }else {
 		tj.answerT(Cc,sl,id, isSolvedBy);		
 		}
