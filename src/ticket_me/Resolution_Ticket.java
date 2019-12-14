@@ -1,4 +1,4 @@
-package ticket_me;
+ package ticket_me;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +20,8 @@ import java.util.ArrayList;
  * @since 1.0(only interface)
  * @version 1.1(can update date)
  */
+
+
 public class Resolution_Ticket extends JFrame {
 
 
@@ -58,7 +60,7 @@ public class Resolution_Ticket extends JFrame {
 	private ActionListener ListenerClose = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			answer();
+		
 			dispose();
 		
 			WindowsTech_afficheTickets w = new WindowsTech_afficheTickets("select id_ticket, name_ticket, urgency, category, description from ticket where status = 1 ORDER by id_ticket DESC");
@@ -351,7 +353,7 @@ public class Resolution_Ticket extends JFrame {
 	/**
 	 * Send resolution informations of this ticket on the database
 	 */
-	private void answer()  {
+	 private void answer()  {
 		 TicketsJdbcs tj = new TicketsJdbcs();
 	    
 		String Cc = comboBoxCompletion.getSelectedItem().toString();
@@ -374,8 +376,7 @@ public class Resolution_Ticket extends JFrame {
 		 String to = e.getEmailFromBD(username);
 		 String nameT = TicketsJdbcs.getTicket(Integer.parseInt(tab.get(0)));
 		
-		 Email.sendEmail(to,username,nameT);
+		 e.sendEmail(to,username,nameT);
 		 
 	 }
 }
-		 
