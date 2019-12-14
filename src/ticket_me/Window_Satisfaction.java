@@ -48,13 +48,13 @@ public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 	 */
 	public Window_Satisfaction(String name_technician, String name_user) {
 		this.name_tech = name_technician;
-		giveAnote = "Give a note for ";
+		giveAnote = "Rate";
 		connexionBD("select name from person where id_person = "+name_tech+" and name_role = \"Technician\"");
-		giveAnote+= " who have resolved your ticket : ";
+		giveAnote+= " the Technicians:  ";
 		lblGiveANote.setText(giveAnote);
 		setType(Type.POPUP);
 		setVisible(true);
-		setTitle("Give a note of satisfaction");
+		setTitle("Your satisfaction");
 		setSize(550, 150);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
