@@ -6,8 +6,6 @@ import javax.swing.JFrame;
  * 
  * @author Liza BOUMALI
  * @version 1.0
- * @param 
- * @return
  *cette classe ne fait rien d'autre que construire notre fenetre.
  */
 
