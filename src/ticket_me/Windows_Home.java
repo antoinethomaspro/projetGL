@@ -161,7 +161,7 @@ public class Windows_Home extends JFrame {
 		ButtonInscription.addActionListener(ListernerInscription);
 	}
 	/**
-	 * @return Return nothing but this method dispose the differents components of PanelConnexion.
+	 * Dispose the differents components of PanelConnexion.
 	 */
 	public final void PanelConnexion() {
 		PanelLogin_2.add(ButtonLogin);
@@ -223,7 +223,7 @@ public class Windows_Home extends JFrame {
 		PanelMainLogin.revalidate();
 	}
 	/**
-	 * @return Return nothing but this method dispose the differents components of PanelInscription.
+	 * Dispose the differents components of PanelInscription.
 	 */
 	public final void PanelInscription() {
 		PanelSignUp_2.add(btnDone);
