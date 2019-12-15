@@ -28,6 +28,7 @@ import java.awt.Window.Type;
 public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 	private JPanel mainPane = new JPanel();
 	private String name_tech = "";
+	private int id_tech = -1;
 	private JLabel lblGiveANote = new JLabel();
 	private JComboBox<Integer> comboBox = new JComboBox<Integer>();
 	private JButton btnValidate = new JButton("Validate");
@@ -48,9 +49,7 @@ public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 	 */
 	public Window_Satisfaction(String name_technician, String name_user) {
 		this.name_tech = name_technician;
-		giveAnote = "Rate";
-		connexionBD("select name from person where id_person = "+name_tech+" and name_role = \"Technician\"");
-		giveAnote+= " the Technicians:  ";
+		giveAnote = "Rate "+name_tech+" the Technicians:  ";
 		lblGiveANote.setText(giveAnote);
 		setType(Type.POPUP);
 		setVisible(true);
@@ -106,9 +105,9 @@ public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 		private void insererSatisfaction() {
 			PersonJdbcs d = new PersonJdbcs();
 			String sks = comboBox.getSelectedItem().toString();
-			int idTech = Integer.parseInt(name_tech);
+			connexionBD("select id_person from person where name = \""+name_tech+"\" and name_role = \"Technician\"");
 			//String isSolvedBy = Windows_Home.username.getText();// Pour que user affiche la lise de tickets
-			d.insertS(sks,idTech);
+			d.insertS(sks,id_tech);
 			}
 	@Override
 	public void connexionBD(String SQLRequest) {
@@ -125,7 +124,7 @@ public class Window_Satisfaction extends JFrame implements ConnexionBDD{
 				conn = DriverManager.getConnection(sql_url, name, password);
 				ResultSet result1 = preparedStatement.executeQuery(SQLRequest);
 				if (result1.next()) {
-					giveAnote += result1.getString("name");
+					id_tech = Integer.parseInt(result1.getString("id_person"));
 				}
 				result1.close();
 
