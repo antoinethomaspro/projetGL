@@ -2,7 +2,7 @@
 
 import java.sql.*;
 /**
- * La classe qui gère la connection à la base de données.
+ * La classe qui gÃ¨re la connection Ã  la base de donnÃ©es.
  * @author Liza BOUMALI
  * @version 1.0
  * 
@@ -42,8 +42,7 @@ public class Connectit {
 	/**
 	 * @author Liza BOUMALI
 	 * @version 1.2
-	 * tryit crée la connexion à la base de données.
-	 * @throws ClassNotFoundException, SQLException
+	 * tryit crÃ©e la connexion Ã  la base de donnÃ©es.
 	 */
 	public static void tryit() {
 		System.out.println("-------- MySQL JDBC Connection Demo ------------");
