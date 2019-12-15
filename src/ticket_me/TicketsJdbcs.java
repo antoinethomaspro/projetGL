@@ -1,3 +1,6 @@
+package ticket_me;
+
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 /**
  * @author YANG Zilu  
- * @author ZHANG Zimeng
+ * @authorZHANG Zimeng
  * cette classe permet d'avoir le lien entre le ticket et le BD
  *
  */
@@ -36,7 +39,7 @@ public class TicketsJdbcs {
     String driver = "com.mysql.jdbc.Driver";
     public static final String URL = "jdbc:mysql://127.0.0.1:3306/ticket_me";
     public static final String USER = "root";
-    public static final String PASSWD = "";
+    public static final String PASSWD = "root";
    
     public TicketsJdbcs() {
         try {
@@ -69,7 +72,7 @@ public class TicketsJdbcs {
 
   		//loading the Jdbc driver for Sql Operations  
   		Class.forName("com.mysql.jdbc.Driver");  
-  		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "");  
+  		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
   		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,status, isCreatedBy) values(?,?,?,?,?,?)");           		 
   		//st.setBinaryStream(4, fis);  
   		st.setString(1,titre);
@@ -81,7 +84,7 @@ public class TicketsJdbcs {
   	    
   		int count = st.executeUpdate();  
   		if (count > 0) {  
-  			JOptionPane.showMessageDialog(null, "Your ticket has been created, we well get back to you ASAP!");  
+  			JOptionPane.showMessageDialog(null, "Your ticket has been created,we will get back to you ASAP!");  
   		} else {  
   			JOptionPane.showInputDialog(this, "Error Saving Data");  
   		}
@@ -119,7 +122,7 @@ public class TicketsJdbcs {
 
 		//loading the Jdbc driver for Sql Operations  
 		Class.forName("com.mysql.jdbc.Driver");  
-		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "");  
+		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
 		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,screenshot,status, isCreatedBy) values(?,?,?,?,?,?,?)");           		 
 		//st.setBinaryStream(4, fis);  
 		st.setString(1,titre);
@@ -138,7 +141,7 @@ public class TicketsJdbcs {
 	    
 		int count = st.executeUpdate();  
 		if (count > 0) {  
-			JOptionPane.showMessageDialog(null, "Your ticket has been created, we well get back to you ASAP!");  
+			JOptionPane.showInputDialog(this, "Data Saved Successfully");  
 		} else {  
 			JOptionPane.showInputDialog(this, "Error Saving Data");  
 		}
@@ -149,10 +152,10 @@ public class TicketsJdbcs {
 
     /**
      * Permettre user de supprimer un ticket 
-     * @param titre tickets title
-     * @param description tickets description
-     * @param categorie tickets category
-     * @param priorite tickets priority
+     * @param titre titre du ticket
+     * @param description descrition du ticket
+     * @param categorie categorie  du ticket
+     * @param priorite  priorite du ticket
      */
     public void deleteTicket(String titre, String description, String categorie, String priorite) {
     	String sql = 
@@ -174,7 +177,7 @@ public class TicketsJdbcs {
     
     /**
      * Permettre un  d'avoir le nom d'un ticket de la BD
-     * @param Id id de ce tickets
+     * @param Id id du ticket
      * @return nom de ce ticket
      */
     public static String getTicket(int Id) {
@@ -251,7 +254,7 @@ public class TicketsJdbcs {
 	public static  Vector getHead(){
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 		String name = "root";
-		String password = "";
+		String password = "root";
 		Connection conn;
 		PreparedStatement preparedStatement = null;
  
@@ -290,7 +293,7 @@ public class TicketsJdbcs {
 	 * @param rs le resultat de requête
 	 * @param rsmd enregistrer le resultat de requête
 	 * @return vecteur
-	 * @throws SQLException
+	 * @throws SQLException il y aura l'excption si sql requete n'est pas correcte
 	 */
 	private static  Vector getNextRow(ResultSet rs,ResultSetMetaData rsmd) throws SQLException{
 		Vector currentRow = new Vector();
@@ -304,7 +307,7 @@ public class TicketsJdbcs {
 	
 	/**
 	 * Surcharge de methode pour fenetre technicien
-	 * @param SQLRequest requete sql 
+	 * @param SQLRequest une requete sql
 	 * @return vecteur
 	 */
 	
@@ -347,7 +350,7 @@ public class TicketsJdbcs {
 		public static  Vector getHead(String SQLRequest){
 			String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 			String name = "root";
-			String password = "";
+			String password = "root";
 			Connection conn;
 			PreparedStatement preparedStatement = null;
 	 
@@ -393,10 +396,6 @@ public class TicketsJdbcs {
 	/**
 	 * cette methode permet  technicien sd'inserer la solution
 	 * @param sl le solution de ce ticket
-	 * @param id est le id de person
-	 * @param comCode est le ccompletion code
-	 * @param isSolvedBy est le technician
-	 * @return true si le ticket est resolu
 	 */
 	 public boolean answerT(String comCode,String sl,String id,String  isSolvedBy) {
 	        boolean judge = false;
@@ -426,7 +425,6 @@ public class TicketsJdbcs {
 		 * Methode qui permet de recuperer le nom d'un utilisateur selon
 		 * l'identifiant d'un ticket creer par celui-ci
 		 * @param idUser Identifiant de l'Utilisateur
-		 * @return la requete sql
 		 */
 	 public static String getIsCreatedBy(int idUser) {
 		 String result = "";
