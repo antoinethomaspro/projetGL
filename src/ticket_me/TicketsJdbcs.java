@@ -263,8 +263,7 @@ public class TicketsJdbcs {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(sql_url, name, password);
-//			if(!conn.isClosed())
-//				System.out.println("成功连接数据库");
+
 			preparedStatement = conn.prepareStatement("select `id_ticket`, `name_ticket`,`urgency`,`category`,`status`,`solution`,`completion_code` from ticket");
 			ResultSet result1 = preparedStatement.executeQuery();
 			
