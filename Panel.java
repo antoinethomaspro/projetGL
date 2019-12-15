@@ -9,17 +9,16 @@ import javax.swing.JPanel;
 /**
  * @author Liza BOUMALI
  * @version 1.2
- * Cette classe gère les formes à afficher dans la fenetre crée dans Frame.
+ * Cette classe gÃ¨re les formes Ã  afficher dans la fenetre crÃ©e dans Frame.
  * @see Frame
  * 
  */
 
 public class Panel extends JPanel {
 	/**
-	 * Les deux listes vont servir à stocker les valeurs des angles correspondant à chaque type de completion_code.
+	 * Les deux listes vont servir Ã  stocker les valeurs des angles correspondant Ã  chaque type de completion_code.
 	 * @see Stats_Tickets
-	 * et la deuxième servira à stocker les couleurs reference de chaque type de completion_code.
-	 * @see Stats_Tickets.paint
+	 * et la deuxiÃ¨me servira Ã  stocker les couleurs reference de chaque type de completion_code.
 	 */
 public ArrayList<Double> list= new ArrayList<>();
 public ArrayList<Color> list_colors= new ArrayList<>();
@@ -27,7 +26,7 @@ public ArrayList<Color> list_colors= new ArrayList<>();
  * @author Liza BOUMALI
  * @see Stats_Tickets
  * @param g qui represente un graphique 2D
- * paintComponent parcours les deux listes crées precedemment et dessine le graphe sous phorme de pieChart en 2 dimensions pour les statistiques des tickets dans la base de données.
+ * paintComponent parcours les deux listes crÃ©es precedemment et dessine le graphe sous phorme de pieChart en 2 dimensions pour les statistiques des tickets dans la base de donnÃ©es.
  */
 	public void paintComponent(Graphics g ) {
 		
