@@ -1,23 +1,11 @@
 
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `ticket_mebdd`
+-- Database: `ticket_me`
 --
 
 -- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `faq`
---
+
 
 CREATE TABLE `faq` (
   `id_faq` int(5) NOT NULL,
@@ -26,9 +14,7 @@ CREATE TABLE `faq` (
   `answer_faq` varchar(225) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `faq`
---
+
 
 INSERT INTO `faq` (`id_faq`, `name_faq`, `question_faq`, `answer_faq`) VALUES
 (1, 'Sound', 'When I click play it the application plays the video but there is no sound', 'Check if your PC is not on mute mode'),
@@ -45,11 +31,7 @@ INSERT INTO `faq` (`id_faq`, `name_faq`, `question_faq`, `answer_faq`) VALUES
 (12, 'ticket list', 'my ticket list is empty, i can\'t find my ticket.', 'check your email, your ticket may be solved already.'),
 (13, 'state', 'how do i know the state of my ticket?', 'check your ticket list if your ticket is not there anymore, it may be solved');
 
--- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `person`
---
 
 CREATE TABLE `person` (
   `id_person` int(11) NOT NULL,
@@ -61,9 +43,7 @@ CREATE TABLE `person` (
   `name_role` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `person`
---
+
 
 INSERT INTO `person` (`id_person`, `password`, `email`, `name`, `adress`, `phone`, `name_role`) VALUES
 (1, '4KhF28uk', 'dbabcock0@skyrock.com', 'dbabcock0', '2129 Dahle Hill', '9053061567', 'Admin'),
@@ -170,31 +150,21 @@ INSERT INTO `person` (`id_person`, `password`, `email`, `name`, `adress`, `phone
 (102, '666666', 'jkfdshgh@', 'newUserLala', '1 rue', '1233589', 'User'),
 (103, '123456', 'fgfdhgf@', 'lala', '1 rue', '12536423', 'User');
 
--- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `role`
---
 
 CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
   `name_role` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `role`
---
+
 
 INSERT INTO `role` (`id_role`, `name_role`) VALUES
 (1, 'Admin'),
 (2, 'Technician'),
 (3, 'User');
 
--- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `satisfaction`
---
 
 CREATE TABLE `satisfaction` (
   `id_satisfaction` int(5) NOT NULL,
@@ -202,9 +172,7 @@ CREATE TABLE `satisfaction` (
   `id_person` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `satisfaction`
---
+
 
 INSERT INTO `satisfaction` (`id_satisfaction`, `skill_satisfaction`, `id_person`) VALUES
 (1, 3, 4),
@@ -245,11 +213,7 @@ INSERT INTO `satisfaction` (`id_satisfaction`, `skill_satisfaction`, `id_person`
 (36, NULL, 23),
 (37, NULL, 5);
 
--- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `superticket`
---
 
 CREATE TABLE `superticket` (
   `id_superTicket` int(5) NOT NULL,
@@ -258,9 +222,7 @@ CREATE TABLE `superticket` (
   `solution` varchar(300) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `superticket`
---
+
 
 INSERT INTO `superticket` (`id_superTicket`, `category`, `description`, `solution`) VALUES
 (1, 'pc', 'computer screen in blue', 'Try to reboot your computer'),
@@ -274,11 +236,7 @@ INSERT INTO `superticket` (`id_superTicket`, `category`, `description`, `solutio
 (9, 'microsoft', 'What if dont\'t have enough disk space for the update?', 'Try deleting files you donâ€™t need, uninstalling apps you donâ€™t use, or moving '),
 (10, 'internet', 'can\'t Connect to the Home WiFi Network', 'Follow these steps to determine whether the issue is with your login credentials, the device or your network. The links will provide additional tips.');
 
--- --------------------------------------------------------
 
---
--- è¡¨çš„ç»“æž„ `ticket`
---
 
 CREATE TABLE `ticket` (
   `id_ticket` int(10) NOT NULL,
@@ -295,9 +253,7 @@ CREATE TABLE `ticket` (
   `isSolvedBy` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `ticket`
---
+
 
 INSERT INTO `ticket` (`id_ticket`, `name_ticket`, `urgency`, `category`, `description`, `screenshot`, `status`, `solution`, `completion_code`, `id_superTicket`, `isCreatedBy`, `isSolvedBy`) VALUES
 (1, 'blue screen', 'High', 'pc', 'my computer screen in blue', '', 0, 'Try to reboot your computer', 'training', 1, 'rgocke2r', 'svaanm'),
@@ -352,6 +308,63 @@ INSERT INTO `ticket` (`id_ticket`, `name_ticket`, `urgency`, `category`, `descri
 (50, 'Port Triggering', 'Medium', 'internet', 'What is Port Triggering on the Xfinity Gateway?How can I set Up Port Triggering?', '', 1, NULL, NULL, NULL, 'afassam6', NULL),
 (51, 'quality of video', 'Medium', 'whatsapp', 'My video in chat is always in low quality and I how to do', '', 0, 'If you\'re sure your phone is connected to the Internet, there are a few reasons why WhatsApp messages aren\'t going through:', 'training', 7, 'omaceo', 'scadlock3');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id_faq`);
+
+--
+-- Indexes for table `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`id_person`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`name_role`);
+
+--
+-- Indexes for table `satisfaction`
+--
+ALTER TABLE `satisfaction`
+  ADD PRIMARY KEY (`id_satisfaction`),
+  ADD KEY `fk_person` (`id_person`);
+
+--
+-- Indexes for table `superticket`
+--
+ALTER TABLE `superticket`
+  ADD PRIMARY KEY (`id_superTicket`);
+
+--
+-- Indexes for table `ticket`
+--
+ALTER TABLE `ticket`
+  ADD PRIMARY KEY (`id_ticket`);
+
+
+
+ALTER TABLE `faq`
+  MODIFY `id_faq` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+ALTER TABLE `person`
+  MODIFY `id_person` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+
+ALTER TABLE `satisfaction`
+  MODIFY `id_satisfaction` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+ALTER TABLE `superticket`
+  MODIFY `id_superTicket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+ALTER TABLE `ticket`
+  MODIFY `id_ticket` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
