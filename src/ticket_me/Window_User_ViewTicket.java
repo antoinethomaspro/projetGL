@@ -70,7 +70,7 @@ public class Window_User_ViewTicket extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(labelStatusValue.getText().equals("Solved")) {
-			Window_Satisfaction s = new Window_Satisfaction(tab.get(10),tab.get(7));
+			Window_Satisfaction s = new Window_Satisfaction(tab.get(9),tab.get(7));
 			}
 			else JOptionPane.showMessageDialog(null, "This ticket isn't solved yet, please wait.");
 		}
@@ -339,7 +339,6 @@ public class Window_User_ViewTicket extends JFrame{
 				tab.add(7, result1.getString("isCreatedBy"));
 				tab.add(8, result1.getString("status"));
 				tab.add(9, result1.getString("isSolvedBy"));
-				tab.add(10, result1.getString("id_person"));
 			}
 			result1.close();
 
