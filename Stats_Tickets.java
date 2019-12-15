@@ -103,8 +103,8 @@ public class Stats_Tickets {
  * le main de notre programme.
  * @author Liza BOUMALI
  *
- * 
- * @throws SQLException
+ * @throws SQLException if a problem was occured with the sql request
+ * @param args the main part of this class
  * **/
 	public static void main(String[] args) throws SQLException {
 		
