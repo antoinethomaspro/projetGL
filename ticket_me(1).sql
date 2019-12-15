@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: 2019-12-01 19:27:00
--- 服务器版本： 5.7.11
--- PHP Version: 5.6.18
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,39 +10,45 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ticket_me`
+-- Database: `ticket_mebdd`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `faq`
+-- è¡¨çš„ç»“æž„ `faq`
 --
 
 CREATE TABLE `faq` (
   `id_faq` int(5) NOT NULL,
   `name_faq` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `question_faq` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  `answer_faq` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  `frequency` int(10) NOT NULL
+  `answer_faq` varchar(225) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `faq`
+--
+
+INSERT INTO `faq` (`id_faq`, `name_faq`, `question_faq`, `answer_faq`) VALUES
+(1, 'Sound', 'When I click play it the application plays the video but there is no sound', 'Check if your PC is not on mute mode'),
+(2, 'Display', 'I canâ€™t rotate my screen', 'You can rotate the screen to portrait or upside-down landscape, by hitting CTRL + ALT + Left Arrow, Right Arrow or Down arrow'),
+(3, 'Contact', 'I have a different question. How do I contact you if I need help?', 'Check your inbox email and spam emails if needed'),
+(4, 'creating tickets', 'how many tickets can i make?', 'you can create as much tickets as you want'),
+(5, 'password', 'I have forgotten my ticket\'s password, what do i do?', 'click on "i have forgotten my password" on the ticket window and change it vi your email or phone number'),
+(6, 'username', 'i have forgotten my username, how do i find my ticket?', 'you have it in your email, check your email'),
+(7, 'solved my problem', 'i have solved my problem, can i delete my ticket?', 'yes, connect yourself with your username and password and click on delete my ticket button.'),
+(8, 'edit profile ', 'i have changed my email address how do i edit my profile?', 'replace your email address with the new one'),
+(9, 'phone number ', 'can i put only my phone number and not email?', 'we need your email to send you the solution of your ticket'),
+(10, 'duration', 'how long will my ticket get to be solved?', 'it depends on what urgency you have chosen. high urgency tickets are solved in between one week.\r\n\r\n'),
+(11, 'language', 'i don\'t understand English can i change the language of this software?', 'Sorry, we are working on it. '),
+(12, 'ticket list', 'my ticket list is empty, i can\'t find my ticket.', 'check your email, your ticket may be solved already.'),
+(13, 'state', 'how do i know the state of my ticket?', 'check your ticket list if your ticket is not there anymore, it may be solved');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `issue`
---
-
-CREATE TABLE `issue` (
-  `id_issue` int(5) NOT NULL,
-  `name_issue` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `type_issue` varchar(10) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `person`
+-- è¡¨çš„ç»“æž„ `person`
 --
 
 CREATE TABLE `person` (
@@ -63,7 +62,7 @@ CREATE TABLE `person` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `person`
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `person`
 --
 
 INSERT INTO `person` (`id_person`, `password`, `email`, `name`, `adress`, `phone`, `name_role`) VALUES
@@ -91,7 +90,7 @@ INSERT INTO `person` (`id_person`, `password`, `email`, `name`, `adress`, `phone
 (22, 'hWrXQQsD', 'imorsleyl@etsy.com', 'imorsleyl', '4290 Dayton Avenue', '9467316579', 'Technician'),
 (23, '4FiKSn', 'svaanm@altervista.org', 'svaanm', '85360 Luster Junction', '3375248835', 'Technician'),
 (24, '9HSP3Iq7RN', 'nmitchelyn@yellowpages.com', 'nmitchelyn', '3625 Weeping Birch Point', '6679166669', 'User'),
-(25, 'crN7HtMmKjr', 'omaceo@ibm.com', 'omaceo', '1 Sloan Way', '7622373246', 'User'),
+(25, 'crN7HtMmKjr', 'yangzilu049@gmail.com', 'omaceo', '1 Sloan Way', '7622373246', 'User'),
 (26, 'KY2mZFWcfK', 'okurthp@mlb.com', 'okurthp', '64 Anhalt Hill', '3847269221', 'User'),
 (27, '8OimRVxeNE7', 'jnareq@php.net', 'jnareq', '05987 Green Point', '7901698457', 'User'),
 (28, 'Cg2ImKfrhB', 'ystairmondr@networkadvertising.org', 'ystairmondr', '79 Victoria Way', '9909667338', 'User'),
@@ -167,12 +166,14 @@ INSERT INTO `person` (`id_person`, `password`, `email`, `name`, `adress`, `phone
 (98, 'MX7nZM9JPl8Y', 'mwoolford2p@reference.com', 'mwoolford2p', '4551 Bultman Way', '9707594908', 'User'),
 (99, 'V2riLBTLxT8j', 'dmurison2q@indiegogo.com', 'dmurison2q', '6664 Trailsway Court', '6974375244', 'User'),
 (100, 'TbQ9THb', 'rgocke2r@nydailynews.com', 'rgocke2r', '6040 Rid Oak Place', '2637647475', 'User'),
-(101, '123456', 'gsfh@', 'lili', '1 rue', '063254228', 'User');
+(101, '123456', 'gsfh@', 'lili', '1 rue', '063254228', 'User'),
+(102, '666666', 'jkfdshgh@', 'newUserLala', '1 rue', '1233589', 'User'),
+(103, '123456', 'fgfdhgf@', 'lala', '1 rue', '12536423', 'User');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `role`
+-- è¡¨çš„ç»“æž„ `role`
 --
 
 CREATE TABLE `role` (
@@ -180,23 +181,103 @@ CREATE TABLE `role` (
   `name_role` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `role`
+--
+
+INSERT INTO `role` (`id_role`, `name_role`) VALUES
+(1, 'Admin'),
+(2, 'Technician'),
+(3, 'User');
+
 -- --------------------------------------------------------
 
 --
--- 表的结构 `satisfaction`
+-- è¡¨çš„ç»“æž„ `satisfaction`
 --
 
 CREATE TABLE `satisfaction` (
   `id_satisfaction` int(5) NOT NULL,
-  `skill_satisfaction` int(10) NOT NULL,
-  `id_person` int(11) DEFAULT NULL,
-  `name_role` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+  `skill_satisfaction` int(10) DEFAULT NULL,
+  `id_person` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `satisfaction`
+--
+
+INSERT INTO `satisfaction` (`id_satisfaction`, `skill_satisfaction`, `id_person`) VALUES
+(1, 3, 4),
+(2, 4, 4),
+(3, NULL, 4),
+(4, NULL, 5),
+(5, 2, 6),
+(6, 4, 6),
+(7, 5, 6),
+(8, 4, 7),
+(9, 3, 8),
+(10, 3, 9),
+(11, 1, 11),
+(12, NULL, 10),
+(13, 3, 12),
+(14, 2, 12),
+(15, NULL, 13),
+(16, NULL, 14),
+(17, NULL, 15),
+(18, NULL, 16),
+(19, NULL, 17),
+(20, NULL, 18),
+(21, 4, 19),
+(22, 2, 19),
+(23, 4, 19),
+(24, 3, 19),
+(25, 4, 20),
+(26, 5, 20),
+(27, 4, 20),
+(28, 4, 20),
+(29, 5, 21),
+(30, 4, 22),
+(31, 3, 22),
+(32, NULL, 22),
+(33, 4, 22),
+(34, 5, 23),
+(35, 4, 23),
+(36, NULL, 23),
+(37, NULL, 5);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ticket`
+-- è¡¨çš„ç»“æž„ `superticket`
+--
+
+CREATE TABLE `superticket` (
+  `id_superTicket` int(5) NOT NULL,
+  `category` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `solution` varchar(300) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `superticket`
+--
+
+INSERT INTO `superticket` (`id_superTicket`, `category`, `description`, `solution`) VALUES
+(1, 'pc', 'computer screen in blue', 'Try to reboot your computer'),
+(2, 'wireless network', 'print anything with computer', 'Have you checked if itâ€™s on? And connected to the wifi?'),
+(3, 'password', 'password probleme', 'you are going to receive a message on your phone to check if the person changing the password is you and then change your password'),
+(4, 'software', 'canâ€™t run my code in java application because it doesnâ€™t accept the java environment ', 'your java path and java environment have to match to be able to work'),
+(5, 'freebox', 'can\'t connect with internet but\r\nhave already fix the box', '1)check your mode of box\r\n2)If your network connection light is red, please unplug your Box 4G + and place it somewhere else in your home.\r\n3ï¼‰If the phenomenon persists, please contact their support services by phone.'),
+(6, 'youtube', 'The video problems', 'browsers that we recommend using to upload videos:\r\n\r\n    Google Chrome\r\n    Firefox 4 or higher\r\n    Internet Explorer or Microsoft Edge with Silverlight turned on'),
+(7, 'whatsapp', 'problems about sending or receiving messages and problems about sending or receiving messages', 'If you\'re sure your phone is connected to the Internet, there are a few reasons why WhatsApp messages aren\'t going through:\n\nYour phone '),
+(8, 'gmail', ' how can  change gmail settings,I canâ€™t find it', 'On your computer, go to Gmail.\r\nIn the top right, click Settings'),
+(9, 'microsoft', 'What if dont\'t have enough disk space for the update?', 'Try deleting files you donâ€™t need, uninstalling apps you donâ€™t use, or moving '),
+(10, 'internet', 'can\'t Connect to the Home WiFi Network', 'Follow these steps to determine whether the issue is with your login credentials, the device or your network. The links will provide additional tips.');
+
+-- --------------------------------------------------------
+
+--
+-- è¡¨çš„ç»“æž„ `ticket`
 --
 
 CREATE TABLE `ticket` (
@@ -205,131 +286,71 @@ CREATE TABLE `ticket` (
   `urgency` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `screenshot` blob NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `solution` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `solution` text COLLATE utf8_unicode_ci,
   `completion_code` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_issue` int(11) DEFAULT NULL,
-  `id_person` int(11) DEFAULT NULL,
-  `id_faq` int(11) DEFAULT NULL,
-  `isCreatedBy` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+  `id_superTicket` int(11) DEFAULT NULL,
+  `isCreatedBy` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `isSolvedBy` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `ticket`
+-- è½¬å­˜è¡¨ä¸­çš„æ•°æ® `ticket`
 --
 
-INSERT INTO `ticket` (`id_ticket`, `name_ticket`, `urgency`, `category`, `description`, `status`, `solution`, `completion_code`, `id_issue`, `id_person`, `id_faq`, `isCreatedBy`) VALUES
-(1, 'test', 'Problème', 'Haute', 'java.awt.TextArea[text0,154,56,441x96,invalid,text=hjfdsfjfkl;dshagilgh.dfahgkad,editable,selection=29-29,rows=0,columns=0,scrollbarVisibility=both]', NULL, 'reussit', 'wwwww', NULL, NULL, NULL, ''),
-(2, 'test2', 'Problème', 'Haute', 'java.awt.TextArea[text0,154,56,441x96,invalid,text=????????? cette fois on a que une fenetre quand il se termine,editable,selection=61-61,rows=0,columns=0,scrollbarVisibility=both]', NULL, 's', 's', NULL, NULL, NULL, ''),
-(3, 'test3', 'Question', 'Faible', 'java.awt.TextArea[text0,154,56,441x96,invalid,text=C\'EST POUR TESTER SI J\'AI BIEN MODIFIEE,editable,selection=39-39,rows=0,columns=0,scrollbarVisibility=both]', NULL, 'sl ', ' comCode', NULL, NULL, NULL, ''),
-(4, 'test4', 'Question', 'Normale', 'EST ce que je peux afficher le contenue cette fois?', 0, ' sl ', ' comCode', NULL, NULL, NULL, ''),
-(5, 'test5', 'Question', 'Normale', 'hsjkkkkkkkkkkkkkkkkkkdddddddddd', 0, '+ sl + ', '+ comCode+', NULL, NULL, NULL, ''),
-(6, 'test6', 'Faible', 'Son', 'sdkkjcl/ndglkfd', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(7, 'test11/20', 'Haute', 'Affichage', 'llllll', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(8, 'test2', 'Haute', 'Affichage', 'ffff', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(9, 'testApresHome', 'Haute', 'Affichage', 'On a reuusit de faire ca apres connecter!!!', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(10, 'reussit', 'Haute', 'Affichage', 'est ce qu\'on a reussit????', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(11, 'dddddsd', 'Haute', 'Affichage', 'last time............TTTTTT', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(12, 'TTTT', 'Haute', 'Affichage', 'ddddddd', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(13, 'dernier', 'Haute', 'Affichage', 'dddddddddddddddd', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(14, 'tester2', 'Haute', 'Affichage', 'fgmjhjfgjhkhgjhfjhdffgfdgfsd', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(15, 'Teste1123', 'Normale', 'Son', 'lalala', NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(16, 'probleme de boolean', 'Haute', 'Affichage', 'on peur inserer le boolean mtn?', 0, 'training', 'yeeeees', NULL, NULL, NULL, ''),
-(17, 'il y a des difference?', 'Haute', 'Affichage', 'yes?', 1, NULL, NULL, NULL, NULL, NULL, ''),
-(18, 'test1201', 'Haute', 'Affichage', 'yes', 1, NULL, NULL, NULL, NULL, NULL, ''),
-(19, 'titre', ' priorite ', ' categorie', 'description', 1, NULL, NULL, NULL, NULL, NULL, 'lili'),
-(20, 'Test pourMarlyn Magwood', 'Haute', 'Affichage', 'est ce qu\'on peur indiquer ce ticket est cree par qui?', 1, NULL, NULL, NULL, NULL, NULL, 'Marlyn Magwood');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `faq`
---
-ALTER TABLE `faq`
-  ADD PRIMARY KEY (`id_faq`);
-
---
--- Indexes for table `issue`
---
-ALTER TABLE `issue`
-  ADD PRIMARY KEY (`id_issue`);
-
---
--- Indexes for table `person`
---
-ALTER TABLE `person`
-  ADD PRIMARY KEY (`id_person`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`name_role`);
-
---
--- Indexes for table `satisfaction`
---
-ALTER TABLE `satisfaction`
-  ADD PRIMARY KEY (`id_satisfaction`),
-  ADD KEY `fk_person` (`id_person`),
-  ADD KEY `fk_role` (`name_role`);
-
---
--- Indexes for table `ticket`
---
-ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`id_ticket`),
-  ADD KEY `fk_issue` (`id_issue`),
-  ADD KEY `fk_person` (`id_person`),
-  ADD KEY `fk_faq` (`id_faq`);
-
---
--- 在导出的表使用AUTO_INCREMENT
---
-
---
--- 使用表AUTO_INCREMENT `faq`
---
-ALTER TABLE `faq`
-  MODIFY `id_faq` int(5) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `issue`
---
-ALTER TABLE `issue`
-  MODIFY `id_issue` int(5) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `person`
---
-ALTER TABLE `person`
-  MODIFY `id_person` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
---
--- 使用表AUTO_INCREMENT `satisfaction`
---
-ALTER TABLE `satisfaction`
-  MODIFY `id_satisfaction` int(5) NOT NULL AUTO_INCREMENT;
---
--- 使用表AUTO_INCREMENT `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `id_ticket` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
--- 限制导出的表
---
-
---
--- 限制表 `satisfaction`
---
-ALTER TABLE `satisfaction`
-  ADD CONSTRAINT `satisfaction_ibfk_2` FOREIGN KEY (`name_role`) REFERENCES `role` (`name_role`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- 限制表 `ticket`
---
-ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`id_issue`) REFERENCES `issue` (`id_issue`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `ticket_ibfk_3` FOREIGN KEY (`id_faq`) REFERENCES `faq` (`id_faq`) ON DELETE NO ACTION ON UPDATE CASCADE;
+INSERT INTO `ticket` (`id_ticket`, `name_ticket`, `urgency`, `category`, `description`, `screenshot`, `status`, `solution`, `completion_code`, `id_superTicket`, `isCreatedBy`, `isSolvedBy`) VALUES
+(1, 'blue screen', 'High', 'pc', 'my computer screen in blue', '', 0, 'Try to reboot your computer', 'training', 1, 'rgocke2r', 'svaanm'),
+(2, 'Log-in', 'Low', 'pc', 'I have written my username and password but i still canâ€™t log in', '', 0, 'try turning off your caps lock before writing your password', 'training', NULL, 'apratton24', 'svaanm'),
+(3, 'deleted files', 'High', 'pc', 'I accidently deleted some of my files and I need them for my project how can i recover them', '', 0, 'check your recycle been first and if your lost files are not there do not use that drive as long as you have not retrieved your files or your files will be replaced by new data', 'training', NULL, 'fmaslen25', 'svaanm'),
+(4, 'slowliness', 'low', 'pc', 'my computer is too slow, what can i do so it works faster?', '', 0, 'try to clean your computer fan periodically, your computer may be just overheated', 'training', NULL, 'esavile23', 'imorsleyl'),
+(5, 'printer is not working', 'Medium', 'wireless network', 'i canâ€™t print anything with my computer because its not working', '', 0, 'Have you checked if itâ€™s on? And connected to the wifi?', 'training', 2, 'apratton24', 'imorsleyl'),
+(6, 'noise', 'Medium', 'pc', 'my computer is making grinding noise', '', 1, NULL, NULL, NULL, 'apratton24', NULL),
+(7, 'slow internet', 'Low', 'wireless network', 'i canâ€™t load my projects because the internet is so slow', '', 0, 'check out your computer if there are viruses or spywares and always install an antivirus software', 'training', 2, 'fmaslen25', 'imorsleyl'),
+(8, 'canâ€™t connect to the network', 'Low', 'wireless network', 'the wireless network keeps kicking me off', '', 0, 'your router may be overloaded, try to connect to another router', 'training', NULL, 'khaselden26', 'imorsleyl'),
+(9, 'USB device not recognized', 'Low', 'pc', 'my computer doesnâ€™t recognize my usb driver', '', 0, 'try to use another port if it still doesnâ€™t work try putting it on someone elseâ€™s computer to check if its not broken', 'training', NULL, 'fmaslen25', 'abid_persondissk'),
+(10, 'password reset', 'Low', 'password', 'i want to reset my password because I have forgotten my current password', '', 0, 'you are going to receive a message on your phone to check if the person changing the password is you and then change your password', 'training', 3, 'ltucker27', 'dbirneyj'),
+(11, ' uploading errors', 'Low', 'youtube', 'I can\'t open the video and it shows me an error with \'A network error has occurred\' ', '', 0, '\n\nMake sure that you\'ve updated your browser to the latest version. Older browsers can often cause problems. Below are some of the browsers that we recommend using to upload videos:\n\n    Google Chrome\n    Firefox 4 or higher\n    Internet Explorer or Microsoft Edge with Silverlight turned on\n', 'solved with a workaround', 6, 'nmitchelyn', 'scadlock3'),
+(12, 'Duplicate uploads', 'Medium', 'youtube', 'I can\'t upload the same video twice? The second upload is a duplicate', '', 0, 'If you\'d like to upload the same video again, try editing the video before uploading it. For example, change the video length by adding extra frames or compress the video. Changing the file name alone won\'t prevent the duplicate upload error message.', 'solved with a workaround', 6, 'omaceo', 'scadlock3'),
+(13, 'Video stuck during upload', 'Low', 'youtube', 'My video stuck during upload', '', 0, '\r\n    File type and size: Your video\'s file type and video format determine its size. To make your uploads faster, encode your videos in one of these recommended formats.\r\n    Slow Internet connection: Search \'Internet speed test\' on google.co.uk to check your Internet connection. Slow or unstable Internet connection is one of the main causes of slow uploads.\r\n    Heavy upload traffic: You might be uploading during a busy time. At some peak hours, your Internet Service Provider registers spikes of upload traffic and might take longer to upload your video to YouTube. Find out more about video performance on YouTube.\r\n    Resolution: Higher resolution videos take longer to upload. For instance, a 4K video will take longer to upload than a 1080p video.\r\n', 'training', NULL, 'okurthp', 'scadlock3'),
+(14, 'printer', 'Low', 'printer', 'the printer is down', '', 1, NULL, NULL, NULL, 'fmaslen25', NULL),
+(15, 'adobt reader updated problem', 'Low', 'pc', 'I donâ€™t have the adnibistration rights for updating adobe reader what should i do', '', 0, 'The move to cloud-based service desk software helps cut down on these calls, because the updates are installed automatically. You can also release formal announcements and notifications of upcoming changes to software and/or applications through the portal.', 'training', NULL, 'khaselden26', 'dbirneyj'),
+(16, 'video conferencing error', 'Low', 'pc', 'there is an error while video conferencing', '', 1, NULL, NULL, NULL, 'ltucker27', NULL),
+(17, 'voicemail password reset', 'Low', 'pc', 'mey voicemail password needs to be reste', '', 1, NULL, NULL, NULL, 'ltucker27', NULL),
+(18, 'slow network', 'Medium', 'wireless network', 'the network is slow', '', 0, 'Some problems are due to physical location relative to network nodes or building materials affecting signal. Network upgrades often make things temporarily slower in exchange for faster access upon upgrade completion. Plan and execute these changes with minimal service disruption through an appropriate IT change management process', 'training', 2, 'ltucker27', 'dbirneyj'),
+(19, 'document acces', 'Low', 'pc', 'i canâ€™t acces to my documents', '', 0, 'change hardware or applications, employees need to know how to access their documents in the new hardware/software environment.', 'training', NULL, 'ltucker27', 'dbirneyj'),
+(20, 'third-party software problems', 'High', 'pc', 'i canâ€™t use third party applications I have so many problems, please help me as fast as you can because I need to finish my project as soon as possible and i need that third party application', '', 0, 'To prevent these problems, many organizations deny administrative rights to employees wanting to install their own third-party software. In addition, we recommend tracking every detail about every device through a comprehensive IT asset management strategy', 'training', NULL, 'ltucker27', 'itollfreei'),
+(21, 'frozen computer', 'Low', 'pc', 'my computer just froze what can I do ', '', 1, NULL, NULL, NULL, 'kdecort28', NULL),
+(22, 'network connection', 'Medium', 'pc', 'BYOD problems', '', 0, 'bring your own device', 'abandonned by use', NULL, 'ltucker27', 'itollfreei'),
+(23, 'deleting application', 'Low', 'pc', 'my pc keeps deleting every application I install on it', '', 1, NULL, NULL, NULL, 'glegrand29', NULL),
+(24, 'my apache is not working', 'High', 'software', 'i canâ€™t connect myself to my database because my apache is not working after I installed new version of windows', '', 1, NULL, NULL, NULL, 'glegrand29', NULL),
+(25, 'java environment not working', 'Low', 'software', 'i canâ€™t run my code in java application because it doesnâ€™t accept the java environment', '', 0, 'your java path and java environment have to match to be able to work', 'training', 4, 'kdecort28', 'itollfreei'),
+(26, 'keayboard not working', 'Low', 'pc', 'My keyboard isnâ€™t inputing anything on my computer even though it works on other computers', '', 0, 'try to clean up your keyboard port', 'training', NULL, 'cvooght2a', 'itollfreei'),
+(27, 'clean up c driver', 'Medium', 'pc', 'how can I clean up my C drive without losing any document or application?', '', 1, NULL, NULL, NULL, 'cvooght2a', NULL),
+(28, 'Video stuck during upload', 'low', 'youtube', 'My video always stuck during upload ,and I  donâ€™t know how to do', '', 1, NULL, NULL, NULL, 'jnareq', ''),
+(29, 'Troubleshoot video takedowns', 'Medium', 'youtube', 'Iâ€™am a youtuber and my video is taken down but I donâ€™t know why', '', 0, 'Your video was removed from YouTube because a copyright owner sent us a complete legal request to take it down. You also received a copyright strike. Learn how copyright strikes can affect your account.', 'solved with a workaround', NULL, 'blid_persongettu', 'atewnion5'),
+(30, 'Saving chat history', 'Low', 'whatsapp', 'I canâ€™t find button to save my history of chat', '', 1, NULL, NULL, NULL, 'nmitchelyn', ''),
+(31, 'notifications', 'Medium', 'whatsapp', 'Why don\'t I get notifications?', '', 0, 'When a message is sent to you via WhatsApp, but you do not have the app open to receive it, your iPhone will automatically display a push notification to alert you of the message. iOS apps can provide three types of notifications:\n\nSounds: An audible alert plays.\nAlerts/Banners: An alert or banner appears on the screen.\nBadges: An image or number appears on the application icon.', 'solved with a workaround', 7, 'ksmithsons', 'jlabon'),
+(32, 'messages problems', 'Low', 'whatsapp', 'I have some problems about sending or receiving messages', '', 0, 'If you\'re sure your phone is connected to the Internet, there are a few reasons why WhatsApp messages aren\'t going through:\n\nYour phone needs to be restarted or turned off and on.\nThe contact you\'re messaging has blocked your number. Find out more in this article.\nYou haven\'t completed the initial verification process. Learn about verification on: Android | iPhone | Windows Phone.\nThe number of the contact you\'re trying to message on WhatsApp hasn\'t been saved correctly on your phone. Learn the correct format of each phone number here.', 'training', 7, 'ahefnert', 'jlabon'),
+(33, 'Troubleshoot blurry photos', 'Medium', 'whatsapp', 'My photos  appear blurry', '', 1, NULL, NULL, NULL, 'blid_personngettu', NULL),
+(34, 'Change Gmail settings', 'Low', 'gmail', 'I mant to knows how can I change my gmail settings,I canâ€™t find it', '', 0, 'On your computer, go to Gmail.\nIn the top right, click Settings Settingsand then Settings.\nAt the top, choose a settings page, such as General, Labels, or Inbox.\nMake your changes.\nAfter you\'re done with each page, click Save Changes at the bottom.', 'training', 8, 'fescoffreyw', 'atewnion5'),
+(35, 'Google Account', 'Medium', 'gmail', 'I can\'t sign in to your Google Account,and I think someone else is using your account.', '', 0, 'For help getting back in to your account:\r\n\r\nFollow the steps to recover your account.\r\nYou\'ll be asked some questions to confirm it\'s your account. Answer as best you can.\r\nIf you\'re having trouble, try the tips to complete account recovery steps.\r\nReset your password when prompted. Choose a strong password that you haven\'t already used with this account. Learn how to create a strong password.', 'training', 8, 'sdruely', 'afassam6'),
+(36, 'Gmail addresses', 'Medium', 'gmail', 'My dots don\'t matter in Gmail addresses', '', 1, NULL, NULL, NULL, 'ahefnert', NULL),
+(37, 'Google products', 'Medium', 'gmail', 'How can I use Google products, like Gmail or Calendar, in the same window on MY computer.', '', 1, NULL, NULL, NULL, 'ystairmonde', NULL),
+(38, 'Use Gmail for business', 'High', 'gmail', 'Can I use gmail for business and how?', '', 0, 'Swap @gmail.com with your own domain to create professional email addresses for everyone on your team, like yourname@example.com. With a custom email at your domain, you can help build customer trust and create group mailing lists, such as sales@yourcompany.', 'solved with a workaround', NULL, 'jnareq\r\n', 'fcrosse7'),
+(39, 'Space Drive', 'High', 'microsoft', '\nWhat if I don\'t have enough disk space for the update?', '', 0, 'Try deleting files you donâ€™t need, uninstalling apps you donâ€™t use, or moving files to another drive like an external USB drive or OneDrive. For more tips on freeing up disk space, see Free up drive space in Windows 10.', 'solved with a workaround', 9, 'ahefnert', 'atewnion5'),
+(40, 'Xbox', 'Medium', 'microsoft', 'Once I join the Xbox Game Pass Ultimate plan,where can I find My membre benifits?', '', 0, 'Once you join the Xbox Game Pass Ultimate plan, you can continue to access all your Xbox Live Gold benefits in the Xbox Live Gold lounge on your Xbox One Home and your Xbox Game Pass benefits on the dedicated Xbox Game Pass tab on your Xbox One.', 'solved with a workaround', NULL, 'sdruely', 'nlayzellb'),
+(41, 'Windows virtual', 'Medium', 'microsoft', 'When is windows virtual desktop an approprite solution?', '', 1, NULL, NULL, NULL, 'hgrishuninx', NULL),
+(42, 'Skype Number', 'Low', 'microsoft', 'How can I do I block unwanted calls to my Skype Number', '', 1, NULL, NULL, NULL, 'scorcoranz', NULL),
+(43, 'Windows Update', 'Medium', 'microsoft', '\r\n\r\nI want to stop downloading from or uploading to other PCs on the local network but I donâ€™t know how to do that ,can you help me?\r\n\r\n', '', 1, NULL, NULL, NULL, 'tmarcinkowski19', NULL),
+(44, 'Page', 'Low', 'facebook', 'How can I invite people to like my Page or share another Page with my friends.', '', 0, 'To share a Page with friends:\r\nClick Share below the Page\'s cover photo.\r\nClick the dropdown menu at the top to select where you want to share the Page (example: your timeline, a Page you manage).\r\nWrite an optional update or message.\r\nClick Post or Send.', 'training', 9, 'dpretsell11', 'nlayzellb'),
+(45, 'add captions', 'Medium', 'facebook', 'How do I add captions to my Page\'s video on Facebook?', '', 0, 'To add captions to your Page\'s video:\r\nClick Photo/Video at the top of your Page\'s timeline.\r\nClick Upload Photos/Video and select a video from your computer.\r\nOnce your video has uploaded, click Subtitles & Captions(CC) in the column on the right.\r\nNext to Video Language, select the main language spoken in the video.\r\nOnce your video has finished uploading, select whether you\'d like to auto-generate captions, write them yourself or upload a SubRip (.srt) file.\r\nClick Publish.', 'training', 9, 'bmckelvey13', 'dfaggea'),
+(46, 'Hacked page', 'High', 'facebook', '\r\nI think my Facebook Page was hacked or taken over by someone else.\r\nAnd I can\'t access your Page', '', 1, NULL, NULL, NULL, 'cbrinkman14', NULL),
+(47, 'problems of results page', 'urgency', 'facebook', 'I\'ve noticed that your Page isn\'t appearing in search results on Facebook,what can I do?', '', 1, NULL, NULL, NULL, 'bmckelvey13', NULL),
+(48, 'Connect to network', 'Medium', 'internet', 'I can\'t Connect to the Home WiFi Network,and I dontâ€™t know how o do ,would you please help me?', '', 0, 'Follow these steps to determine whether the issue is with your login credentials, the device or your network. The links will provide additional tips.\n:Login Credentials,Device Issues,Networdk issues', '', 10, 'dpretsell11', 'vhabberjam8'),
+(49, 'Connect Gaming device', 'Medium', 'internet', 'Could you please help me connect your wireless devices such as gaming consoles or systems, smart TVs, and wireless printers to your in-home WiFi network?', '', 1, NULL, NULL, NULL, 'fcrosse7', NULL),
+(50, 'Port Triggering', 'Medium', 'internet', 'What is Port Triggering on the Xfinity Gateway?How can I set Up Port Triggering?', '', 1, NULL, NULL, NULL, 'afassam6', NULL),
+(51, 'quality of video', 'Medium', 'whatsapp', 'My video in chat is always in low quality and I how to do', '', 0, 'If you\'re sure your phone is connected to the Internet, there are a few reasons why WhatsApp messages aren\'t going through:', 'training', 7, 'omaceo', 'scadlock3');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
