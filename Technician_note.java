@@ -191,8 +191,8 @@ public class Technician_note {
 	/**
 	 * Méthode main du programme.
 	 * ici se créent les objets et se fait la récupération de données plus les règles de calcules.
-	 * @param args
-	 * @throws SQLException
+	 * @param args main
+	 * @throws SQLException if a problem was occured with the SQL request
 	 */
 
 	public static void main(String[] args) throws SQLException {
