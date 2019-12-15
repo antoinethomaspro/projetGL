@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 public class Frame extends JFrame{
 	/**
 	 * constructeur de la classe frame
-	 * @param pl 
+	 * @param pl a java swing panel
 	 * 
 	 * @see Panel
 	 */
