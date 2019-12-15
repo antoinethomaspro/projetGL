@@ -152,10 +152,10 @@ public class TicketsJdbcs {
 
     /**
      * Permettre user de supprimer un ticket 
-     * @param titre
-     * @param description
-     * @param categorie
-     * @param priorite
+     * @param titre title
+     * @param description description
+     * @param categorie category
+     * @param priorite priority
      */
     public void deleteTicket(String titre, String description, String categorie, String priorite) {
     	String sql = 
@@ -177,7 +177,7 @@ public class TicketsJdbcs {
     
     /**
      * Permettre un  d'avoir le nom d'un ticket de la BD
-     * @param Id
+     * @param Id the id's ticket
      * @return nom de ce ticket
      */
     public static String getTicket(int Id) {
@@ -307,7 +307,7 @@ public class TicketsJdbcs {
 	
 	/**
 	 * Surcharge de methode pour fenetre technicien
-	 * @param SQLRequest
+	 * @param SQLRequest the SQL request
 	 * @return vecteur
 	 */
 	
@@ -396,6 +396,10 @@ public class TicketsJdbcs {
 	/**
 	 * cette methode permet  technicien sd'inserer la solution
 	 * @param sl le solution de ce ticket
+	 * @param comCode The completion code of this ticket
+	 * @param id id's ticket
+	 * @param isSolvedBy the person who have solved the ticket
+	 * @return true if the process is done else false
 	 */
 	 public boolean answerT(String comCode,String sl,String id,String  isSolvedBy) {
 	        boolean judge = false;
@@ -425,6 +429,7 @@ public class TicketsJdbcs {
 		 * Methode qui permet de recuperer le nom d'un utilisateur selon
 		 * l'identifiant d'un ticket creer par celui-ci
 		 * @param idUser Identifiant de l'Utilisateur
+		 * @return the name which is linked at the id
 		 */
 	 public static String getIsCreatedBy(int idUser) {
 		 String result = "";
