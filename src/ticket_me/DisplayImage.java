@@ -26,13 +26,16 @@ public class DisplayImage extends JPanel{
 	BufferedImage img = null;  // Image to be displayed
 	int id_ticket;
 	/** Constructor: Setup Connection and GUI
-	 * @throws ClassNotFoundException */
+	 * @param id_ticket takes the id ticket to show its image
+	 * @throws ClassNotFoundException  shows exception
+	 *  
+	 *  */
 	public DisplayImage(int id_ticket) throws ClassNotFoundException {
 		this.id_ticket = id_ticket;
 		// Setup database connection
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me","root","");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me","root","root");
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 		}
@@ -55,6 +58,7 @@ public class DisplayImage extends JPanel{
 
 	/** Read image from the database for the given ID 
 	 * @param id is the id of the ticket
+	 * @return img the buffered image
 	 */ 
 	public BufferedImage readImage(String id) {
 
