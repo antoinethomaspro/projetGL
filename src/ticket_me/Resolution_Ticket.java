@@ -99,7 +99,7 @@ public class Resolution_Ticket extends JFrame {
 	/**
 	 * 
 	 * @param SQLRequest a SQL request to collect differents attributs of this ticket
-	 * @throws SQLException
+	 * @throws SQLException if a problem was occured with the sql request
 	 */
 	public Resolution_Ticket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
