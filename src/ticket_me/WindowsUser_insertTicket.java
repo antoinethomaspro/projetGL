@@ -71,10 +71,17 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			insererT();
 			dispose();
-
+			Window_Main_User t = new Window_Main_User();
 		}
 	};
-
+	public ActionListener cancel = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+			Window_Main_User t = new Window_Main_User();
+		}
+	};
 	public WindowsUser_insertTicket() {
 		getContentPane().add(panel_South, BorderLayout.SOUTH);
 		setVisible(true); // page visible
@@ -90,7 +97,7 @@ public class WindowsUser_insertTicket extends JFrame implements ActionListener {
 		panel_South.add(Button_Done);
 		panel_South.add(Button_Cancel);
 		Button_Reset.addActionListener(resetListener);
-		Button_Cancel.addActionListener(this);
+		Button_Cancel.addActionListener(cancel);
 		Button_Done.addActionListener(doneListener);
 
 		// -- Mise en place du panel centrale --//
