@@ -93,7 +93,7 @@ public class Window_User_ViewTicket extends JFrame{
 	};
 	/**
 	 * @param SQLRequest a SQLRequest to collect the differents attributs of the ticket on the database.
-	 * @throws SQLException
+	 * @throws SQLException if there is an error with the SQL request
 	 */
 	public Window_User_ViewTicket(String SQLRequest) throws SQLException {
 		this.request = SQLRequest;
@@ -316,7 +316,7 @@ public class Window_User_ViewTicket extends JFrame{
 	}
 	/**
 	 * To connect you on the database and collect informations of the ticket
-	 * @throws SQLException
+	 * @throws SQLException if there is an error with the SQL request
 	 */
 	public void connexionBD() throws SQLException {
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
