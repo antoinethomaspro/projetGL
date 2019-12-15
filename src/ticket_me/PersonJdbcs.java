@@ -149,6 +149,7 @@ public void signUp(String nom, String pwd, String pwd2,String adress,String phon
     /**
      * Cette methode permet d'ajouter le note pour un technicien
      * @param sks skill_satisfaction 
+     * @param idT an id's ticket
      */
 public void insertS(String sks,int idT) {
     try {    
