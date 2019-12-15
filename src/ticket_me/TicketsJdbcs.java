@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 /**
  * @author YANG Zilu  
- * @authorZHANG Zimeng
+ * @author ZHANG Zimeng
  * cette classe permet d'avoir le lien entre le ticket et le BD
  *
  */
