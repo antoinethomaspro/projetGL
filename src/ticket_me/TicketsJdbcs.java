@@ -1,6 +1,3 @@
-package ticket_me;
-
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +36,7 @@ public class TicketsJdbcs {
     String driver = "com.mysql.jdbc.Driver";
     public static final String URL = "jdbc:mysql://127.0.0.1:3306/ticket_me";
     public static final String USER = "root";
-    public static final String PASSWD = "root";
+    public static final String PASSWD = "";
    
     public TicketsJdbcs() {
         try {
@@ -72,7 +69,7 @@ public class TicketsJdbcs {
 
   		//loading the Jdbc driver for Sql Operations  
   		Class.forName("com.mysql.jdbc.Driver");  
-  		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
+  		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "");  
   		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,status, isCreatedBy) values(?,?,?,?,?,?)");           		 
   		//st.setBinaryStream(4, fis);  
   		st.setString(1,titre);
@@ -84,7 +81,7 @@ public class TicketsJdbcs {
   	    
   		int count = st.executeUpdate();  
   		if (count > 0) {  
-  			JOptionPane.showMessageDialog(null, "Your ticket has been created,we will get back to you ASAP!");  
+  			JOptionPane.showMessageDialog(null, "Your ticket has been created, we well get back to you ASAP!");  
   		} else {  
   			JOptionPane.showInputDialog(this, "Error Saving Data");  
   		}
@@ -122,7 +119,7 @@ public class TicketsJdbcs {
 
 		//loading the Jdbc driver for Sql Operations  
 		Class.forName("com.mysql.jdbc.Driver");  
-		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "root");  
+		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ticket_me", "root", "");  
 		PreparedStatement st = con.prepareStatement("insert into ticket(name_ticket,urgency,category, description,screenshot,status, isCreatedBy) values(?,?,?,?,?,?,?)");           		 
 		//st.setBinaryStream(4, fis);  
 		st.setString(1,titre);
@@ -141,7 +138,7 @@ public class TicketsJdbcs {
 	    
 		int count = st.executeUpdate();  
 		if (count > 0) {  
-			JOptionPane.showInputDialog(this, "Data Saved Successfully");  
+			JOptionPane.showMessageDialog(null, "Your ticket has been created, we well get back to you ASAP!");  
 		} else {  
 			JOptionPane.showInputDialog(this, "Error Saving Data");  
 		}
@@ -152,10 +149,10 @@ public class TicketsJdbcs {
 
     /**
      * Permettre user de supprimer un ticket 
-     * @param titre title
-     * @param description description
-     * @param categorie category
-     * @param priorite priority
+     * @param titre tickets title
+     * @param description tickets description
+     * @param categorie tickets category
+     * @param priorite tickets priority
      */
     public void deleteTicket(String titre, String description, String categorie, String priorite) {
     	String sql = 
@@ -177,7 +174,7 @@ public class TicketsJdbcs {
     
     /**
      * Permettre un  d'avoir le nom d'un ticket de la BD
-     * @param Id the id's ticket
+     * @param Id id de ce tickets
      * @return nom de ce ticket
      */
     public static String getTicket(int Id) {
@@ -254,7 +251,7 @@ public class TicketsJdbcs {
 	public static  Vector getHead(){
 		String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 		String name = "root";
-		String password = "root";
+		String password = "";
 		Connection conn;
 		PreparedStatement preparedStatement = null;
  
@@ -307,7 +304,7 @@ public class TicketsJdbcs {
 	
 	/**
 	 * Surcharge de methode pour fenetre technicien
-	 * @param SQLRequest the SQL request
+	 * @param SQLRequest requete sql 
 	 * @return vecteur
 	 */
 	
@@ -350,7 +347,7 @@ public class TicketsJdbcs {
 		public static  Vector getHead(String SQLRequest){
 			String sql_url = "jdbc:mysql://localhost:3306/ticket_me";
 			String name = "root";
-			String password = "root";
+			String password = "";
 			Connection conn;
 			PreparedStatement preparedStatement = null;
 	 
@@ -396,10 +393,10 @@ public class TicketsJdbcs {
 	/**
 	 * cette methode permet  technicien sd'inserer la solution
 	 * @param sl le solution de ce ticket
-	 * @param comCode The completion code of this ticket
-	 * @param id id's ticket
-	 * @param isSolvedBy the person who have solved the ticket
-	 * @return true if the process is done else false
+	 * @param id est le id de person
+	 * @param comCode est le ccompletion code
+	 * @param isSolvedBy est le technician
+	 * @return true si le ticket est resolu
 	 */
 	 public boolean answerT(String comCode,String sl,String id,String  isSolvedBy) {
 	        boolean judge = false;
@@ -429,7 +426,7 @@ public class TicketsJdbcs {
 		 * Methode qui permet de recuperer le nom d'un utilisateur selon
 		 * l'identifiant d'un ticket creer par celui-ci
 		 * @param idUser Identifiant de l'Utilisateur
-		 * @return the name which is linked at the id
+		 * @return la requete sql
 		 */
 	 public static String getIsCreatedBy(int idUser) {
 		 String result = "";
