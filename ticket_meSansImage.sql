@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- Database: `ticket_me`
 --
 CREATE DATABASE `ticket_me`;
+use `ticket_me`;
 -- --------------------------------------------------------
 
 --
