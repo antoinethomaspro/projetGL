@@ -55,7 +55,7 @@ public class Window_Main_User extends JFrame implements ConnexionBDD {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			WindowsUser_insertTicket t = new WindowsUser_insertTicket();
-
+			dispose();
 		}
 	};
 	public ActionListener refresh = new ActionListener() {
